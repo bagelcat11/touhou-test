@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bc54rf6dktfqb" path="res://assets/terrain.png" id="2_g2m06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8275x"]
-size = Vector2(400, 49)
+size = Vector2(992, 49)
 
 [sub_resource type="Shader" id="Shader_7cfx8"]
 code = "shader_type canvas_item;
@@ -35,9 +35,11 @@ position = Vector2(468, 473)
 position = Vector2(444, 524)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="test_plat"]
-position = Vector2(0, -0.5)
+position = Vector2(117, -0.5)
 shape = SubResource("RectangleShape2D_8275x")
 
 [node name="Sprite2D" type="Sprite2D" parent="test_plat"]
 material = SubResource("ShaderMaterial_netcc")
+position = Vector2(117, 0)
+scale = Vector2(2.48, 1)
 texture = ExtResource("2_g2m06")

@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
-@export var horizontalSpeed = 500
-@export var gravity = 20
-@export var jumpForce = 500
-@export var airSpeedDampening = 1
+@export var horizontalSpeed = 400
+@export var gravity = 40
+@export var jumpForce = 550
+@export var airSpeedDampening = 0.8
 @export var dashSpeed = 1000
+@export var decelRate = 0.05
 var terminalVelocity = 13 * gravity
 
 
@@ -23,8 +24,8 @@ func _physics_process(delta):
 		velocity.y = -jumpForce
 	
 	# == DASHING ==
-	if (Input.is_action_just_pressed("dash")):
-		pass
+	#if (Input.is_action_just_pressed("dash")):
+		#pass
 #		print("dashed")
 		# add things here!!
 	
@@ -33,10 +34,13 @@ func _physics_process(delta):
 	var horizontalDirection = Input.get_axis("move_left", "move_right")
 	
 	# == VELOCITY UPDATE ==
-	if (is_on_floor() or is_on_wall()):
-		velocity.x = horizontalSpeed * horizontalDirection
-	else: # dampened air control
-		velocity.x = horizontalSpeed * horizontalDirection * airSpeedDampening
+	if (horizontalDirection):
+		if (is_on_floor() or is_on_wall()):
+			velocity.x = horizontalSpeed * horizontalDirection
+		else:
+			velocity.x = horizontalSpeed * horizontalDirection * airSpeedDampening
+	else: # if not inputting, decel
+		velocity.x = move_toward(velocity.x, 0, horizontalSpeed * decelRate)
 		
 
 	move_and_slide()
