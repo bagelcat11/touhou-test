@@ -1,8 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0cl6swgp6p1o"]
+[gd_scene load_steps=6 format=3 uid="uid://b0cl6swgp6p1o"]
 
 [ext_resource type="PackedScene" uid="uid://b7vbisd0fd7yx" path="res://scenes/player.tscn" id="1_0a7it"]
+[ext_resource type="Texture2D" uid="uid://bc54rf6dktfqb" path="res://assets/terrain.png" id="2_g2m06"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8275x"]
+size = Vector2(400, 49)
+
+[sub_resource type="Shader" id="Shader_7cfx8"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_netcc"]
+shader = SubResource("Shader_7cfx8")
 
 [node name="level" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_0a7it")]
 position = Vector2(468, 473)
+
+[node name="test_plat" type="StaticBody2D" parent="."]
+position = Vector2(444, 524)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="test_plat"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_8275x")
+
+[node name="Sprite2D" type="Sprite2D" parent="test_plat"]
+material = SubResource("ShaderMaterial_netcc")
+texture = ExtResource("2_g2m06")

@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-@export var horizontalSpeed = 140
+@export var horizontalSpeed = 500
 @export var gravity = 20
-@export var jumpForce = 350
+@export var jumpForce = 500
 @export var airSpeedDampening = 1
-@export var dashSpeed = 200
+@export var dashSpeed = 1000
 var terminalVelocity = 13 * gravity
 
 

@@ -1,3 +1,6 @@
 # Godot 4+ specific ignores
 .godot/
+.import/
+*.tmp
+*blend1
 /android/
