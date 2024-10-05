@@ -8,7 +8,7 @@ TODO:
 - [ ] one-way platforms / dropping through platforms
 - [x] tracking player projectiles to enemy
 - [ ] focus mode (no homing, does more damage)
-- [ ] boss health
+- [x] boss health
 - [ ] player death
 - [ ] enemy attack patterns
 - [ ] level/arena layouts

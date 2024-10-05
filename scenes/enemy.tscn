@@ -1,17 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgp8m8v5p68yl"]
+[gd_scene load_steps=4 format=3 uid="uid://cgp8m8v5p68yl"]
 
 [ext_resource type="Texture2D" uid="uid://221wdg7dhi4f" path="res://assets/touhou_enemy.png" id="1_qor6w"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_x4g0k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_biiv2"]
 size = Vector2(116, 116)
 
 [node name="enemy" type="Area2D" groups=["enemies"]]
 z_index = 1
+script = ExtResource("1_x4g0k")
 
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_qor6w")
 
-[node name="hitbox" type="CollisionShape2D" parent="." groups=["enemies"]]
+[node name="hitbox" type="CollisionShape2D" parent="."]
 z_index = 1
 shape = SubResource("RectangleShape2D_biiv2")
+
+[node name="healthbar" type="ProgressBar" parent="."]
+offset_left = -58.0
+offset_top = -96.0
+offset_right = 58.0
+offset_bottom = -69.0
+max_value = 1000.0
+show_percentage = false
+
+[node name="health_label" type="Label" parent="."]
+offset_left = -33.0
+offset_top = -94.0
+offset_right = 31.0
+offset_bottom = -71.0
+text = "sample text"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -10,6 +10,10 @@ var terminalVelocity = 13 * gravity
 
 @export var player_bullet : PackedScene
 
+func _ready() -> void:
+	#GlobalVars.connect("enemy_hit", awesome)
+	pass
+	
 
 # remove the underscore on delta if you end up using it
 func _physics_process(_delta):
@@ -33,14 +37,17 @@ func _physics_process(_delta):
 		
 	# == SHOOTING ==
 	if (Input.is_action_pressed("shoot") and $shot_cooldown.is_stopped()):
-		var b = player_bullet.instantiate()
+		var b = player_bullet.instantiate()	# 5 dam for non-focus homing mode
 		owner.add_child(b)
 		b.transform = $bullet_emitter.global_transform
 		$shot_cooldown.start()
 		
 	# == AIMING (TEMP?) ==
 	# uhhhhhhhhhhh
-	$bullet_emitter.look_at(Vector2(get_parent().get_node("enemy").position))
+	if (get_parent().get_node("enemy")):
+		$bullet_emitter.look_at(Vector2(get_parent().get_node("enemy").position))
+	else:
+		$bullet_emitter.set_global_rotation(-PI/2)
 
 	
 	# == MOVING ==
