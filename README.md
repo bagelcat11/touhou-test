@@ -10,5 +10,15 @@ TODO:
 - [ ] focus mode(?)
 - [ ] bomb/spell card(?)
 
+
 - [ ] enemy attack patterns
 - [ ] level/arena layouts
+
+
+LAYERS:
+- vis 0: player bullets
+- vis 1: player sprite
+
+
+- col 1: player terrain hitbox
+- col 2: player hurtbox

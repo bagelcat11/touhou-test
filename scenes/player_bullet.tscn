@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cccko877eva3y"]
+
+[ext_resource type="Script" path="res://scripts/player_bullet.gd" id="1_qhdxy"]
+[ext_resource type="Texture2D" uid="uid://bayv7shnw3wdq" path="res://assets/touhou_protag_bullet.png" id="1_wiasc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ask7u"]
+size = Vector2(38, 54)
+
+[node name="player_bullet" type="Area2D"]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_qhdxy")
+
+[node name="sprite" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_wiasc")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_ask7u")

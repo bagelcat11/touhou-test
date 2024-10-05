@@ -1,16 +1,18 @@
 extends CharacterBody2D
 
 @export var horizontalSpeed = 400
-@export var gravity = 40
+var gravity = 40
 @export var jumpForce = 550
-@export var airSpeedDampening = 0.8
+var airSpeedDampening = 0.8
 @export var dashSpeed = 1000
-@export var decelRate = 0.05
+var decelRate = 0.05
 var terminalVelocity = 13 * gravity
+
+@export var player_bullet : PackedScene
 
 
 # remove the underscore on delta if you end up using it
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	# == FALLING ==
 	if (!is_on_floor()):
@@ -28,6 +30,17 @@ func _physics_process(delta):
 		#pass
 #		print("dashed")
 		# add things here!!
+		
+	# == SHOOTING ==
+	if (Input.is_action_pressed("shoot") and $shot_cooldown.is_stopped()):
+		var b = player_bullet.instantiate()
+		owner.add_child(b)
+		b.transform = $bullet_emitter.global_transform
+		$shot_cooldown.start()
+		
+	# == AIMING (TEMP?) ==
+	$bullet_emitter.look_at(get_global_mouse_position())
+
 	
 	# == MOVING ==
 	# move_left returns -1, move_right returns 1
