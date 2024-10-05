@@ -39,7 +39,8 @@ func _physics_process(_delta):
 		$shot_cooldown.start()
 		
 	# == AIMING (TEMP?) ==
-	$bullet_emitter.look_at(get_global_mouse_position())
+	# uhhhhhhhhhhh
+	$bullet_emitter.look_at(Vector2(get_parent().get_node("enemy").position))
 
 	
 	# == MOVING ==

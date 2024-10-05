@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://44t630g47g4l" path="res://assets/touhou_protag.png" id="2_akw8m"]
 [ext_resource type="PackedScene" uid="uid://cccko877eva3y" path="res://scenes/player_bullet.tscn" id="2_gn82w"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1t1tk"]
-size = Vector2(55, 88)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jgox3"]
+radius = 34.0
+height = 92.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wgb4o"]
 radius = 6.0
@@ -21,8 +22,8 @@ position = Vector2(0, -45)
 texture = ExtResource("2_akw8m")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, -44)
-shape = SubResource("RectangleShape2D_1t1tk")
+position = Vector2(2, -46)
+shape = SubResource("CapsuleShape2D_jgox3")
 
 [node name="hurtbox" type="Area2D" parent="."]
 collision_layer = 2

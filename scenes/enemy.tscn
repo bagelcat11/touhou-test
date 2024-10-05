@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgp8m8v5p68yl"]
+
+[ext_resource type="Texture2D" uid="uid://221wdg7dhi4f" path="res://assets/touhou_enemy.png" id="1_qor6w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_biiv2"]
+size = Vector2(116, 116)
+
+[node name="enemy" type="Area2D" groups=["enemies"]]
+z_index = 1
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_qor6w")
+
+[node name="hitbox" type="CollisionShape2D" parent="." groups=["enemies"]]
+z_index = 1
+shape = SubResource("RectangleShape2D_biiv2")

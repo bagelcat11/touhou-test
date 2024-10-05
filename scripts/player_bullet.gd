@@ -5,6 +5,8 @@ extends Area2D
 func _physics_process(_delta):
 	position += transform.x * speed # * delta
 
-func _on_Bullet_body_entered(body):
-	# if body is boss, damage boss
-	queue_free()	# delete this bullet
+
+func _on_area_entered(area: Node2D) -> void:
+	if area.is_in_group("enemies"):
+		queue_free()
+		# damage enemy
