@@ -7,6 +7,7 @@ var airSpeedDampening = 0.8
 @export var dashSpeed = 1000
 var decelRate = 0.05
 var terminalVelocity = 13 * gravity
+var lastDirection # should this really be up here?
 
 @export var player_bullet : PackedScene
 
@@ -52,7 +53,29 @@ func _physics_process(_delta):
 	
 	# == MOVING ==
 	# move_left returns -1, move_right returns 1
-	var horizontalDirection = Input.get_axis("move_left", "move_right")
+	var horizontalDirection = 0#= Input.get_axis("move_left", "move_right")
+	if (Input.is_action_just_pressed("move_left")):
+		horizontalDirection = -1
+		lastDirection = -1
+	elif (Input.is_action_just_pressed("move_right")):
+		horizontalDirection = 1
+		lastDirection = 1
+	
+	# what
+	if (Input.is_action_just_released("move_left") or Input.is_action_just_released("move_right")):
+		if (Input.is_action_pressed("move_left")):
+			lastDirection = -1
+		elif (Input.is_action_pressed("move_right")):
+			lastDirection = 1
+		else:
+			lastDirection = 0
+
+	if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")):
+		horizontalDirection = lastDirection
+
+	#else:
+		#horizontalDirection = Input.get_axis("move_left", "move_right")
+		
 	
 	# == VELOCITY UPDATE ==
 	if (horizontalDirection):
