@@ -4,12 +4,13 @@ extends CharacterBody2D
 var gravity = 40
 @export var jumpForce = 550
 var airSpeedDampening = 0.8
-@export var dashSpeed = 20
+@export var dashSpeed = 1000
 var decelRate = 0.05
 var terminalVelocity = 13 * gravity
 var lastDirection # should this really be up here?
 var isDashing # maybe this should be a state machine...
 var isDashRefreshed
+var dashVec = Vector2(0, 0)
 
 @export var player_bullet : PackedScene
 
@@ -17,6 +18,7 @@ func _ready() -> void:
 	#GlobalVars.connect("enemy_hit", awesome)
 	isDashing = false
 	isDashRefreshed = true
+	dashVec = Vector2(0, 0)
 	$basket/basket_sprite.hide()
 
 
@@ -31,7 +33,7 @@ func _physics_process(_delta):
 	
 	# == JUMPING / WALLJUMPING ==
 	# negative because -y is up
-	if (Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall())):
+	if (Input.is_action_just_pressed("jump") and not isDashing and (is_on_floor() or is_on_wall())):
 		velocity.y = -jumpForce
 		
 	# == SHOOTING ==
@@ -82,10 +84,10 @@ func _physics_process(_delta):
 		isDashRefreshed = true
 	if ($dash_cooldown.is_stopped()):
 		isDashing = false
+		dashVec = Vector2(0, 0)
 		
 	# == DASHING ==
 	# TODO: MAKE THIS ACTUALLY WORK IN A NORMAL WAY
-	var dashVec = Vector2(0, 0)
 	if (Input.is_action_just_pressed("dash") and isDashRefreshed):
 		velocity = dashVec
 		isDashing = true
@@ -111,7 +113,7 @@ func _physics_process(_delta):
 		if (not isDashing):
 			velocity.x = move_toward(velocity.x, 0, horizontalSpeed * decelRate)
 			
-	get_parent().get_node("TEST_TEXT").text = "dashVec: (%s, %s)\nisDashing: %s" % [dashVec.x, dashVec.y, isDashing]
+	get_parent().get_node("TEST_TEXT").text = "dashVec: (%s, %s)\nisDashing: %s\nisDashRefreshed: %s" % [dashVec.x, dashVec.y, isDashing, isDashRefreshed]
 		
 
 
