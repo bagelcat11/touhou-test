@@ -8,11 +8,15 @@ var airSpeedDampening = 0.8
 var decelRate = 0.05
 var terminalVelocity = 13 * gravity
 var lastDirection # should this really be up here?
+var isDashing # maybe this should be a state machine...
+var isDashRefreshed
 
 @export var player_bullet : PackedScene
 
 func _ready() -> void:
 	#GlobalVars.connect("enemy_hit", awesome)
+	isDashing = false
+	isDashRefreshed = true
 	$basket/basket_sprite.hide()
 
 
@@ -20,7 +24,7 @@ func _ready() -> void:
 func _physics_process(_delta):
 	
 	# == FALLING ==
-	if (!is_on_floor()):
+	if (!is_on_floor() and not isDashing):
 		velocity.y += gravity
 		if (velocity.y > terminalVelocity):
 			velocity.y = terminalVelocity
@@ -50,7 +54,6 @@ func _physics_process(_delta):
 		$basket/basket_sprite.show()
 	else:
 		$basket/basket_sprite.hide()
-
 	
 	# == MOVING ==
 	# move_left returns -1, move_right returns 1
@@ -74,7 +77,26 @@ func _physics_process(_delta):
 	if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")):
 		horizontalDirection = lastDirection
 		
+	# == MANAGING DASH STATE ==
+	if (is_on_floor() and not isDashRefreshed and $dash_cooldown.is_stopped()):
+		isDashRefreshed = true
+	if ($dash_cooldown.is_stopped()):
+		isDashing = false
+		
+	# == DASHING ==
+	# TODO: MAKE THIS ACTUALLY WORK IN A NORMAL WAY
+	var dashVec = Vector2(0, 0)
+	if (Input.is_action_just_pressed("dash") and isDashRefreshed):
+		isDashing = true
+		isDashRefreshed = false
+		$dash_cooldown.start()
+		dashVec.x = horizontalDirection
+		if (Input.is_action_pressed("jump") and not Input.is_key_pressed(KEY_DOWN)):
+			dashVec.y = -1
+		if (Input.is_key_pressed(KEY_DOWN) and not Input.is_action_pressed("jump")):
+			dashVec.y = 1
 	
+
 	# == VELOCITY UPDATE ==
 	if (horizontalDirection):
 		if (is_on_floor() or is_on_wall()):
@@ -83,18 +105,6 @@ func _physics_process(_delta):
 			velocity.x = horizontalSpeed * horizontalDirection * airSpeedDampening
 	else: # if not inputting, decel
 		velocity.x = move_toward(velocity.x, 0, horizontalSpeed * decelRate)
-		
-	# == DASHING ==
-	# TODO: MAKE THIS ACTUALLY WORK IN A NORMAL WAY
-	if (Input.is_action_just_pressed("dash")):
-		if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")):
-			velocity.x = horizontalSpeed * horizontalDirection * dashSpeed
-		if (Input.is_action_pressed("jump")):
-			velocity.y -= dashSpeed * gravity
-		if (Input.is_key_pressed(KEY_DOWN)):
-			velocity.x += dashSpeed * gravity
-		#else:
-			#velocity.x += dashSpeed
-		
+
 
 	move_and_slide()
