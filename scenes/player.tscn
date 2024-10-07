@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7vbisd0fd7yx"]
+[gd_scene load_steps=8 format=3 uid="uid://b7vbisd0fd7yx"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4an2k"]
 [ext_resource type="Texture2D" uid="uid://44t630g47g4l" path="res://assets/touhou_protag.png" id="2_akw8m"]
 [ext_resource type="PackedScene" uid="uid://cccko877eva3y" path="res://scenes/player_bullet.tscn" id="2_gn82w"]
+[ext_resource type="Texture2D" uid="uid://jtgeusn4gmja" path="res://assets/basket.png" id="4_nwgly"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jgox3"]
 radius = 34.0
@@ -10,6 +11,9 @@ height = 92.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wgb4o"]
 radius = 6.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32sym"]
+size = Vector2(70, 51)
 
 [node name="player" type="CharacterBody2D"]
 z_index = 1
@@ -38,3 +42,13 @@ position = Vector2(2, -30)
 [node name="shot_cooldown" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="basket" type="Area2D" parent="."]
+
+[node name="basket_hitbox" type="CollisionShape2D" parent="basket"]
+position = Vector2(2, -101.5)
+shape = SubResource("RectangleShape2D_32sym")
+
+[node name="basket_sprite" type="Sprite2D" parent="basket"]
+position = Vector2(2, -109)
+texture = ExtResource("4_nwgly")

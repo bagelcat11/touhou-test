@@ -13,8 +13,8 @@ var lastDirection # should this really be up here?
 
 func _ready() -> void:
 	#GlobalVars.connect("enemy_hit", awesome)
-	pass
-	
+	$basket/basket_sprite.hide()
+
 
 # remove the underscore on delta if you end up using it
 func _physics_process(_delta):
@@ -49,6 +49,13 @@ func _physics_process(_delta):
 		$bullet_emitter.look_at(Vector2(get_parent().get_node("enemy").position))
 	else:
 		$bullet_emitter.set_global_rotation(-PI/2)
+		
+	# == COLLECTING ==
+	if (Input.is_action_pressed("basket")):
+		# TODO: have bool var for isCollecting?
+		$basket/basket_sprite.show()
+	else:
+		$basket/basket_sprite.hide()
 
 	
 	# == MOVING ==
@@ -72,9 +79,6 @@ func _physics_process(_delta):
 
 	if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")):
 		horizontalDirection = lastDirection
-
-	#else:
-		#horizontalDirection = Input.get_axis("move_left", "move_right")
 		
 	
 	# == VELOCITY UPDATE ==
