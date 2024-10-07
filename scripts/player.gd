@@ -87,6 +87,7 @@ func _physics_process(_delta):
 	# TODO: MAKE THIS ACTUALLY WORK IN A NORMAL WAY
 	var dashVec = Vector2(0, 0)
 	if (Input.is_action_just_pressed("dash") and isDashRefreshed):
+		velocity = dashVec
 		isDashing = true
 		isDashRefreshed = false
 		$dash_cooldown.start()
@@ -96,15 +97,22 @@ func _physics_process(_delta):
 		if (Input.is_key_pressed(KEY_DOWN) and not Input.is_action_pressed("jump")):
 			dashVec.y = 1
 	
+	if (isDashing):
+		velocity = Vector2(dashSpeed * dashVec.x, dashSpeed * dashVec.y)
 
 	# == VELOCITY UPDATE ==
-	if (horizontalDirection):
+	# oops i spaghettified this
+	if (horizontalDirection and not isDashing):
 		if (is_on_floor() or is_on_wall()):
 			velocity.x = horizontalSpeed * horizontalDirection
 		else:
 			velocity.x = horizontalSpeed * horizontalDirection * airSpeedDampening
 	else: # if not inputting, decel
-		velocity.x = move_toward(velocity.x, 0, horizontalSpeed * decelRate)
+		if (not isDashing):
+			velocity.x = move_toward(velocity.x, 0, horizontalSpeed * decelRate)
+			
+	get_parent().get_node("TEST_TEXT").text = "dashVec: (%s, %s)\nisDashing: %s" % [dashVec.x, dashVec.y, isDashing]
+		
 
 
 	move_and_slide()

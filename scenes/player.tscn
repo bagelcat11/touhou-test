@@ -44,7 +44,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="dash_cooldown" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.35
 one_shot = true
 
 [node name="basket" type="Area2D" parent="."]

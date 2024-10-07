@@ -47,3 +47,7 @@ texture = ExtResource("2_g2m06")
 
 [node name="enemy" parent="." instance=ExtResource("3_l7472")]
 position = Vector2(657, 190)
+
+[node name="TEST_TEXT" type="Label" parent="."]
+offset_right = 257.0
+offset_bottom = 131.0
