@@ -7,8 +7,9 @@ TODO:
 - [ ] player dashing (w/ wavedash(??))
 - [ ] one-way platforms / dropping through platforms
 - [x] tracking player projectiles to enemy
-- [ ] focus mode (no homing, does more damage)
+- [ ] basket collecting (BOUNTIFUL!!!!!)
 - [x] boss health
+- [ ] harvestable falling things
 - [ ] player death
 - [ ] enemy attack patterns
 - [ ] level/arena layouts
