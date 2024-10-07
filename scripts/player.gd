@@ -4,7 +4,7 @@ extends CharacterBody2D
 var gravity = 40
 @export var jumpForce = 550
 var airSpeedDampening = 0.8
-@export var dashSpeed = 1000
+@export var dashSpeed = 20
 var decelRate = 0.05
 var terminalVelocity = 13 * gravity
 var lastDirection # should this really be up here?
@@ -29,12 +29,6 @@ func _physics_process(_delta):
 	# negative because -y is up
 	if (Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall())):
 		velocity.y = -jumpForce
-	
-	# == DASHING ==
-	#if (Input.is_action_just_pressed("dash")):
-		#pass
-#		print("dashed")
-		# add things here!!
 		
 	# == SHOOTING ==
 	if (Input.is_action_pressed("shoot") and $shot_cooldown.is_stopped()):
@@ -89,6 +83,18 @@ func _physics_process(_delta):
 			velocity.x = horizontalSpeed * horizontalDirection * airSpeedDampening
 	else: # if not inputting, decel
 		velocity.x = move_toward(velocity.x, 0, horizontalSpeed * decelRate)
+		
+	# == DASHING ==
+	# TODO: MAKE THIS ACTUALLY WORK IN A NORMAL WAY
+	if (Input.is_action_just_pressed("dash")):
+		if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")):
+			velocity.x = horizontalSpeed * horizontalDirection * dashSpeed
+		if (Input.is_action_pressed("jump")):
+			velocity.y -= dashSpeed * gravity
+		if (Input.is_key_pressed(KEY_DOWN)):
+			velocity.x += dashSpeed * gravity
+		#else:
+			#velocity.x += dashSpeed
 		
 
 	move_and_slide()
