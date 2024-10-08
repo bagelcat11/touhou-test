@@ -11,6 +11,7 @@ var lastDirection # should this really be up here?
 var isDashing # maybe this should be a state machine...
 var isDashRefreshed
 var dashVec = Vector2(0, 0)
+@onready var modulationColor = self.modulate
 
 @export var player_bullet : PackedScene
 
@@ -82,9 +83,15 @@ func _physics_process(_delta):
 	# == MANAGING DASH STATE ==
 	if (is_on_floor() and not isDashRefreshed and $dash_cooldown.is_stopped()):
 		isDashRefreshed = true
-	if ($dash_cooldown.is_stopped()):
+	if (not is_on_floor() and not $dash_cooldown.is_stopped()):
+		$dash_cooldown.stop()
+	if ($dash_timer.is_stopped()):
 		isDashing = false
 		dashVec = Vector2(0, 0)
+	if (not isDashRefreshed):
+		$sprite.modulate = Color.from_hsv(0.5, 0.5, 1)
+	else:
+		$sprite.modulate = modulationColor
 		
 	# == DASHING ==
 	# TODO: MAKE THIS ACTUALLY WORK IN A NORMAL WAY
@@ -92,6 +99,7 @@ func _physics_process(_delta):
 		velocity = dashVec
 		isDashing = true
 		isDashRefreshed = false
+		$dash_timer.start()
 		$dash_cooldown.start()
 		dashVec.x = horizontalDirection
 		if (Input.is_action_pressed("jump") and not Input.is_key_pressed(KEY_DOWN)):
