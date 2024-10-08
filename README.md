@@ -7,14 +7,15 @@ TODO:
 - [x] player dashing
 - [x] one-way platforms / dropping through platforms
 - [x] tracking player projectiles to enemy
-- [ ] basket collecting (BOUNTIFUL!!!!!)
+- [x] basket collecting (BOUNTIFUL!!!!!)
 - [x] boss health
 - [ ] harvestable falling things
 - [ ] player death
-- [ ] enemy attack pattern system
-- [ ] wavedash?
-- [ ] tilemap system
+- [x] enemy attack pattern system
+- [x] tilemap system
+- [ ] wavedash??
 - [ ] level/arena layouts
+- [ ] boss patterns
 
 
 awesome test
