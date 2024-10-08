@@ -4,13 +4,14 @@ extends CharacterBody2D
 var gravity = 40
 @export var jumpForce = 550
 var airSpeedDampening = 0.8
-@export var dashSpeed = 1000
+@export var dashSpeed = 500 #1000
 var decelRate = 0.8
 var terminalVelocity = 13 * gravity
 var lastDirection # should this really be up here?
 var isDashing # maybe this should be a state machine...
 var isDashRefreshed
 var dashVec = Vector2(0, 0)
+@onready var modulationColor = self.modulate
 
 @onready var double_tap_timer = $double_tap_window
 @onready var floorcast = $floorcast
@@ -56,7 +57,7 @@ func _physics_process(_delta):
 		b.transform = $bullet_emitter.global_transform
 		$shot_cooldown.start()
 		
-	# == AIMING (TEMP?) ==
+	# == AIMING ==
 	# uhhhhhhhhhhh
 	if (get_parent().get_node("enemy")):
 		$bullet_emitter.look_at(Vector2(get_parent().get_node("enemy").position))
@@ -72,7 +73,7 @@ func _physics_process(_delta):
 	
 	# == MOVING ==
 	# move_left returns -1, move_right returns 1
-	var horizontalDirection = 0#= Input.get_axis("move_left", "move_right")
+	var horizontalDirection = 0
 	if (Input.is_action_just_pressed("move_left")):
 		horizontalDirection = -1
 		lastDirection = -1
@@ -89,15 +90,21 @@ func _physics_process(_delta):
 		else:
 			lastDirection = 0
 
-	if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")):
+	if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") and not isDashing):
 		horizontalDirection = lastDirection
 		
 	# == MANAGING DASH STATE ==
 	if (is_on_floor() and not isDashRefreshed and $dash_cooldown.is_stopped()):
 		isDashRefreshed = true
-	if ($dash_cooldown.is_stopped()):
+	if (not is_on_floor() and not $dash_cooldown.is_stopped()):
+		$dash_cooldown.stop()
+	if ($dash_timer.is_stopped()):
 		isDashing = false
 		dashVec = Vector2(0, 0)
+	if (not isDashRefreshed):
+		$sprite.modulate = Color.from_hsv(0.5, 0.5, 1)
+	else:
+		$sprite.modulate = modulationColor
 		
 	# == DASHING ==
 	# TODO: MAKE THIS ACTUALLY WORK IN A NORMAL WAY
@@ -105,6 +112,7 @@ func _physics_process(_delta):
 		velocity = dashVec
 		isDashing = true
 		isDashRefreshed = false
+		$dash_timer.start()
 		$dash_cooldown.start()
 		dashVec.x = horizontalDirection
 		if (Input.is_action_pressed("jump") and not Input.is_key_pressed(KEY_DOWN)):
@@ -113,7 +121,10 @@ func _physics_process(_delta):
 			dashVec.y = 1
 	
 	if (isDashing):
-		velocity = Vector2(dashSpeed * dashVec.x, dashSpeed * dashVec.y)
+		if (dashVec.y == 0): # if only dashing horizontally, extend
+			velocity = Vector2(dashSpeed * 1.6 * dashVec.x, 0)
+		else:
+			velocity = Vector2(dashSpeed * dashVec.x, dashSpeed * dashVec.y)
 
 	# == VELOCITY UPDATE ==
 	# oops i spaghettified this
@@ -126,7 +137,7 @@ func _physics_process(_delta):
 		if (not isDashing):
 			velocity.x = move_toward(velocity.x, 0, horizontalSpeed * decelRate)
 			
-	#get_parent().get_node("TEST_TEXT").text = "dashVec: (%s, %s)\nisDashing: %s\nisDashRefreshed: %s" % [dashVec.x, dashVec.y, isDashing, isDashRefreshed]
+	get_parent().get_node("TEST_TEXT").text = "dashVec: (%s, %s)\nisDashing: %s\nisDashRefreshed: %s" % [dashVec.x, dashVec.y, isDashing, isDashRefreshed]
 		
 
 
