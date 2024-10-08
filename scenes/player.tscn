@@ -14,7 +14,7 @@ radius = 6.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sym"]
 size = Vector2(70, 51)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["harvesting_player"]]
 z_index = 1
 position = Vector2(-2, 0)
 collision_mask = 12
@@ -54,7 +54,7 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="basket" type="Area2D" parent="."]
+[node name="basket" type="Area2D" parent="." groups=["harvesting_player"]]
 
 [node name="basket_hitbox" type="CollisionShape2D" parent="basket"]
 position = Vector2(2, -101.5)
