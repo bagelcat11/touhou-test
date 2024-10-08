@@ -149,6 +149,7 @@ position = Vector2(468, 473)
 
 [node name="test_plat" type="StaticBody2D" parent="."]
 position = Vector2(444, 524)
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="test_plat"]
 position = Vector2(117, -0.5)
