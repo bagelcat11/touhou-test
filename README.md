@@ -4,14 +4,16 @@ TODO:
 - [x] basic player movement
 - [x] basic player-environment collisions
 - [x] player primary fire
-- [ ] player dashing (w/ wavedash(??))
-- [ ] one-way platforms / dropping through platforms
+- [x] player dashing
+- [x] one-way platforms / dropping through platforms
 - [x] tracking player projectiles to enemy
 - [ ] basket collecting (BOUNTIFUL!!!!!)
 - [x] boss health
 - [ ] harvestable falling things
 - [ ] player death
-- [ ] enemy attack patterns
+- [ ] enemy attack pattern system
+- [ ] wavedash?
+- [ ] tilemap system
 - [ ] level/arena layouts
 
 
