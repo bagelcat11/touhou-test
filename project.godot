@@ -72,6 +72,7 @@ drop_through={
 2d_physics/layer_2="player hurtboxs"
 2d_physics/layer_3="floor"
 2d_physics/layer_4="oneway"
+2d_physics/layer_5="enemy bullets"
 
 [rendering]
 

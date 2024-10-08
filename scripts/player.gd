@@ -146,3 +146,7 @@ func _physics_process(_delta):
 
 
 	move_and_slide()
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	print("ouchies") # Replace with function body.
