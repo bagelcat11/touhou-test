@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://clogeja8mxgkc"]
+
+[sub_resource type="Curve2D" id="Curve2D_ghh7l"]
+
+[node name="harvestable_spawner" type="Path2D"]
+curve = SubResource("Curve2D_ghh7l")
