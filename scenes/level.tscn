@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0cl6swgp6p1o"]
+[gd_scene load_steps=8 format=3 uid="uid://b0cl6swgp6p1o"]
 
 [ext_resource type="PackedScene" uid="uid://b7vbisd0fd7yx" path="res://scenes/player.tscn" id="1_0a7it"]
 [ext_resource type="Texture2D" uid="uid://bc54rf6dktfqb" path="res://assets/terrain.png" id="2_g2m06"]
 [ext_resource type="PackedScene" uid="uid://cgp8m8v5p68yl" path="res://scenes/enemy.tscn" id="3_l7472"]
+[ext_resource type="PackedScene" uid="uid://21dvaste8wux" path="res://scenes/bullet_spawner.tscn" id="4_d5dvn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8275x"]
 size = Vector2(992, 49)
@@ -51,3 +52,16 @@ position = Vector2(657, 190)
 [node name="TEST_TEXT" type="Label" parent="."]
 offset_right = 257.0
 offset_bottom = 131.0
+
+[node name="BulletSpawner" parent="." instance=ExtResource("4_d5dvn")]
+position = Vector2(746, 320)
+type = 1
+
+[node name="BulletSpawner2" parent="." instance=ExtResource("4_d5dvn")]
+position = Vector2(312, 240)
+
+[node name="BulletSpawner3" parent="." instance=ExtResource("4_d5dvn")]
+position = Vector2(255, 395)
+
+[node name="BulletSpawner4" parent="." instance=ExtResource("4_d5dvn")]
+position = Vector2(897, 180)

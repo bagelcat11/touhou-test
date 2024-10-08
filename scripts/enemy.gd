@@ -3,6 +3,9 @@ extends Area2D
 @export var MAX_HEALTH = 500
 @onready var health = MAX_HEALTH
 
+@export var bulletSpawner:PackedScene = preload("res://scenes/bullet_spawner.tscn")
+var spawnedBulletSpawner
+
 func _ready() -> void:
 	$healthbar.value = health
 	$healthbar.max_value = MAX_HEALTH

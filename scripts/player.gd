@@ -5,7 +5,7 @@ var gravity = 40
 @export var jumpForce = 550
 var airSpeedDampening = 0.8
 @export var dashSpeed = 1000
-var decelRate = 0.05
+var decelRate = 0.8
 var terminalVelocity = 13 * gravity
 var lastDirection # should this really be up here?
 var isDashing # maybe this should be a state machine...
@@ -52,7 +52,7 @@ func _physics_process(_delta):
 		
 	# == COLLECTING ==
 	if (Input.is_action_pressed("basket")):
-		# TODO: have bool var for isCollecting?
+		# TODO: have bool var for isCollecting? 
 		$basket/basket_sprite.show()
 	else:
 		$basket/basket_sprite.hide()
