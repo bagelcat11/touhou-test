@@ -113,7 +113,7 @@ func _physics_process(_delta):
 		if (not isDashing):
 			velocity.x = move_toward(velocity.x, 0, horizontalSpeed * decelRate)
 			
-	get_parent().get_node("TEST_TEXT").text = "dashVec: (%s, %s)\nisDashing: %s\nisDashRefreshed: %s" % [dashVec.x, dashVec.y, isDashing, isDashRefreshed]
+	#get_parent().get_node("TEST_TEXT").text = "dashVec: (%s, %s)\nisDashing: %s\nisDashRefreshed: %s" % [dashVec.x, dashVec.y, isDashing, isDashRefreshed]
 		
 
 
