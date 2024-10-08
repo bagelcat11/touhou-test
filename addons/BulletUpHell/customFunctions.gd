@@ -19,9 +19,9 @@ func bullet_collide_area(area_rid:RID,area:Area2D,area_shape_index:int,local_sha
 	## you can use B["props"]["<your custom data name>"] to get the bullet's custom data
 	
 	############## uncomment if you want to use the standard behavior below ##############
-	#var rid = Spawning.shape_rids.get(shared_area.name, {}).get(local_shape_index)
-	#if not Spawning.poolBullets.has(rid): return
-	#var B = Spawning.poolBullets[rid]
+	var rid = Spawning.shape_rids.get(shared_area.name, {}).get(local_shape_index)
+	if not Spawning.poolBullets.has(rid): return
+	var B = Spawning.poolBullets[rid]
 	
 	############## emit signal
 #	Spawning.bullet_collided_area.emit(area,area_shape_index,B,local_shape_index,shared_area)

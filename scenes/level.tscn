@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://b0cl6swgp6p1o"]
+[gd_scene load_steps=19 format=3 uid="uid://b0cl6swgp6p1o"]
 
 [ext_resource type="PackedScene" uid="uid://b7vbisd0fd7yx" path="res://scenes/player.tscn" id="1_0a7it"]
 [ext_resource type="Texture2D" uid="uid://bc54rf6dktfqb" path="res://assets/terrain.png" id="2_g2m06"]
 [ext_resource type="PackedScene" uid="uid://cgp8m8v5p68yl" path="res://scenes/enemy.tscn" id="3_l7472"]
-[ext_resource type="PackedScene" uid="uid://21dvaste8wux" path="res://scenes/bullet_spawner.tscn" id="4_d5dvn"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="5_l3yh5"]
+[ext_resource type="Script" path="res://scripts/test_bullet_manager.gd" id="4_f4ade"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="6_ytidj"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="7_8j2m0"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="7_pqyis"]
@@ -46,7 +45,7 @@ anim_more = Array[ExtResource("8_dmynt")]([])
 damage = 1.0
 speed = 100.0
 scale = 1.0
-angle = 0.0
+angle = 0.0004
 groups = PackedStringArray()
 spec_bounces = 0
 spec_no_collision = false
@@ -114,25 +113,25 @@ r_scale_multi_scale_variation = Vector3(0, 0, 0)
 
 [sub_resource type="Curve2D" id="Curve2D_d5eim"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_h0dil"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_p3t5v"]
 resource_name = "PatternCircle"
 script = ExtResource("7_pqyis")
-radius = 0
+radius = 50
 angle_total = 6.28319
 angle_decal = 0.0
 symmetric = false
 center = 0
 symmetry_type = 0
 bullet = ""
-nbr = 1
+nbr = 10
 iterations = 1
 pattern_angle = 0.0
 pattern_angle_target = NodePath("")
 pattern_angle_mouse = false
 forced_angle = 0.0
-forced_target = NodePath("")
+forced_target = NodePath("../../player")
 forced_lookat_mouse = false
-forced_pattern_lookat = true
+forced_pattern_lookat = false
 cooldown_stasis = false
 cooldown_spawn = 1.0
 cooldown_shoot = 0.0
@@ -167,34 +166,8 @@ position = Vector2(657, 190)
 offset_right = 257.0
 offset_bottom = 131.0
 
-[node name="BulletSpawner" parent="." instance=ExtResource("4_d5dvn")]
-position = Vector2(746, 320)
-type = 1
-
-[node name="BulletSpawner2" parent="." instance=ExtResource("4_d5dvn")]
-position = Vector2(312, 240)
-
-[node name="BulletSpawner3" parent="." instance=ExtResource("4_d5dvn")]
-position = Vector2(255, 395)
-
-[node name="BulletSpawner4" parent="." instance=ExtResource("4_d5dvn")]
-position = Vector2(897, 180)
-
 [node name="TestBulletManager" type="Node2D" parent="."]
-
-[node name="SpawnPoint" type="Node2D" parent="TestBulletManager"]
-position = Vector2(461, 175)
-script = ExtResource("5_l3yh5")
-active = true
-auto_pattern_id = "Test"
-shared_area_name = "0"
-rotating_speed = 0.0
-pool_amount = 50
-auto_start_on_cam = true
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_container = NodePath("")
+script = ExtResource("4_f4ade")
 
 [node name="BulletPattern" type="Path2D" parent="TestBulletManager"]
 curve = SubResource("Curve2D_yx1hq")
@@ -205,4 +178,4 @@ props = SubResource("PackedDataContainer_undkl")
 curve = SubResource("Curve2D_d5eim")
 script = ExtResource("6_ytidj")
 id = "Test"
-pattern = SubResource("NavigationPolygon_h0dil")
+pattern = SubResource("NavigationPolygon_p3t5v")
