@@ -12,6 +12,9 @@ var isDashing # maybe this should be a state machine...
 var isDashRefreshed
 var dashVec = Vector2(0, 0)
 
+@onready var double_tap_timer = $double_tap_window
+@onready var floorcast = $floorcast
+
 @export var player_bullet : PackedScene
 
 func _ready() -> void:
@@ -22,8 +25,18 @@ func _ready() -> void:
 	$basket/basket_sprite.hide()
 
 
+func drop():
+	position.y += 1
 # remove the underscore on delta if you end up using it
 func _physics_process(_delta):
+	
+	# == Fall Through ==
+	if(Input.is_action_just_pressed("drop_through")):
+		if(double_tap_timer.is_stopped()):
+			double_tap_timer.start()
+		else:
+			if(floorcast.get_collider().name == "Platforms"):
+				drop()
 	
 	# == FALLING ==
 	if (!is_on_floor() and not isDashing):
