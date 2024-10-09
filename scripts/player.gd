@@ -27,6 +27,9 @@ func _ready() -> void:
 	GlobalVars.connect("player_harvest", harvest)
 	add_to_group("harvesting_player")
 	$basket.add_to_group("harvesting_player")
+	$hitbox.add_to_group("harvesting_player")
+	#$hurtbox_area.add_to_group("harvesting_player")
+	#$hurtbox_body.add_to_group("harvesting_player")
 
 
 func drop():
@@ -79,15 +82,22 @@ func _physics_process(_delta):
 	# == COLLECTING ==
 	if (Input.is_action_pressed("basket")):
 		# TODO: have bool var for isCollecting? 
+		# can't i just make the group apply recursively or smth
 		$basket/basket_sprite.show()
 		$basket.show()
 		add_to_group("harvesting_player")
 		$basket.add_to_group("harvesting_player")
+		$hitbox.add_to_group("harvesting_player")
+		#$hurtbox_area.add_to_group("harvesting_player")
+		#$hurtbox_body.add_to_group("harvesting_player")
 	else:
 		$basket/basket_sprite.hide()
 		$basket.hide()
 		remove_from_group("harvesting_player")
 		$basket.remove_from_group("harvesting_player")
+		$hitbox.remove_from_group("harvesting_player")
+		#$hurtbox_area.remove_from_group("harvesting_player")
+		#$hurtbox_body.remove_from_group("harvesting_player")
 	
 	# == MOVING ==
 	# move_left returns -1, move_right returns 1
