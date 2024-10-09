@@ -257,4 +257,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	print("ouchies") # Replace with function body.
 
 func dash_timer_timeout():
+	velocity = Vector2(
+		clampf(velocity.x, -horizontalSpeed, horizontalSpeed), 
+		clampf(velocity.y, -jumpForce * 0.75, terminalVelocity)
+	)
 	is_dashing = false
