@@ -122,6 +122,8 @@ func _physics_process(_delta):
 		
 	
 	# == FALLING ==
+	gravity = 40 * (1 + 0.75 * Input.get_action_strength("ui_down"))
+	terminalVelocity = 13 * gravity
 	if (!is_on_floor()): #and not is dashing
 		velocity.y += gravity
 		if (velocity.y > terminalVelocity):
