@@ -2,6 +2,7 @@ extends Path2D
 
 @export var harv_scene : PackedScene
 var rng = RandomNumberGenerator.new()
+@onready var spawn_loc = $spawn_location_path
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +17,9 @@ func _physics_process(delta: float) -> void:
 
 func spawn_harvestable():
 	var harv_obj = harv_scene.instantiate()
-	harv_obj.position = Vector2(100, 100)
+	#harv_obj.position = Vector2(100, -50)
+	spawn_loc.set_progress_ratio(randf())
+	harv_obj.position = spawn_loc.position
 	owner.add_child(harv_obj)
 
 
