@@ -54,7 +54,7 @@ func get_dash_vector():
 	move_dir.x = Input.get_action_strength("ui_right") + -Input.get_action_strength("ui_left")
 	move_dir.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	# clamped so that we don't get the double speed if you hold down both keys
-	move_dir = move_dir.limit_length(1)
+	move_dir = move_dir.normalized()
 	print(move_dir)
 	
 	# if no input, dash forward
