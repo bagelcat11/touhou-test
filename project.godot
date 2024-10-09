@@ -27,6 +27,7 @@ enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg")
 [global_group]
 
 enemies=""
+player=""
 
 [input]
 

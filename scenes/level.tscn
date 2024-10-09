@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0cl6swgp6p1o"]
+[gd_scene load_steps=18 format=3 uid="uid://b0cl6swgp6p1o"]
 
 [ext_resource type="PackedScene" uid="uid://b7vbisd0fd7yx" path="res://scenes/player.tscn" id="1_0a7it"]
 [ext_resource type="Texture2D" uid="uid://bc54rf6dktfqb" path="res://assets/terrain.png" id="2_g2m06"]
@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://scripts/test_bullet_manager.gd" id="4_f4ade"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="6_ytidj"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="7_8j2m0"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="7_pqyis"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="8_dmynt"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="9_rgqrd"]
+[ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="9_wlmu2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8275x"]
 size = Vector2(992, 49)
@@ -33,18 +33,19 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_netcc"]
 shader = SubResource("Shader_7cfx8")
 
-[sub_resource type="Curve2D" id="Curve2D_yx1hq"]
-
 [sub_resource type="Curve" id="Curve_668wy"]
 
-[sub_resource type="Curve" id="Curve_4xins"]
+[sub_resource type="Curve" id="Curve_dkf7t"]
+max_value = 10.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 10), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="PackedDataContainer" id="PackedDataContainer_undkl"]
 script = ExtResource("9_rgqrd")
 anim_more = Array[ExtResource("8_dmynt")]([])
 damage = 1.0
-speed = 100.0
-scale = 1.0
+speed = 200.0
+scale = 0.1
 angle = 0.0004
 groups = PackedStringArray()
 spec_bounces = 0
@@ -54,7 +55,7 @@ spec_trail_length = 0.0
 spec_trail_width = 0.0
 spec_trail_modulate = Color(1, 1, 1, 1)
 spec_rotating_speed = 0.0
-death_after_time = 30.0
+death_after_time = 15.0
 death_outside_box = Rect2(0, 0, 0, 0)
 death_from_collision = true
 a_direction_equation = ""
@@ -69,8 +70,8 @@ homing_target = NodePath("")
 homing_steer = 0.0
 homing_time_start = 0.0
 homing_duration = 999.0
-scale_multi_iterations = 0
-scale_multiplier = SubResource("Curve_4xins")
+scale_multi_iterations = 1
+scale_multiplier = SubResource("Curve_dkf7t")
 scale_multi_scale = 1.0
 r_randomisation_chances = 1.0
 r_speed_choice = PackedFloat32Array()
@@ -113,25 +114,19 @@ r_scale_multi_scale_variation = Vector3(0, 0, 0)
 
 [sub_resource type="Curve2D" id="Curve2D_d5eim"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_p3t5v"]
-resource_name = "PatternCircle"
-script = ExtResource("7_pqyis")
-radius = 50
-angle_total = 6.28319
-angle_decal = 0.0
-symmetric = false
-center = 0
-symmetry_type = 0
-bullet = ""
-nbr = 10
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8todv"]
+resource_name = "PatternOne"
+script = ExtResource("9_wlmu2")
+bullet = "Red"
+nbr = 1
 iterations = 1
 pattern_angle = 0.0
 pattern_angle_target = NodePath("")
 pattern_angle_mouse = false
 forced_angle = 0.0
-forced_target = NodePath("../../player")
+forced_target = NodePath("")
 forced_lookat_mouse = false
-forced_pattern_lookat = false
+forced_pattern_lookat = true
 cooldown_stasis = false
 cooldown_spawn = 1.0
 cooldown_shoot = 0.0
@@ -143,7 +138,7 @@ wait_tween_time = 0.0
 
 [node name="level" type="Node2D"]
 
-[node name="player" parent="." instance=ExtResource("1_0a7it")]
+[node name="player" parent="." groups=["player"] instance=ExtResource("1_0a7it")]
 position = Vector2(468, 473)
 
 [node name="test_plat" type="StaticBody2D" parent="."]
@@ -171,12 +166,12 @@ offset_bottom = 131.0
 script = ExtResource("4_f4ade")
 
 [node name="BulletPattern" type="Path2D" parent="TestBulletManager"]
-curve = SubResource("Curve2D_yx1hq")
 script = ExtResource("7_8j2m0")
+id = "Red"
 props = SubResource("PackedDataContainer_undkl")
 
 [node name="SpawnPattern" type="Path2D" parent="TestBulletManager"]
 curve = SubResource("Curve2D_d5eim")
 script = ExtResource("6_ytidj")
-id = "Test"
-pattern = SubResource("NavigationPolygon_p3t5v")
+id = "Aim"
+pattern = SubResource("NavigationPolygon_8todv")
