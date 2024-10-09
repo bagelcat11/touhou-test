@@ -7,7 +7,7 @@ var player
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Spawning.create_pool("Yellow-Red", "0", 2000)
-	Spawning.create_pool("Green", "0", 2000)
+	Spawning.create_pool("Orange", "0", 2000)
 	for a in get_tree().current_scene.get_children():
 		if a.is_in_group("enemies"):
 			enemy = a
@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	if(timer <= 0):
 		shoot_aimed_spiral()
 		shoot_circle()
-		timer = 5
+		timer = 6
 	timer -= delta
 
 func shoot_aimed_spiral() -> void:
@@ -47,7 +47,7 @@ func shoot_aimed_spiral() -> void:
 
 func shoot_circle() -> void:
 	await get_tree().create_timer(0.75).timeout
-	for i in 3:
+	for i in 2:
 		Spawning.spawn({"position": enemy.position, "rotation": randf_range(0, 2 * PI)}, "Circle")
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(2).timeout
 	
