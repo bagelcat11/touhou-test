@@ -45,6 +45,7 @@ func _ready() -> void:
 	#isDashRefreshed = true
 	#dashVec = Vector2(0, 0)
 	$basket/basket_sprite.hide()
+
 	dash_timer.connect("timeout", dash_timer_timeout)
 
 
@@ -63,7 +64,16 @@ func get_dash_vector():
 		else:
 			move_dir.x = 1
 
+	GlobalVars.connect("player_harvest", harvest)
+	add_to_group("harvesting_player")
+	$basket.add_to_group("harvesting_player")
+	$hitbox.add_to_group("harvesting_player")
+	#$hurtbox_area.add_to_group("harvesting_player")
+	#$hurtbox_body.add_to_group("harvesting_player")
+
+
 	return move_dir * dash_speed
+
 
 func dash():
 	if(Input.is_action_just_pressed("dash") and can_dash):
@@ -85,6 +95,11 @@ func dash():
 	else:
 		dash_particles.emitting = false
 	
+
+	
+func harvest():
+	print("harvested")
+
 # remove the underscore on delta if you end up using it
 func _physics_process(_delta):
 	if(velocity.x < 0):
@@ -135,9 +150,22 @@ func _physics_process(_delta):
 	# == COLLECTING ==
 	if (Input.is_action_pressed("basket")):
 		# TODO: have bool var for isCollecting? 
+		# can't i just make the group apply recursively or smth
 		$basket/basket_sprite.show()
+		$basket.show()
+		add_to_group("harvesting_player")
+		$basket.add_to_group("harvesting_player")
+		$hitbox.add_to_group("harvesting_player")
+		#$hurtbox_area.add_to_group("harvesting_player")
+		#$hurtbox_body.add_to_group("harvesting_player")
 	else:
 		$basket/basket_sprite.hide()
+		$basket.hide()
+		remove_from_group("harvesting_player")
+		$basket.remove_from_group("harvesting_player")
+		$hitbox.remove_from_group("harvesting_player")
+		#$hurtbox_area.remove_from_group("harvesting_player")
+		#$hurtbox_body.remove_from_group("harvesting_player")
 	
 	# == MOVING ==
 	# move_left returns -1, move_right returns 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0cl6swgp6p1o"]
+[gd_scene load_steps=20 format=3 uid="uid://b0cl6swgp6p1o"]
 
 [ext_resource type="PackedScene" uid="uid://b7vbisd0fd7yx" path="res://scenes/player.tscn" id="1_0a7it"]
 [ext_resource type="Texture2D" uid="uid://bc54rf6dktfqb" path="res://assets/terrain.png" id="2_g2m06"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="7_pqyis"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="8_dmynt"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="9_rgqrd"]
+[ext_resource type="PackedScene" uid="uid://clogeja8mxgkc" path="res://scenes/harvestable_spawner.tscn" id="10_frb73"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8275x"]
 size = Vector2(992, 49)
@@ -180,3 +181,7 @@ curve = SubResource("Curve2D_d5eim")
 script = ExtResource("6_ytidj")
 id = "Test"
 pattern = SubResource("NavigationPolygon_p3t5v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="harvestable_spawner" parent="." instance=ExtResource("10_frb73")]
