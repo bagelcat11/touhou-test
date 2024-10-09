@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7vbisd0fd7yx"]
+[gd_scene load_steps=13 format=3 uid="uid://b7vbisd0fd7yx"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4an2k"]
 [ext_resource type="Texture2D" uid="uid://44t630g47g4l" path="res://assets/touhou_protag.png" id="2_akw8m"]
 [ext_resource type="PackedScene" uid="uid://cccko877eva3y" path="res://scenes/player_bullet.tscn" id="2_gn82w"]
+[ext_resource type="PackedScene" uid="uid://l8la6wd7cm4s" path="res://scenes/dash_sprite.tscn" id="3_uw0qr"]
 [ext_resource type="Texture2D" uid="uid://jtgeusn4gmja" path="res://assets/basket.png" id="4_nwgly"]
+[ext_resource type="Texture2D" uid="uid://di5vtoa8mwmex" path="res://assets/dash_particle.png" id="5_gl5sj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrmvt"]
 size = Vector2(55, 78)
@@ -14,12 +16,31 @@ radius = 6.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sym"]
 size = Vector2(70, 51)
 
+[sub_resource type="Curve" id="Curve_r2prw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.54343, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_v3cyp"]
+curve = SubResource("Curve_r2prw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2rwfx"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 32.1
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_v3cyp")
+
 [node name="player" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(-2, 0)
 collision_mask = 12
 script = ExtResource("1_4an2k")
 player_bullet = ExtResource("2_gn82w")
+dash_obj = ExtResource("3_uw0qr")
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -45)
@@ -72,13 +93,15 @@ collision_mask = 16
 position = Vector2(2, -30)
 shape = SubResource("CircleShape2D_wgb4o")
 
-[node name="double_tap_window" type="Timer" parent="."]
-wait_time = 0.25
-one_shot = true
-
 [node name="floorcast" type="RayCast2D" parent="."]
 target_position = Vector2(0, 5)
 collision_mask = 4
 hit_from_inside = true
+
+[node name="dash_particles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_2rwfx")
+texture = ExtResource("5_gl5sj")
 
 [connection signal="area_entered" from="hurtbox_area" to="." method="_on_hurtbox_area_entered"]
