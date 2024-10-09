@@ -105,8 +105,7 @@ collision_mask = 2
 [node name="ShapeManager" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("1")
-animation = &"Example"
-frame_progress = 0.608517
+animation = &"0"
 
 [node name="0" type="CollisionShape2D" parent="ShapeManager"]
 shape = SubResource("2")
