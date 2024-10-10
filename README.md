@@ -10,11 +10,11 @@ TODO:
 - [x] basket collecting (BOUNTIFUL!!!!!)
 - [x] boss health
 - [x] harvestable falling things
-- [ ] player death
+- [x] player death
 - [x] enemy attack pattern system
 - [x] tilemap system
+- [ ] toggleable player hitbox?
+- [ ] "bountiful bonus bomb"
+- [ ] figure out actual playspace/ui-space
 - [ ] implemented level/arena layouts
-- [ ] implemented boss patterns
-
-
-awesome test
+- [ ] more boss patterns
