@@ -9,13 +9,12 @@ TODO:
 - [x] tracking player projectiles to enemy
 - [x] basket collecting (BOUNTIFUL!!!!!)
 - [x] boss health
-- [ ] harvestable falling things
+- [x] harvestable falling things
 - [ ] player death
 - [x] enemy attack pattern system
 - [x] tilemap system
-- [ ] wavedash??
-- [ ] level/arena layouts
-- [ ] boss patterns
+- [ ] implemented level/arena layouts
+- [ ] implemented boss patterns
 
 
 awesome test

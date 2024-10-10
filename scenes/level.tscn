@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://b0cl6swgp6p1o"]
+[gd_scene load_steps=27 format=3 uid="uid://b0cl6swgp6p1o"]
 
 [ext_resource type="PackedScene" uid="uid://b7vbisd0fd7yx" path="res://scenes/player.tscn" id="1_0a7it"]
+[ext_resource type="PackedScene" uid="uid://c38v4mq3f77se" path="res://scenes/ui.tscn" id="1_7tgmn"]
 [ext_resource type="Texture2D" uid="uid://bc54rf6dktfqb" path="res://assets/terrain.png" id="2_g2m06"]
 [ext_resource type="PackedScene" uid="uid://cgp8m8v5p68yl" path="res://scenes/enemy.tscn" id="3_l7472"]
 [ext_resource type="Script" path="res://scripts/bullets_aimed_spiral.gd" id="4_f4ade"]
@@ -262,6 +263,8 @@ wait_tween_length = 0.0
 wait_tween_time = 0.0
 
 [node name="level" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("1_7tgmn")]
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("1_0a7it")]
 position = Vector2(468, 473)
