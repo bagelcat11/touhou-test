@@ -46,7 +46,9 @@ func _ready() -> void:
 	#dashVec = Vector2(0, 0)
 	$basket/basket_sprite.hide()
 	GlobalVars.current_lives = 3
+	GlobalVars.current_num_harvested = 0
 
+	GlobalVars.connect("player_harvest", harvest)
 	dash_timer.connect("timeout", dash_timer_timeout)
 
 
@@ -65,7 +67,6 @@ func get_dash_vector():
 		else:
 			move_dir.x = 1
 
-	GlobalVars.connect("player_harvest", harvest)
 	add_to_group("harvesting_player")
 	$basket.add_to_group("harvesting_player")
 	$hitbox.add_to_group("harvesting_player")
@@ -102,7 +103,8 @@ func die():
 	#GlobalVars.current_lives = 3
 	
 func harvest():
-	print("harvested")
+	print("gottem")
+	GlobalVars.current_num_harvested += 1
 
 # remove the underscore on delta if you end up using it
 func _physics_process(_delta):
@@ -110,7 +112,7 @@ func _physics_process(_delta):
 		sprite.flip_h = true
 	elif(velocity.x > 0):
 		sprite.flip_h = false
-	print(velocity)
+	#print(velocity)
 	dash()
 	#print(dash_direction)
 	# == Fall Through ==

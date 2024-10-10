@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 		
 	if (isInBody and currentEnteredArea.is_in_group("harvesting_player")):
+		#print("gottem in wrong script")
 		GlobalVars.player_harvest.emit()
 		queue_free()
 	
