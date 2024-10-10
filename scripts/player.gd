@@ -45,6 +45,7 @@ func _ready() -> void:
 	#isDashRefreshed = true
 	#dashVec = Vector2(0, 0)
 	$basket/basket_sprite.hide()
+	GlobalVars.current_lives = 3
 
 	dash_timer.connect("timeout", dash_timer_timeout)
 
@@ -95,7 +96,10 @@ func dash():
 	else:
 		dash_particles.emitting = false
 	
-
+func die():
+	print("i am kil")
+	#queue_free()
+	#GlobalVars.current_lives = 3
 	
 func harvest():
 	print("harvested")
@@ -255,6 +259,9 @@ func _physics_process(_delta):
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	print("ouchies") # Replace with function body.
+	GlobalVars.current_lives -= 1
+	if (GlobalVars.current_lives <= 0):
+		die()
 
 func dash_timer_timeout():
 	velocity = Vector2(
