@@ -15,7 +15,7 @@ size = Vector2(55, 78)
 radius = 6.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sym"]
-size = Vector2(70, 51)
+size = Vector2(70, 126)
 
 [sub_resource type="Curve" id="Curve_r2prw"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.54343, 0.0, 0, 0]
@@ -82,9 +82,11 @@ wait_time = 0.5
 one_shot = true
 
 [node name="basket" type="Area2D" parent="." groups=["harvesting_player"]]
+collision_layer = 32
+collision_mask = 32
 
 [node name="basket_hitbox" type="CollisionShape2D" parent="basket"]
-position = Vector2(2, -101.5)
+position = Vector2(2, -64)
 shape = SubResource("RectangleShape2D_32sym")
 
 [node name="basket_sprite" type="Sprite2D" parent="basket"]

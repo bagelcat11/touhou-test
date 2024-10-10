@@ -4,10 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://b7lra0m57nbe8" path="res://assets/appel.png" id="1_48yn2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2frjb"]
-radius = 32.0624
+radius = 34.0
 
 [node name="harvestable" type="Area2D"]
 z_index = -1
+collision_layer = 32
+collision_mask = 32
 script = ExtResource("1_2v0eu")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]

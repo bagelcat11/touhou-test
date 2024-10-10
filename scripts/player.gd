@@ -32,6 +32,9 @@ var is_dashing: bool = false # currently dashing?
 var can_dash: bool = true # can we legally dash?
 var dash_direction: Vector2 # guh??? where are we dashing??
 
+## Collecting Vars
+@onready var isCollecting = false
+
 ## == (legacy) Dashing Vars ==
 
 #var isDashing # maybe this should be a state machine... # the state machine will be implemented soon™️ - kait
@@ -50,6 +53,14 @@ func _ready() -> void:
 
 	GlobalVars.connect("player_harvest", harvest)
 	dash_timer.connect("timeout", dash_timer_timeout)
+	
+	# what
+	#add_to_group("harvesting_player")
+	$basket.add_to_group("harvesting_player")
+	#$hitbox.add_to_group("harvesting_player")
+	#$hurtbox_area.add_to_group("harvesting_player")
+	#$hurtbox_body.add_to_group("harvesting_player")
+	#$jank_hitbox.add_to_group("harvesting_player")
 
 
 func get_dash_vector():
@@ -66,12 +77,6 @@ func get_dash_vector():
 			move_dir.x = -1
 		else:
 			move_dir.x = 1
-
-	add_to_group("harvesting_player")
-	$basket.add_to_group("harvesting_player")
-	$hitbox.add_to_group("harvesting_player")
-	#$hurtbox_area.add_to_group("harvesting_player")
-	#$hurtbox_body.add_to_group("harvesting_player")
 
 
 	return move_dir * dash_speed
@@ -141,12 +146,35 @@ func _physics_process(_delta):
 	if (Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall())):
 		velocity.y = -jumpForce
 		
-	# == SHOOTING ==
-	if (Input.is_action_pressed("shoot") and $shot_cooldown.is_stopped()):
-		var b = player_bullet.instantiate()	# 5 dam for non-focus homing mode
-		owner.add_child(b)
-		b.transform = $bullet_emitter.global_transform
-		$shot_cooldown.start()
+	# == SHOOTING/COLLECTING ==
+	if (Input.is_action_pressed("shoot")):
+		# stop all collecting stuff while shooting
+		isCollecting = false
+		$basket/basket_sprite.hide()
+		$basket.hide()
+		#remove_from_group("harvesting_player")
+		$basket.remove_from_group("harvesting_player")
+		#$hitbox.remove_from_group("harvesting_player")
+		#$hurtbox_area.remove_from_group("harvesting_player")
+		#$hurtbox_body.remove_from_group("harvesting_player")
+		#$jank_hitbox.remove_from_group("harvesting_player")
+		
+		# actual shooting code
+		if ($shot_cooldown.is_stopped()):
+			var b = player_bullet.instantiate()	# 5 dam for non-focus homing mode
+			owner.add_child(b)
+			b.transform = $bullet_emitter.global_transform
+			$shot_cooldown.start()
+	else:
+		isCollecting = true
+		$basket/basket_sprite.show()
+		$basket.show()
+		#add_to_group("harvesting_player")
+		$basket.add_to_group("harvesting_player")
+		#$hitbox.add_to_group("harvesting_player")
+		#$hurtbox_area.add_to_group("harvesting_player")
+		#$hurtbox_body.add_to_group("harvesting_player")
+		#$jank_hitbox.add_to_group("harvesting_player")
 		
 	# == AIMING ==
 	# uhhhhhhhhhhh
@@ -155,25 +183,15 @@ func _physics_process(_delta):
 	else:
 		$bullet_emitter.set_global_rotation(-PI/2)
 		
-	# == COLLECTING ==
-	if (Input.is_action_pressed("basket")):
-		# TODO: have bool var for isCollecting? 
-		# can't i just make the group apply recursively or smth
-		$basket/basket_sprite.show()
-		$basket.show()
-		add_to_group("harvesting_player")
-		$basket.add_to_group("harvesting_player")
-		$hitbox.add_to_group("harvesting_player")
-		#$hurtbox_area.add_to_group("harvesting_player")
-		#$hurtbox_body.add_to_group("harvesting_player")
-	else:
-		$basket/basket_sprite.hide()
-		$basket.hide()
-		remove_from_group("harvesting_player")
-		$basket.remove_from_group("harvesting_player")
-		$hitbox.remove_from_group("harvesting_player")
-		#$hurtbox_area.remove_from_group("harvesting_player")
-		#$hurtbox_body.remove_from_group("harvesting_player")
+	## == COLLECTING ==
+	#if (Input.is_action_pressed("basket")):
+		## TODO: have bool var for isCollecting? 
+		## can't i just make the group apply recursively or smth
+		#
+		
+	#else:
+		#
+		##
 	
 	# == MOVING ==
 	# move_left returns -1, move_right returns 1
