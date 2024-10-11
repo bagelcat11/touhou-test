@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://2ebmlf42bc2u" path="res://assets/Tilesets/tileset.png" id="1_l20fb"]
 [ext_resource type="PackedScene" uid="uid://b7vbisd0fd7yx" path="res://scenes/player.tscn" id="2_vrx52"]
 [ext_resource type="PackedScene" uid="uid://cgp8m8v5p68yl" path="res://scenes/enemy.tscn" id="3_vm0ah"]
-[ext_resource type="Script" path="res://scenes/screenshake.gd" id="4_vcvml"]
+[ext_resource type="Script" path="res://scripts/screenshake.gd" id="4_vcvml"]
 [ext_resource type="Script" path="res://scripts/bullets_aimed_spiral.gd" id="5_yyqu6"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_mg2yo"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="7_53bbt"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://t5qofg2hdvna"]
 
 [ext_resource type="Texture2D" uid="uid://030twfib7ygn" path="res://assets/testBombSprite.png" id="1_p1vks"]
-[ext_resource type="Script" path="res://scenes/bomb_particles.gd" id="2_ylvo3"]
+[ext_resource type="Script" path="res://scripts/bomb_particles.gd" id="2_ylvo3"]
 
 [sub_resource type="Curve" id="Curve_yk6mq"]
 min_value = -360.0

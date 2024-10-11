@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="9_wlmu2"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="10_ex63o"]
 [ext_resource type="PackedScene" uid="uid://clogeja8mxgkc" path="res://scenes/harvestable_spawner.tscn" id="12_ppro4"]
-[ext_resource type="Script" path="res://scenes/screenshake.gd" id="13_xx6e0"]
+[ext_resource type="Script" path="res://scripts/screenshake.gd" id="13_xx6e0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8275x"]
 size = Vector2(992, 49)
@@ -37,14 +37,14 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_netcc"]
 shader = SubResource("Shader_7cfx8")
 
-[sub_resource type="Curve" id="Curve_cwuj1"]
+[sub_resource type="Curve" id="Curve_anlvh"]
 
-[sub_resource type="Curve" id="Curve_gq21a"]
+[sub_resource type="Curve" id="Curve_g3hh0"]
 max_value = 10.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_6t0sa"]
+[sub_resource type="Gradient" id="Gradient_hss64"]
 offsets = PackedFloat32Array(0, 0.5, 1)
 colors = PackedColorArray(1, 0.866667, 0.341176, 1, 1, 0.486275, 0.376471, 1, 1, 0.866667, 0.337255, 1)
 
@@ -58,7 +58,7 @@ angle = 0.0
 groups = PackedStringArray()
 spec_bounces = 0
 spec_no_collision = false
-spec_modulate = SubResource("Gradient_6t0sa")
+spec_modulate = SubResource("Gradient_hss64")
 spec_modulate_loop = 2.0
 spec_trail_length = 0.0
 spec_trail_width = 0.0
@@ -69,7 +69,7 @@ death_outside_box = Rect2(0, 0, 0, 0)
 death_from_collision = true
 a_direction_equation = ""
 a_curve_movement = 0
-a_speed_multiplier = SubResource("Curve_cwuj1")
+a_speed_multiplier = SubResource("Curve_anlvh")
 a_speed_multi_iterations = 0
 a_speed_multi_scale = 0.0
 trigger_container = ""
@@ -80,7 +80,7 @@ homing_steer = 0.0
 homing_time_start = 0.0
 homing_duration = 999.0
 scale_multi_iterations = 1
-scale_multiplier = SubResource("Curve_gq21a")
+scale_multiplier = SubResource("Curve_g3hh0")
 scale_multi_scale = 1.0
 r_randomisation_chances = 1.0
 r_speed_choice = PackedFloat32Array()
@@ -121,19 +121,19 @@ r_scale_multi_curve_choice = []
 r_scale_multi_iter_variation = Vector3(0, 0, 0)
 r_scale_multi_scale_variation = Vector3(0, 0, 0)
 
-[sub_resource type="Curve" id="Curve_mxl2l"]
+[sub_resource type="Curve" id="Curve_ajyrc"]
 max_value = 600.0
 _data = [Vector2(0, 450), 0.0, 0.0, 0, 0, Vector2(0.25, 90), -11.5384, 0.0, 0, 0, Vector2(0.75, 90), 0.0, 0.0, 0, 0, Vector2(1, 150), 0.0, 0.0, 0, 0]
 point_count = 4
 metadata/_snap_enabled = true
 metadata/_snap_count = 20
 
-[sub_resource type="Curve" id="Curve_03ans"]
+[sub_resource type="Curve" id="Curve_t1qtt"]
 max_value = 10.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 10), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_7yqix"]
+[sub_resource type="Gradient" id="Gradient_pginm"]
 offsets = PackedFloat32Array(0.5)
 colors = PackedColorArray(1, 0.831373, 0.705882, 1)
 
@@ -147,7 +147,7 @@ angle = 0.0004
 groups = PackedStringArray()
 spec_bounces = 0
 spec_no_collision = false
-spec_modulate = SubResource("Gradient_7yqix")
+spec_modulate = SubResource("Gradient_pginm")
 spec_modulate_loop = 1.0
 spec_trail_length = 0.0
 spec_trail_width = 0.0
@@ -158,7 +158,7 @@ death_outside_box = Rect2(0, 0, 0, 0)
 death_from_collision = true
 a_direction_equation = ""
 a_curve_movement = 0
-a_speed_multiplier = SubResource("Curve_mxl2l")
+a_speed_multiplier = SubResource("Curve_ajyrc")
 a_speed_multi_iterations = 1
 a_speed_multi_scale = 4.0
 trigger_container = ""
@@ -169,7 +169,7 @@ homing_steer = 0.0
 homing_time_start = 0.0
 homing_duration = 999.0
 scale_multi_iterations = 1
-scale_multiplier = SubResource("Curve_03ans")
+scale_multiplier = SubResource("Curve_t1qtt")
 scale_multi_scale = 1.0
 r_randomisation_chances = 1.0
 r_speed_choice = PackedFloat32Array()
@@ -268,7 +268,7 @@ wait_tween_time = 0.0
 
 [node name="UI" parent="." instance=ExtResource("1_7tgmn")]
 
-[node name="player" parent="." node_paths=PackedStringArray("screenshakeCamera") groups=["player"] instance=ExtResource("1_0a7it")]
+[node name="player" parent="." node_paths=PackedStringArray("screenshakeCamera") instance=ExtResource("1_0a7it")]
 position = Vector2(468, 473)
 screenshakeCamera = NodePath("../Camera2D")
 

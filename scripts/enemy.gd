@@ -18,5 +18,6 @@ func take_damage(d):
 
 func _physics_process(_delta):
 	# could be optimized by only updating when getting hit...
+	# i did that!!
 	#$healthbar.set_value_no_signal(health)
 	pass

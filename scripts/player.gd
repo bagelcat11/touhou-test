@@ -61,7 +61,7 @@ func _ready() -> void:
 	#isDashRefreshed = true
 	#dashVec = Vector2(0, 0)
 	$basket/basket_sprite.hide()
-	GlobalVars.current_lives = 3
+	GlobalVars.current_lives = 6
 	GlobalVars.current_num_harvested = 0
 
 	GlobalVars.connect("player_harvest", harvest)
@@ -76,13 +76,18 @@ func _ready() -> void:
 	#$jank_hitbox.add_to_group("harvesting_player")
 
 func invincibility(time:float):
-	set_collision_mask_value(5,false)
-	animationPlayer
+	$hurtbox_area.set_collision_layer_value(2,false)
+	$hurtbox_body.set_collision_layer_value(2,false)
+	$hurtbox_area.set_collision_mask_value(5,false)
+	$hurtbox_body.set_collision_mask_value(5,false)
 	animationPlayer.play("invincibilityFlash")
 	await get_tree().create_timer(time).timeout
 	animationPlayer.stop()
 	sprite.modulate.a = 1
-	set_collision_mask_value(5,true)
+	$hurtbox_area.set_collision_layer_value(2,true)
+	$hurtbox_body.set_collision_layer_value(2,true)
+	$hurtbox_area.set_collision_mask_value(5,true)
+	$hurtbox_body.set_collision_mask_value(5,true)
 
 func get_dash_vector():
 	var move_dir = Vector2()
@@ -331,8 +336,10 @@ func _physics_process(delta):
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	print("ouchies") # Replace with function body.
+	invincibility(1.5)
+	print(GlobalVars.current_lives)
 	GlobalVars.current_lives -= 1
+	GlobalVars.lost_health.emit(GlobalVars.current_lives)
 	if (GlobalVars.current_lives <= 0):
 		die()
 
