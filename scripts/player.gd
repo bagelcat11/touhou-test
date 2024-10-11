@@ -43,10 +43,10 @@ var dash_direction: Vector2 # guh??? where are we dashing??
 @export var bomb_duration:float = 2
 var bomb_timer = 0
 var is_bombing = false
-@export var bomb_amt = 3
 
 ## Cleanup Vars
-var temp 
+var temp
+@onready var hasMoved = false # uhhhhhhh
 
 ## == (legacy) Dashing Vars ==
 
@@ -63,6 +63,7 @@ func _ready() -> void:
 	$basket/basket_sprite.hide()
 	GlobalVars.current_lives = 6
 	GlobalVars.current_num_harvested = 0
+	GlobalVars.current_num_bombs = 0
 
 	GlobalVars.connect("player_harvest", harvest)
 	dash_timer.connect("timeout", dash_timer_timeout)
@@ -137,10 +138,12 @@ func die():
 func harvest():
 	print("gottem")
 	GlobalVars.current_num_harvested += 1
-	if (GlobalVars.current_num_harvested == 1):
-		GlobalVars.has_moved.emit()
+	#if (GlobalVars.current_num_harvested == 1):
+		#GlobalVars.has_moved.emit()
 	if (GlobalVars.current_num_harvested == 3):
 		GlobalVars.passed_tutorial.emit()
+	if (GlobalVars.current_num_harvested % 10 == 0 and GlobalVars.current_num_bombs < 5):
+		GlobalVars.current_num_bombs += 1
 
 #speed is actually how quickly the circle lerps out so keep it very small
 func summon_bomb(s):
@@ -171,9 +174,9 @@ func _physics_process(delta):
 			#if(floorcast.get_collider().name == "Platforms"):
 				#drop()
 	# == Bomb ==
-	if(Input.is_action_just_pressed("bomb") and not is_bombing and bomb_amt > 0):
+	if(Input.is_action_just_pressed("bomb") and not is_bombing and GlobalVars.current_num_bombs > 0):
 		invincibility(bomb_duration)
-		bomb_amt -= 1
+		GlobalVars.current_num_bombs -= 1
 		var curr_width = get_viewport().get_visible_rect().size.x
 		var curr_height =get_viewport().get_visible_rect().size.y
 		is_bombing = true
@@ -277,6 +280,9 @@ func _physics_process(delta):
 			lastDirection = 1
 		else:
 			lastDirection = 0
+		if (not hasMoved): # uhhhhhhhhhhh
+			hasMoved = true
+			GlobalVars.has_moved.emit()
 
 	if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")): # and not is dashing
 		horizontalDirection = lastDirection

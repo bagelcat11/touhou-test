@@ -21,8 +21,13 @@ func update_lives(health_left):
 
 func update_harvested():
 	$num_harvested.text = "Appels: %s" % GlobalVars.current_num_harvested
+	
+func update_bombs():
+	$num_bombs.text = "Bombs: %s / 5" % GlobalVars.current_num_bombs
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	# could optimize this by picking up signals instead of checking every frame...
 	update_harvested()
+	update_bombs()

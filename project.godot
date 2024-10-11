@@ -10,9 +10,11 @@ config_version=5
 
 [application]
 
-config/name="内憂外患: Battle for a Bountiful Fall"
+config/name="東方新嘗祭: Battle for a Bountiful Fall"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/image="res://assets/superFinalBulletSpawner.png"
+boot_splash/fullsize=false
 config/icon="res://assets/superFinalBulletSpawner.png"
 
 [autoload]

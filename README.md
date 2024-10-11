@@ -13,7 +13,10 @@ TODO:
 - [x] player death
 - [x] enemy attack pattern system
 - [x] tilemap system
-- [ ] "bountiful bonus bomb"
-- [ ] figure out actual playspace/ui-space
-- [ ] implemented level/arena layouts
-- [ ] more boss patterns
+- [x] "bountiful bonus bomb"
+- [x] figure out actual playspace/ui-space
+- [x] implemented level/arena layouts
+- [ ] make boss move around
+- [ ] implement easy/med/hard/hard2 boss phases
+- [ ] implement bomb tutorial
+- uhhh also various nicer ui elements and basic sfx and things...

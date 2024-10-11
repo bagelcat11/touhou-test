@@ -43,6 +43,8 @@ func _physics_process(delta: float) -> void:
 		if(curr_state == State.HARD): start_pattern_hard(0) 
 	
 	timer += delta
+	
+
 
 func start_pattern_easy(minHealth : float) -> void:
 	pass

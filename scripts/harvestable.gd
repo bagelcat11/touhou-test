@@ -1,6 +1,6 @@
 extends Area2D
 
-var grav = 3
+var grav = 4
 var terminalVelocity = 13 * gravity
 var isInBody
 var currentEnteredArea

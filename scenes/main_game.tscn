@@ -55,21 +55,6 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_f55ko"]
-resource_name = "fade_out_move"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("prompt_move:theme_override_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_5cns1"]
 resource_name = "fade_out_dash"
 tracks/0/type = "value"
@@ -100,6 +85,21 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_f55ko"]
+resource_name = "fade_out_move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("prompt_move:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_fepew"]
 resource_name = "fade_out_shoot"
 tracks/0/type = "value"
@@ -128,6 +128,9 @@ _data = {
 script = ExtResource("1_fmdvf")
 
 [node name="TilemapTest" parent="." instance=ExtResource("1_ic1ht")]
+
+[node name="player" parent="TilemapTest" index="2"]
+position = Vector2(496, 544)
 
 [node name="UI" parent="." instance=ExtResource("2_j3bll")]
 offset_left = 45.0
@@ -174,6 +177,11 @@ press Z to shoot
 horizontal_alignment = 1
 
 [node name="ui_fader" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_whkou")
+}
+
+[node name="ui_fader2_since_i_cant_play_2_anims_at_once" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_whkou")
 }
