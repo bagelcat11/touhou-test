@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://ce36wsihrjkjg"]
+[gd_scene load_steps=3 format=3 uid="uid://ed4t01ypoyk6"]
 
 [ext_resource type="Texture2D" uid="uid://44t630g47g4l" path="res://assets/touhou_protag.png" id="1_d6ur0"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_daj3y"]
@@ -19,7 +19,16 @@ offset_top = 365.0
 offset_right = 773.0
 offset_bottom = 479.0
 theme_override_font_sizes/font_size = 40
-text = "start gaming!!1!"
+text = "start gayming!!1!"
+
+[node name="quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 510.0
+offset_right = 676.0
+offset_bottom = 546.0
+theme_override_font_sizes/font_size = 20
+text = "stop gayming"
 
 [node name="title" type="Label" parent="."]
 layout_mode = 0
@@ -28,7 +37,7 @@ offset_top = 72.0
 offset_right = 1102.0
 offset_bottom = 250.0
 theme_override_font_sizes/font_size = 130
-text = "game for gamers"
+text = "game for gaymers"
 horizontal_alignment = 1
 
 [node name="awesome_image" type="Sprite2D" parent="."]
@@ -38,3 +47,5 @@ scale = Vector2(21.7656, 3.86667)
 texture = ExtResource("1_d6ur0")
 
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
