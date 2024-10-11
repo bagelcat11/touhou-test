@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b7vbisd0fd7yx" path="res://scenes/player.tscn" id="2_vrx52"]
 [ext_resource type="PackedScene" uid="uid://cgp8m8v5p68yl" path="res://scenes/enemy.tscn" id="3_vm0ah"]
 [ext_resource type="Script" path="res://scripts/screenshake.gd" id="4_vcvml"]
-[ext_resource type="Script" path="res://scripts/bullets_aimed_spiral.gd" id="5_yyqu6"]
+[ext_resource type="Script" path="res://scripts/enemy_bullet_manager.gd" id="5_yyqu6"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_mg2yo"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="7_53bbt"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="8_r00m1"]
@@ -589,6 +589,7 @@ screenshakeCamera = NodePath("../Camera2D")
 
 [node name="enemy" parent="." instance=ExtResource("3_vm0ah")]
 position = Vector2(592, 184)
+MAX_HEALTH = 250
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-4, 7)
@@ -596,26 +597,26 @@ anchor_mode = 0
 zoom = Vector2(0.968, 0.968)
 script = ExtResource("4_vcvml")
 
-[node name="BulletsAimedSpiral" type="Node2D" parent="."]
+[node name="EnemyBulletManager" type="Node2D" parent="."]
 script = ExtResource("5_yyqu6")
 
-[node name="Yellow-Red" type="Path2D" parent="BulletsAimedSpiral"]
+[node name="Yellow-Red" type="Path2D" parent="EnemyBulletManager"]
 script = ExtResource("6_mg2yo")
 id = "Yellow-Red"
 props = SubResource("PackedDataContainer_culhe")
 
-[node name="Orange" type="Path2D" parent="BulletsAimedSpiral"]
+[node name="Orange" type="Path2D" parent="EnemyBulletManager"]
 script = ExtResource("6_mg2yo")
 id = "Orange"
 props = SubResource("PackedDataContainer_qjxyt")
 
-[node name="One" type="Path2D" parent="BulletsAimedSpiral"]
+[node name="One" type="Path2D" parent="EnemyBulletManager"]
 curve = SubResource("Curve2D_gmlbd")
 script = ExtResource("9_jqyiy")
 id = "One"
 pattern = SubResource("NavigationPolygon_hp1lw")
 
-[node name="Circle" type="Path2D" parent="BulletsAimedSpiral"]
+[node name="Circle" type="Path2D" parent="EnemyBulletManager"]
 curve = SubResource("Curve2D_fjrxx")
 script = ExtResource("9_jqyiy")
 id = "Circle"

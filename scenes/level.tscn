@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://c38v4mq3f77se" path="res://scenes/ui.tscn" id="1_7tgmn"]
 [ext_resource type="Texture2D" uid="uid://bc54rf6dktfqb" path="res://assets/terrain.png" id="2_g2m06"]
 [ext_resource type="PackedScene" uid="uid://cgp8m8v5p68yl" path="res://scenes/enemy.tscn" id="3_l7472"]
-[ext_resource type="Script" path="res://scripts/bullets_aimed_spiral.gd" id="4_f4ade"]
+[ext_resource type="Script" path="res://scripts/enemy_bullet_manager.gd" id="4_f4ade"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="6_ytidj"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="7_8j2m0"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="8_dmynt"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="9_rgqrd"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="9_wlmu2"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="10_ex63o"]
-[ext_resource type="PackedScene" uid="uid://clogeja8mxgkc" path="res://scenes/harvestable_spawner.tscn" id="12_ppro4"]
+[ext_resource type="PackedScene" path="res://scenes/harvestable_spawner.tscn" id="12_ppro4"]
 [ext_resource type="Script" path="res://scripts/screenshake.gd" id="13_xx6e0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8275x"]
@@ -293,26 +293,26 @@ position = Vector2(657, 190)
 offset_right = 257.0
 offset_bottom = 131.0
 
-[node name="BulletsAimedSpiral" type="Node2D" parent="."]
+[node name="EnemyBulletManager" type="Node2D" parent="."]
 script = ExtResource("4_f4ade")
 
-[node name="Yellow-Red" type="Path2D" parent="BulletsAimedSpiral"]
+[node name="Yellow-Red" type="Path2D" parent="EnemyBulletManager"]
 script = ExtResource("7_8j2m0")
 id = "Yellow-Red"
 props = SubResource("PackedDataContainer_bd581")
 
-[node name="Orange" type="Path2D" parent="BulletsAimedSpiral"]
+[node name="Orange" type="Path2D" parent="EnemyBulletManager"]
 script = ExtResource("7_8j2m0")
 id = "Orange"
 props = SubResource("PackedDataContainer_undkl")
 
-[node name="One" type="Path2D" parent="BulletsAimedSpiral"]
+[node name="One" type="Path2D" parent="EnemyBulletManager"]
 curve = SubResource("Curve2D_d5eim")
 script = ExtResource("6_ytidj")
 id = "One"
 pattern = SubResource("NavigationPolygon_8todv")
 
-[node name="Circle" type="Path2D" parent="BulletsAimedSpiral"]
+[node name="Circle" type="Path2D" parent="EnemyBulletManager"]
 curve = SubResource("Curve2D_004d3")
 script = ExtResource("6_ytidj")
 id = "Circle"
