@@ -15,7 +15,6 @@ func _physics_process(_delta):
 		speed = 20
 		#rotSpeed = 4
 	position += transform.x * speed # * delta
-	rotation += deg_to_rad(rotSpeed)
 	color.h += 0.01 
 	sprite.modulate = color
 
