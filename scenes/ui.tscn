@@ -191,15 +191,15 @@ script = ExtResource("1_eh4re")
 
 [node name="num_harvested" type="Label" parent="."]
 layout_mode = 0
-offset_left = 919.0
-offset_top = 69.0
-offset_right = 1144.0
-offset_bottom = 100.0
+offset_left = 54.0
+offset_top = 113.43
+offset_right = 279.0
+offset_bottom = 144.43
 theme_override_font_sizes/font_size = 22
 text = "Items harvested: XXX"
 
 [node name="Healthbar" type="Sprite2D" parent="."]
-position = Vector2(1037, 40)
+position = Vector2(172, 84.43)
 scale = Vector2(8.98, 8.98)
 texture = ExtResource("2_yyo6b")
 vframes = 7
