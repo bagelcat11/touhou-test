@@ -25,4 +25,4 @@ func spawn_harvestable():
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_harvestable()
-	$spawn_timer.start(rng.randi_range(1, 5))
+	$spawn_timer.start(rng.randi_range(3, 5))

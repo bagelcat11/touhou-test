@@ -9,15 +9,17 @@ enum State {EASY, MED, HARD}
 var curr_state = State.EASY
 var prev_state = curr_state
 
+@onready var isEnemyAlive = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Spawning.create_pool("Yellow-Red", "0", 2000)
 	Spawning.create_pool("Orange", "0", 2000)
 	for a in owner.get_children():
 		#print(a)
-		if a.is_in_group("enemies"):
+		if (isEnemyAlive and a.is_in_group("enemies")):
 			enemy = a
-		if a.is_in_group("player"):
+		if (a.is_in_group("player")):
 			player = a
 	
 	# Start shot pattern
@@ -26,11 +28,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if(!enemy): queue_free()
+	if(!enemy): 
+		isEnemyAlive = false
+		queue_free()
 	prev_state = curr_state
 	
-	if(enemy.health > 400 and timer < 20): curr_state = State.EASY
-	elif(enemy.health > 200 and timer < 50): curr_state = State.MED
+	if(isEnemyAlive and enemy.health > 400 and timer < 20): curr_state = State.EASY
+	elif(isEnemyAlive and enemy.health > 200 and timer < 50): curr_state = State.MED
 	else: curr_state = State.HARD
 	
 	if(prev_state != curr_state):
@@ -48,7 +52,7 @@ func start_pattern_med(minHealth : float) -> void:
 
 func start_pattern_hard(minHealth : float) -> void:
 	await get_tree().create_timer(1.5).timeout
-	while(enemy and enemy.health > minHealth):
+	while(isEnemyAlive and enemy and enemy.health > minHealth):
 		shoot_aimed_spiral(minHealth)
 		shoot_circle(minHealth)
 		await get_tree().create_timer(6).timeout

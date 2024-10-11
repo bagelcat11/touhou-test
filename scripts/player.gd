@@ -341,6 +341,7 @@ func _physics_process(delta):
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	invincibility(1.5)
+	screenshakeCamera.apply_shake()
 	print(GlobalVars.current_lives)
 	GlobalVars.current_lives -= 1
 	GlobalVars.lost_health.emit(GlobalVars.current_lives)

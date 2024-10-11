@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4an2k"]
 [ext_resource type="Texture2D" uid="uid://44t630g47g4l" path="res://assets/touhou_protag.png" id="2_akw8m"]
 [ext_resource type="PackedScene" uid="uid://cccko877eva3y" path="res://scenes/player_bullet.tscn" id="2_gn82w"]
-[ext_resource type="PackedScene" path="res://scenes/dash_sprite.tscn" id="3_uw0qr"]
+[ext_resource type="PackedScene" uid="uid://l8la6wd7cm4s" path="res://scenes/dash_sprite.tscn" id="3_uw0qr"]
 [ext_resource type="Texture2D" uid="uid://jtgeusn4gmja" path="res://assets/basket.png" id="4_nwgly"]
 [ext_resource type="Texture2D" uid="uid://di5vtoa8mwmex" path="res://assets/dash_particle.png" id="5_gl5sj"]
 [ext_resource type="Texture2D" uid="uid://dxm31snmiy5ud" path="res://assets/heart.png" id="5_n14px"]
@@ -52,23 +52,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_bogj2"]
-resource_name = "invincibilityFlash"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0666667, 0.233333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.227451)]
-}
-
 [sub_resource type="Animation" id="Animation_6ylui"]
 resource_name = "dash_flash"
 length = 0.2085
@@ -84,6 +67,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.172549, 0.67451, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bogj2"]
+resource_name = "invincibilityFlash"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.227451)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l2npp"]
@@ -104,7 +104,6 @@ dash_obj = ExtResource("3_uw0qr")
 jumpForce = 650
 
 [node name="sprite" type="Sprite2D" parent="."]
-z_index = 1
 position = Vector2(0, -45)
 texture = ExtResource("2_akw8m")
 

@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="touhou-test"
-run/main_scene="res://scenes/level.tscn"
+config/name="内憂外患: Battle for a Bountiful Fall"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/superFinalBulletSpawner.png"
 
