@@ -137,6 +137,10 @@ func die():
 func harvest():
 	print("gottem")
 	GlobalVars.current_num_harvested += 1
+	if (GlobalVars.current_num_harvested == 1):
+		GlobalVars.has_moved.emit()
+	if (GlobalVars.current_num_harvested == 3):
+		GlobalVars.passed_tutorial.emit()
 
 #speed is actually how quickly the circle lerps out so keep it very small
 func summon_bomb(s):
@@ -276,6 +280,7 @@ func _physics_process(delta):
 
 	if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")): # and not is dashing
 		horizontalDirection = lastDirection
+		
 	
 	if (is_on_floor() and not can_dash and not is_dashing):
 		can_dash = true
