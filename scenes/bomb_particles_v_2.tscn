@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbx4kyidnjd4m"]
+
+[ext_resource type="Texture2D" uid="uid://030twfib7ygn" path="res://assets/testBombSprite.png" id="1_dirjx"]
+[ext_resource type="Script" path="res://bomb_particles_v_2.gd" id="2_41al5"]
+
+[sub_resource type="Curve" id="Curve_rhm6w"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7c45y"]
+curve = SubResource("Curve_rhm6w")
+
+[sub_resource type="Curve" id="Curve_apw64"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.838235, 0.417582), -2.74796, -2.74796, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ra226"]
+curve = SubResource("Curve_apw64")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rvfv6"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 30.0
+emission_ring_radius = 125.275
+emission_ring_inner_radius = 80.625
+angle_min = 1.07288e-05
+angle_max = 7.50001
+angle_curve = SubResource("CurveTexture_7c45y")
+gravity = Vector3(0, 0, 0)
+scale_min = 3.3
+scale_max = 4.85
+scale_curve = SubResource("CurveTexture_ra226")
+
+[node name="bomb_particles_V2" type="GPUParticles2D"]
+position = Vector2(575, 354)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_rvfv6")
+texture = ExtResource("1_dirjx")
+script = ExtResource("2_41al5")

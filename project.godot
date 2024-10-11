@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 GlobalVars="*res://scripts/global_vars.gd"
 Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/BulletUpHell/plugin.cfg")

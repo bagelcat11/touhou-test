@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b0cl6swgp6p1o"]
+[gd_scene load_steps=29 format=3 uid="uid://b0cl6swgp6p1o"]
 
 [ext_resource type="PackedScene" uid="uid://b7vbisd0fd7yx" path="res://scenes/player.tscn" id="1_0a7it"]
 [ext_resource type="PackedScene" uid="uid://c38v4mq3f77se" path="res://scenes/ui.tscn" id="1_7tgmn"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="9_wlmu2"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="10_ex63o"]
 [ext_resource type="PackedScene" uid="uid://clogeja8mxgkc" path="res://scenes/harvestable_spawner.tscn" id="12_ppro4"]
+[ext_resource type="Script" path="res://scenes/screenshake.gd" id="13_xx6e0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8275x"]
 size = Vector2(992, 49)
@@ -267,8 +268,9 @@ wait_tween_time = 0.0
 
 [node name="UI" parent="." instance=ExtResource("1_7tgmn")]
 
-[node name="player" parent="." groups=["player"] instance=ExtResource("1_0a7it")]
+[node name="player" parent="." node_paths=PackedStringArray("screenshakeCamera") groups=["player"] instance=ExtResource("1_0a7it")]
 position = Vector2(468, 473)
+screenshakeCamera = NodePath("../Camera2D")
 
 [node name="test_plat" type="StaticBody2D" parent="."]
 position = Vector2(444, 524)
@@ -317,3 +319,7 @@ id = "Circle"
 pattern = SubResource("NavigationPolygon_4gont")
 
 [node name="harvestable_spawner" parent="." instance=ExtResource("12_ppro4")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("13_xx6e0")

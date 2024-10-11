@@ -4,11 +4,15 @@ extends CharacterBody2D
 @onready var modulationColor = self.modulate
 @onready var double_tap_timer = $double_tap_window
 @onready var floorcast = $floorcast
-@export var player_bullet : PackedScene
-@export var dash_obj:PackedScene
+@export var player_bullet : PackedScene 
+@export var dash_obj:PackedScene 
 @onready var dash_timer = $dash_timer
 @onready var dash_particles = $dash_particles
 @onready var sprite = $sprite
+@onready var bomb_vfx:PackedScene = preload("res://scenes/bomb_particles_v_2.tscn")
+@onready var bomb_collider_hitbox = $bomb_clearing
+@onready var animationPlayer = $AnimationPlayer
+@export var screenshakeCamera:Camera2D
 
 ## == Physics Vars ==
 var gravity = 40
@@ -34,6 +38,15 @@ var dash_direction: Vector2 # guh??? where are we dashing??
 
 ## Collecting Vars
 @onready var isCollecting = false
+
+## Bomb Vars
+@export var bomb_duration:float = 2
+var bomb_timer = 0
+var is_bombing = false
+@export var bomb_amt = 3
+
+## Cleanup Vars
+var temp 
 
 ## == (legacy) Dashing Vars ==
 
@@ -62,6 +75,14 @@ func _ready() -> void:
 	#$hurtbox_body.add_to_group("harvesting_player")
 	#$jank_hitbox.add_to_group("harvesting_player")
 
+func invincibility(time:float):
+	set_collision_mask_value(5,false)
+	animationPlayer
+	animationPlayer.play("invincibilityFlash")
+	await get_tree().create_timer(time).timeout
+	animationPlayer.stop()
+	sprite.modulate.a = 1
+	set_collision_mask_value(5,true)
 
 func get_dash_vector():
 	var move_dir = Vector2()
@@ -111,12 +132,23 @@ func harvest():
 	print("gottem")
 	GlobalVars.current_num_harvested += 1
 
+#speed is actually how quickly the circle lerps out so keep it very small
+func summon_bomb(x,y,s):
+	var currSpawner = bomb_vfx.instantiate()
+	currSpawner.position.x = x
+	currSpawner.position.y = y
+	currSpawner.speed = s
+	screenshakeCamera.apply_shake()
+	owner.add_child(currSpawner)
+	return currSpawner
+
 # remove the underscore on delta if you end up using it
-func _physics_process(_delta):
+func _physics_process(delta):
 	if(velocity.x < 0):
 		sprite.flip_h = true
 	elif(velocity.x > 0):
 		sprite.flip_h = false
+	
 	#print(velocity)
 	dash()
 	#print(dash_direction)
@@ -125,6 +157,27 @@ func _physics_process(_delta):
 		#if(floorcast.is_colliding()):
 			#if(floorcast.get_collider().name == "Platforms"):
 				#drop()
+	# == Bomb ==
+	if(Input.is_action_just_pressed("bomb") and not is_bombing and bomb_amt > 0):
+		invincibility(bomb_duration)
+		bomb_amt -= 1
+		var curr_width = get_viewport().get_visible_rect().size.x
+		var curr_height =get_viewport().get_visible_rect().size.y
+		is_bombing = true
+		bomb_collider_hitbox.set_collision_mask_value(5,true)
+		bomb_collider_hitbox.set_collision_layer_value(2,true)
+		temp = summon_bomb(position.x,position.y,0.001)
+	if(is_bombing):
+		bomb_timer += delta
+		bomb_collider_hitbox.scale = lerp(bomb_collider_hitbox.scale, Vector2(200,100), 0.005)
+		if(bomb_timer > bomb_duration):
+			temp.queue_free()
+			is_bombing = false
+			bomb_timer = 0
+			bomb_collider_hitbox.scale = Vector2(1,1)
+			bomb_collider_hitbox.set_collision_mask_value(5,false)
+			bomb_collider_hitbox.set_collision_layer_value(2,false)
+			
 	# == Hold to Fall ==
 	if(Input.is_action_pressed("drop_through")):
 		self.set_collision_mask_value(4,false)
