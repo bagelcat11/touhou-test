@@ -133,13 +133,13 @@ func harvest():
 	GlobalVars.current_num_harvested += 1
 
 #speed is actually how quickly the circle lerps out so keep it very small
-func summon_bomb(x,y,s):
+func summon_bomb(s):
 	var currSpawner = bomb_vfx.instantiate()
-	currSpawner.position.x = x
-	currSpawner.position.y = y
+	currSpawner.position.x = 0
+	currSpawner.position.y = 0
 	currSpawner.speed = s
 	screenshakeCamera.apply_shake()
-	owner.add_child(currSpawner)
+	add_child(currSpawner)
 	return currSpawner
 
 # remove the underscore on delta if you end up using it
