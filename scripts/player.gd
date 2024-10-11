@@ -138,13 +138,13 @@ func harvest():
 	GlobalVars.current_num_harvested += 1
 
 #speed is actually how quickly the circle lerps out so keep it very small
-func summon_bomb(x,y,s):
+func summon_bomb(s):
 	var currSpawner = bomb_vfx.instantiate()
-	currSpawner.position.x = x
-	currSpawner.position.y = y
+	currSpawner.position.x = 0
+	currSpawner.position.y = 0
 	currSpawner.speed = s
 	screenshakeCamera.apply_shake()
-	owner.add_child(currSpawner)
+	add_child(currSpawner)
 	return currSpawner
 
 # remove the underscore on delta if you end up using it
@@ -171,10 +171,10 @@ func _physics_process(delta):
 		is_bombing = true
 		bomb_collider_hitbox.set_collision_mask_value(5,true)
 		bomb_collider_hitbox.set_collision_layer_value(2,true)
-		temp = summon_bomb(position.x,position.y,0.001)
+		temp = summon_bomb(0.001)
 	if(is_bombing):
 		bomb_timer += delta
-		bomb_collider_hitbox.scale = lerp(bomb_collider_hitbox.scale, Vector2(200,100), 0.005)
+		bomb_collider_hitbox.scale = lerp(bomb_collider_hitbox.scale, Vector2(100,100), 0.005)
 		if(bomb_timer > bomb_duration):
 			temp.queue_free()
 			is_bombing = false
@@ -346,6 +346,6 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 func dash_timer_timeout():
 	velocity = Vector2(
 		clampf(velocity.x, -horizontalSpeed, horizontalSpeed), 
-		clampf(velocity.y, -jumpForce * 0.75, terminalVelocity)
+		clampf(velocity.y, -275, terminalVelocity)
 	)
 	is_dashing = false
