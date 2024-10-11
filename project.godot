@@ -13,7 +13,7 @@ config_version=5
 config/name="touhou-test"
 run/main_scene="res://scenes/level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/superFinalBulletSpawner.png"
 
 [autoload]
 
@@ -22,6 +22,7 @@ Spawning="*res://addons/BulletUpHell/Spawning.tscn"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

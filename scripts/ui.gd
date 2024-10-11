@@ -6,6 +6,8 @@ var list_of_anims
 func _ready() -> void:
 	GlobalVars.connect("lost_health", update_lives)
 	list_of_anims = ani.get_animation_list()
+	$num_harvested.text = "yea"
+	print(GlobalVars.current_num_harvested)
 
 
 func update_lives(health_left):
@@ -18,7 +20,7 @@ func update_lives(health_left):
 		
 
 func update_harvested():
-	$num_harvested.text = "Items harvested: %s" % GlobalVars.current_num_harvested
+	$num_harvested.text = "Appels: %s" % GlobalVars.current_num_harvested
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

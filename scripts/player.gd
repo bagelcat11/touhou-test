@@ -110,6 +110,7 @@ func get_dash_vector():
 
 func dash():
 	if(Input.is_action_just_pressed("dash") and can_dash):
+		sprite.modulate = Color.PALE_TURQUOISE
 		is_dashing = true
 		can_dash = false
 		dash_direction = get_dash_vector()
@@ -153,6 +154,9 @@ func _physics_process(delta):
 		sprite.flip_h = true
 	elif(velocity.x > 0):
 		sprite.flip_h = false
+		
+	if (Input.is_key_pressed(KEY_ESCAPE)):
+		get_tree().quit()
 	
 	#print(velocity)
 	dash()
@@ -344,6 +348,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		die()
 
 func dash_timer_timeout():
+	sprite.modulate = Color.WHITE
 	velocity = Vector2(
 		clampf(velocity.x, -horizontalSpeed, horizontalSpeed), 
 		clampf(velocity.y, -275, terminalVelocity)

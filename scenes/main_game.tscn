@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bel5c2ap112f3"]
+[gd_scene load_steps=4 format=3 uid="uid://b2be8gct5klbd"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_fmdvf"]
 [ext_resource type="PackedScene" uid="uid://dnvjf1v5tew17" path="res://scenes/tilemap_test.tscn" id="1_ic1ht"]
@@ -10,3 +10,9 @@ script = ExtResource("1_fmdvf")
 [node name="TilemapTest" parent="." instance=ExtResource("1_ic1ht")]
 
 [node name="UI" parent="." instance=ExtResource("2_j3bll")]
+offset_left = 45.0
+offset_top = 16.0
+offset_right = 45.0
+offset_bottom = 16.0
+
+[editable path="TilemapTest"]

@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_ghh7l"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 896, 0)
 }
 point_count = 2
 
@@ -17,5 +17,6 @@ harv_scene = ExtResource("2_g22r2")
 [node name="spawn_timer" type="Timer" parent="."]
 
 [node name="spawn_location_path" type="PathFollow2D" parent="."]
+position = Vector2(80, 0)
 
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
