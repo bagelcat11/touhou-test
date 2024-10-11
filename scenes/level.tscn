@@ -37,14 +37,14 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_netcc"]
 shader = SubResource("Shader_7cfx8")
 
-[sub_resource type="Curve" id="Curve_c7gxr"]
+[sub_resource type="Curve" id="Curve_cwuj1"]
 
-[sub_resource type="Curve" id="Curve_bj5u6"]
+[sub_resource type="Curve" id="Curve_gq21a"]
 max_value = 10.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_0nye1"]
+[sub_resource type="Gradient" id="Gradient_6t0sa"]
 offsets = PackedFloat32Array(0, 0.5, 1)
 colors = PackedColorArray(1, 0.866667, 0.341176, 1, 1, 0.486275, 0.376471, 1, 1, 0.866667, 0.337255, 1)
 
@@ -58,7 +58,7 @@ angle = 0.0
 groups = PackedStringArray()
 spec_bounces = 0
 spec_no_collision = false
-spec_modulate = SubResource("Gradient_0nye1")
+spec_modulate = SubResource("Gradient_6t0sa")
 spec_modulate_loop = 2.0
 spec_trail_length = 0.0
 spec_trail_width = 0.0
@@ -69,7 +69,7 @@ death_outside_box = Rect2(0, 0, 0, 0)
 death_from_collision = true
 a_direction_equation = ""
 a_curve_movement = 0
-a_speed_multiplier = SubResource("Curve_c7gxr")
+a_speed_multiplier = SubResource("Curve_cwuj1")
 a_speed_multi_iterations = 0
 a_speed_multi_scale = 0.0
 trigger_container = ""
@@ -80,7 +80,7 @@ homing_steer = 0.0
 homing_time_start = 0.0
 homing_duration = 999.0
 scale_multi_iterations = 1
-scale_multiplier = SubResource("Curve_bj5u6")
+scale_multiplier = SubResource("Curve_gq21a")
 scale_multi_scale = 1.0
 r_randomisation_chances = 1.0
 r_speed_choice = PackedFloat32Array()
@@ -121,19 +121,19 @@ r_scale_multi_curve_choice = []
 r_scale_multi_iter_variation = Vector3(0, 0, 0)
 r_scale_multi_scale_variation = Vector3(0, 0, 0)
 
-[sub_resource type="Curve" id="Curve_74vq7"]
+[sub_resource type="Curve" id="Curve_mxl2l"]
 max_value = 600.0
 _data = [Vector2(0, 450), 0.0, 0.0, 0, 0, Vector2(0.25, 90), -11.5384, 0.0, 0, 0, Vector2(0.75, 90), 0.0, 0.0, 0, 0, Vector2(1, 150), 0.0, 0.0, 0, 0]
 point_count = 4
 metadata/_snap_enabled = true
 metadata/_snap_count = 20
 
-[sub_resource type="Curve" id="Curve_dkf7t"]
+[sub_resource type="Curve" id="Curve_03ans"]
 max_value = 10.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 10), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_h02jh"]
+[sub_resource type="Gradient" id="Gradient_7yqix"]
 offsets = PackedFloat32Array(0.5)
 colors = PackedColorArray(1, 0.831373, 0.705882, 1)
 
@@ -147,7 +147,7 @@ angle = 0.0004
 groups = PackedStringArray()
 spec_bounces = 0
 spec_no_collision = false
-spec_modulate = SubResource("Gradient_h02jh")
+spec_modulate = SubResource("Gradient_7yqix")
 spec_modulate_loop = 1.0
 spec_trail_length = 0.0
 spec_trail_width = 0.0
@@ -158,7 +158,7 @@ death_outside_box = Rect2(0, 0, 0, 0)
 death_from_collision = true
 a_direction_equation = ""
 a_curve_movement = 0
-a_speed_multiplier = SubResource("Curve_74vq7")
+a_speed_multiplier = SubResource("Curve_mxl2l")
 a_speed_multi_iterations = 1
 a_speed_multi_scale = 4.0
 trigger_container = ""
@@ -169,7 +169,7 @@ homing_steer = 0.0
 homing_time_start = 0.0
 homing_duration = 999.0
 scale_multi_iterations = 1
-scale_multiplier = SubResource("Curve_dkf7t")
+scale_multiplier = SubResource("Curve_03ans")
 scale_multi_scale = 1.0
 r_randomisation_chances = 1.0
 r_speed_choice = PackedFloat32Array()

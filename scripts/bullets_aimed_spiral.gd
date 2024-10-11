@@ -18,6 +18,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if(!enemy):
+		queue_free()
 	if(timer <= 0):
 		shoot_aimed_spiral()
 		shoot_circle()
