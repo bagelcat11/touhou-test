@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7vbisd0fd7yx"]
+[gd_scene load_steps=18 format=3 uid="uid://b7vbisd0fd7yx"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4an2k"]
 [ext_resource type="Texture2D" uid="uid://44t630g47g4l" path="res://assets/touhou_protag.png" id="2_akw8m"]
@@ -35,6 +35,46 @@ initial_velocity_max = 15.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_v3cyp")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_he2mm"]
+
+[sub_resource type="Animation" id="Animation_bogj2"]
+resource_name = "invincibilityFlash"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.227451)]
+}
+
+[sub_resource type="Animation" id="Animation_pk5lh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l2npp"]
+_data = {
+"RESET": SubResource("Animation_pk5lh"),
+"invincibilityFlash": SubResource("Animation_bogj2")
+}
+
 [node name="player" type="CharacterBody2D" groups=["harvesting_player"]]
 z_index = 1
 position = Vector2(-2, 0)
@@ -42,6 +82,7 @@ collision_mask = 12
 script = ExtResource("1_4an2k")
 player_bullet = ExtResource("2_gn82w")
 dash_obj = ExtResource("3_uw0qr")
+jumpForce = 650
 
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -45)
@@ -111,5 +152,17 @@ emitting = false
 amount = 80
 process_material = SubResource("ParticleProcessMaterial_2rwfx")
 texture = ExtResource("5_gl5sj")
+
+[node name="bomb_clearing" type="StaticBody2D" parent="."]
+position = Vector2(2, -30)
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bomb_clearing"]
+shape = SubResource("RectangleShape2D_he2mm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l2npp")
+}
 
 [connection signal="area_entered" from="hurtbox_area" to="." method="_on_hurtbox_area_entered"]

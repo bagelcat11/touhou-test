@@ -1,18 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgp8m8v5p68yl"]
 
-[ext_resource type="Texture2D" uid="uid://221wdg7dhi4f" path="res://assets/touhou_enemy.png" id="1_qor6w"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_x4g0k"]
+[ext_resource type="Texture2D" uid="uid://bedkd6ii6e50" path="res://assets/bakaminorikofumo.png" id="2_hqlhs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_biiv2"]
-size = Vector2(116, 116)
+size = Vector2(84, 116)
 
 [node name="enemy" type="Area2D" groups=["enemies"]]
 z_index = 1
 script = ExtResource("1_x4g0k")
 
 [node name="sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_qor6w")
+z_index = 2
+position = Vector2(0, -1)
+scale = Vector2(1.375, 1.375)
+texture = ExtResource("2_hqlhs")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
 z_index = 1

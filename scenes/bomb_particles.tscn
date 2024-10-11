@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://t5qofg2hdvna"]
+
+[ext_resource type="Texture2D" uid="uid://030twfib7ygn" path="res://assets/testBombSprite.png" id="1_p1vks"]
+[ext_resource type="Script" path="res://scenes/bomb_particles.gd" id="2_ylvo3"]
+
+[sub_resource type="Curve" id="Curve_yk6mq"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.995098, 344.176), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_usoxa"]
+curve = SubResource("Curve_yk6mq")
+
+[sub_resource type="Curve" id="Curve_r5lmd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.769608, 0.725275), -1.25757, -1.25757, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ikdg3"]
+curve = SubResource("Curve_r5lmd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5o3mo"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 132.4
+angle_min = 1.07288e-05
+angle_max = 180.0
+angle_curve = SubResource("CurveTexture_usoxa")
+initial_velocity_min = -200.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 98, 0)
+scale_min = 4.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_ikdg3")
+
+[node name="bomb_particles" type="GPUParticles2D"]
+position = Vector2(0, 648)
+emitting = false
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_5o3mo")
+texture = ExtResource("1_p1vks")
+lifetime = 3.0
+script = ExtResource("2_ylvo3")
+speed = 3.0
