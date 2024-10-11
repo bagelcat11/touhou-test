@@ -35,7 +35,7 @@ initial_velocity_max = 15.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_v3cyp")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_he2mm"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6olty"]
 
 [sub_resource type="Animation" id="Animation_pk5lh"]
 length = 0.001
@@ -123,7 +123,6 @@ wait_time = 0.5
 one_shot = true
 
 [node name="basket" type="Area2D" parent="." groups=["harvesting_player"]]
-visible = false
 collision_layer = 32
 collision_mask = 32
 
@@ -155,12 +154,11 @@ process_material = SubResource("ParticleProcessMaterial_2rwfx")
 texture = ExtResource("5_gl5sj")
 
 [node name="bomb_clearing" type="StaticBody2D" parent="."]
-visible = false
 position = Vector2(2, -30)
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bomb_clearing"]
-shape = SubResource("RectangleShape2D_he2mm")
+shape = SubResource("CircleShape2D_6olty")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -166,10 +166,10 @@ func _physics_process(delta):
 		is_bombing = true
 		bomb_collider_hitbox.set_collision_mask_value(5,true)
 		bomb_collider_hitbox.set_collision_layer_value(2,true)
-		temp = summon_bomb(position.x,position.y,0.001)
+		temp = summon_bomb(0.001)
 	if(is_bombing):
 		bomb_timer += delta
-		bomb_collider_hitbox.scale = lerp(bomb_collider_hitbox.scale, Vector2(200,100), 0.005)
+		bomb_collider_hitbox.scale = lerp(bomb_collider_hitbox.scale, Vector2(100,100), 0.005)
 		if(bomb_timer > bomb_duration):
 			temp.queue_free()
 			is_bombing = false
