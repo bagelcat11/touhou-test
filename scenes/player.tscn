@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4an2k"]
 [ext_resource type="Texture2D" uid="uid://44t630g47g4l" path="res://assets/touhou_protag.png" id="2_akw8m"]
 [ext_resource type="PackedScene" uid="uid://cccko877eva3y" path="res://scenes/player_bullet.tscn" id="2_gn82w"]
-[ext_resource type="PackedScene" path="res://scenes/dash_sprite.tscn" id="3_uw0qr"]
+[ext_resource type="PackedScene" uid="uid://l8la6wd7cm4s" path="res://scenes/dash_sprite.tscn" id="3_uw0qr"]
 [ext_resource type="Texture2D" uid="uid://jtgeusn4gmja" path="res://assets/basket.png" id="4_nwgly"]
 [ext_resource type="Texture2D" uid="uid://di5vtoa8mwmex" path="res://assets/dash_particle.png" id="5_gl5sj"]
 [ext_resource type="Texture2D" uid="uid://dxm31snmiy5ud" path="res://assets/heart.png" id="5_n14px"]
@@ -35,7 +35,7 @@ initial_velocity_max = 15.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_v3cyp")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_he2mm"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6olty"]
 
 [sub_resource type="Animation" id="Animation_pk5lh"]
 length = 0.001
@@ -94,7 +94,7 @@ shape = SubResource("RectangleShape2D_vrmvt")
 
 [node name="hurtbox_area" type="Area2D" parent="." groups=["harvesting_player"]]
 position = Vector2(0, 3)
-collision_layer = 3
+collision_layer = 2
 collision_mask = 16
 collision_priority = 2.0
 
@@ -123,7 +123,6 @@ wait_time = 0.5
 one_shot = true
 
 [node name="basket" type="Area2D" parent="." groups=["harvesting_player"]]
-visible = false
 collision_layer = 32
 collision_mask = 32
 
@@ -155,12 +154,11 @@ process_material = SubResource("ParticleProcessMaterial_2rwfx")
 texture = ExtResource("5_gl5sj")
 
 [node name="bomb_clearing" type="StaticBody2D" parent="."]
-visible = false
 position = Vector2(2, -30)
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bomb_clearing"]
-shape = SubResource("RectangleShape2D_he2mm")
+shape = SubResource("CircleShape2D_6olty")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,9 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://dnvjf1v5tew17"]
+[gd_scene load_steps=29 format=3 uid="uid://dnvjf1v5tew17"]
 
 [ext_resource type="Texture2D" uid="uid://2ebmlf42bc2u" path="res://assets/Tilesets/tileset.png" id="1_l20fb"]
 [ext_resource type="PackedScene" uid="uid://b7vbisd0fd7yx" path="res://scenes/player.tscn" id="2_vrx52"]
 [ext_resource type="PackedScene" uid="uid://cgp8m8v5p68yl" path="res://scenes/enemy.tscn" id="3_vm0ah"]
-[ext_resource type="Script" path="res://scenes/screenshake.gd" id="4_vcvml"]
+[ext_resource type="Script" path="res://scripts/screenshake.gd" id="4_vcvml"]
 [ext_resource type="Script" path="res://scripts/bullets_aimed_spiral.gd" id="5_yyqu6"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_mg2yo"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="7_53bbt"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="9_jqyiy"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="10_l0wvo"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="11_ujb6c"]
+[ext_resource type="PackedScene" uid="uid://c38v4mq3f77se" path="res://scenes/ui.tscn" id="12_n41tp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hkcjy"]
 texture = ExtResource("1_l20fb")
@@ -618,3 +619,5 @@ curve = SubResource("Curve2D_fjrxx")
 script = ExtResource("9_jqyiy")
 id = "Circle"
 pattern = SubResource("NavigationPolygon_i2wby")
+
+[node name="UI" parent="." instance=ExtResource("12_n41tp")]

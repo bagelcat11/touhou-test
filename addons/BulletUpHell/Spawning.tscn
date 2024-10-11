@@ -100,7 +100,7 @@ default_delete = SubResource("Resource_tl1ht")
 
 [node name="0" type="Area2D" parent="SharedAreas"]
 collision_layer = 16
-collision_mask = 2
+collision_mask = 6
 
 [node name="ShapeManager" type="AnimatedSprite2D" parent="."]
 visible = false
