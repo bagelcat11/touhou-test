@@ -8,7 +8,8 @@ var player
 func _ready() -> void:
 	Spawning.create_pool("Yellow-Red", "0", 2000)
 	Spawning.create_pool("Orange", "0", 2000)
-	for a in get_tree().current_scene.get_children():
+	for a in owner.get_children():
+		#print(a)
 		if a.is_in_group("enemies"):
 			enemy = a
 		if a.is_in_group("player"):
