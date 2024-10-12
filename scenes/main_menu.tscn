@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ce36wsihrjkjg"]
 
-[ext_resource type="Texture2D" uid="uid://44t630g47g4l" path="res://assets/touhou_protag.png" id="1_d6ur0"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_daj3y"]
+[ext_resource type="Texture2D" uid="uid://catgy4ujdf2sq" path="res://assets/touhou-title.png" id="2_qxn1m"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -19,7 +19,7 @@ offset_top = 365.0
 offset_right = 773.0
 offset_bottom = 479.0
 theme_override_font_sizes/font_size = 40
-text = "start gayming!!1!"
+text = "New Game"
 
 [node name="quit" type="Button" parent="."]
 layout_mode = 0
@@ -28,24 +28,13 @@ offset_top = 510.0
 offset_right = 676.0
 offset_bottom = 546.0
 theme_override_font_sizes/font_size = 20
-text = "stop gayming"
+text = "Quit"
 
-[node name="title" type="Label" parent="."]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 32.0
-offset_right = 1079.0
-offset_bottom = 310.0
-theme_override_font_sizes/font_size = 100
-text = "東方新嘗祭: Battle for a Bountiful Fall"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="awesome_image" type="Sprite2D" parent="."]
+[node name="bg" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(580, 434)
-scale = Vector2(21.7656, 3.86667)
-texture = ExtResource("1_d6ur0")
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_qxn1m")
 
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
