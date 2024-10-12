@@ -457,13 +457,20 @@ scale = Vector2(2.8, 2.8)
 texture = ExtResource("8_flgsb")
 
 [node name="Pause Screen" type="Control" parent="."]
-visible = false
+z_index = 6
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="ColorRect" type="ColorRect" parent="Pause Screen"]
+z_index = 6
+layout_mode = 0
+offset_right = 1160.0
+offset_bottom = 661.0
+color = Color(0, 0, 0, 0.435294)
+
 [node name="back" type="Button" parent="Pause Screen"]
-z_index = 1
+z_index = 6
 layout_mode = 0
 offset_left = 478.0
 offset_top = 276.0
@@ -471,15 +478,9 @@ offset_right = 707.0
 offset_bottom = 339.0
 text = "BACK"
 
-[node name="ColorRect" type="ColorRect" parent="Pause Screen"]
-layout_mode = 0
-offset_right = 1160.0
-offset_bottom = 661.0
-color = Color(0, 0, 0, 0.435294)
-
 [node name="continue" type="Button" parent="Pause Screen"]
 visible = false
-z_index = 1
+z_index = 7
 layout_mode = 0
 offset_left = 479.0
 offset_top = 277.0
@@ -488,7 +489,7 @@ offset_bottom = 340.0
 text = "Continue?"
 
 [node name="back_to_menu" type="Button" parent="Pause Screen"]
-z_index = 1
+z_index = 7
 layout_mode = 0
 offset_left = 479.0
 offset_top = 466.0
