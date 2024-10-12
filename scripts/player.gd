@@ -62,7 +62,7 @@ func _ready() -> void:
 	#dashVec = Vector2(0, 0)
 	$basket/basket_sprite.hide()
 	GlobalVars.current_lives = 6
-	GlobalVars.current_num_harvested = 0
+	GlobalVars.current_num_harvested = 2 # CHANGE THIS BACK TO 0 LATER
 	GlobalVars.current_num_bombs = 0
 
 	GlobalVars.connect("player_harvest", harvest)
@@ -137,6 +137,7 @@ func die():
 	
 func harvest():
 	print("gottem")
+	GlobalVars.score += 1000
 	GlobalVars.current_num_harvested += 1
 	#if (GlobalVars.current_num_harvested == 1):
 		#GlobalVars.has_moved.emit()

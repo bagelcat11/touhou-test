@@ -19,4 +19,5 @@ TODO:
 - [ ] make boss move around
 - [ ] implement easy/med/hard/hard2 boss phases
 - [ ] implement bomb tutorial
+- [ ] balance score
 - uhhh also various nicer ui elements and basic sfx and things...

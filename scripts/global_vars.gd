@@ -9,6 +9,7 @@ var current_num_bombs
 signal has_moved()
 signal passed_tutorial()
 signal has_shot()
+var score
 
 func exit():
 	get_tree().quit()

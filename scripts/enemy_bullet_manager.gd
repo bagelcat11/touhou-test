@@ -37,6 +37,9 @@ func _physics_process(delta: float) -> void:
 	elif(isEnemyAlive and enemy.health > 200 and timer < 50): curr_state = State.MED
 	else: curr_state = State.HARD
 	
+	if (isEnemyAlive):
+		global_position = enemy.get_global_position()
+	
 	if(prev_state != curr_state):
 		if(curr_state == State.EASY): start_pattern_easy(400) 
 		if(curr_state == State.MED): start_pattern_med(200) 
