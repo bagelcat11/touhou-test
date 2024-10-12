@@ -605,6 +605,7 @@ script = ExtResource("3_anf7x")
 position = Vector2(104, 104)
 
 [node name="Sprite2D" type="Sprite2D" parent="enemy_mover/enemy_location"]
+visible = false
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_tqrus")
 

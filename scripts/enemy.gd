@@ -16,6 +16,7 @@ func take_damage(d):
 	$healthbar.value = health
 	$health_label.text = "%d / %d" % [health, MAX_HEALTH]
 	if (health <= 0):
+		get_parent().get_node("enemy_mover").queue_free()
 		queue_free()
 
 func _physics_process(_delta):
