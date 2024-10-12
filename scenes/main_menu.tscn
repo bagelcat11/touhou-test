@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce36wsihrjkjg"]
+[gd_scene load_steps=5 format=3 uid="uid://ce36wsihrjkjg"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_daj3y"]
 [ext_resource type="Texture2D" uid="uid://catgy4ujdf2sq" path="res://assets/touhou-title.png" id="2_qxn1m"]
 [ext_resource type="Texture2D" uid="uid://b8f8dxnn5sbkx" path="res://assets/touhou-credits.png" id="3_whtuc"]
+[ext_resource type="AudioStream" uid="uid://glk08vi1jgtn" path="res://sounds/ui_select.wav" id="4_vemjd"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -65,6 +66,10 @@ visible = false
 position = Vector2(576, 324)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("3_whtuc")
+
+[node name="sfx_ui" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vemjd")
+volume_db = -10.0
 
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bel5c2ap112f3"]
+[gd_scene load_steps=29 format=3 uid="uid://bel5c2ap112f3"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_fmdvf"]
 [ext_resource type="PackedScene" uid="uid://dnvjf1v5tew17" path="res://scenes/tilemap_test.tscn" id="1_ic1ht"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="4_qs7gy"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="5_v8gc4"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="7_rfq1i"]
+[ext_resource type="AudioStream" uid="uid://cjb0k7vpkqitr" path="res://sounds/enemy_phase_start.wav" id="9_dfdt1"]
 
 [sub_resource type="Curve" id="Curve_j4g18"]
 max_value = 150.0
@@ -482,6 +483,10 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_whkou")
 }
+
+[node name="sfx_enemy_spawn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_dfdt1")
+volume_db = -10.0
 
 [connection signal="timeout" from="prompt_bomb/bomb_hide_timer" to="." method="_on_bomb_hide_timer_timeout"]
 

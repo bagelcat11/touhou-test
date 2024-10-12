@@ -18,6 +18,6 @@ TODO:
 - [x] implemented level/arena layouts
 - [x] make boss move around
 - [x] implement easy/med/hard/hard2 boss phases
-- [ ] implement bomb tutorial
+- [x] implement bomb tutorial
 - [ ] balance score
 - uhhh also various nicer ui elements and basic sfx and things...

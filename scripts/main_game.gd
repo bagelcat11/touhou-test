@@ -27,6 +27,7 @@ func die():
 	
 
 func enable_enemy():
+	$sfx_enemy_spawn.play()
 	$TilemapTest/enemy.show()
 	$TilemapTest/enemy_mover.process_mode = Node.PROCESS_MODE_INHERIT
 	$TilemapTest/enemy.process_mode = Node.PROCESS_MODE_INHERIT

@@ -14,10 +14,13 @@ func _ready() -> void:
 
 
 func _on_start_pressed() -> void:
+	$sfx_ui.play()
+	await get_tree().create_timer(0.3).timeout # lmao
 	get_tree().change_scene_to_file("res://scenes/main_game.tscn")
 
 
 func _on_quit_pressed() -> void:
+	$sfx_ui.play()
 	GlobalVars.exit()
 
 func _process(delta: float) -> void:
@@ -26,6 +29,7 @@ func _process(delta: float) -> void:
 
 
 func _on_creds_pressed() -> void:
+	$sfx_ui.play()
 	$cred_bg.show()
 	$start.hide()
 	$creds.hide()
@@ -34,6 +38,7 @@ func _on_creds_pressed() -> void:
 
 
 func _on_back_pressed() -> void:
+	$sfx_ui.play()
 	$cred_bg.hide()
 	$start.show()
 	$creds.show()

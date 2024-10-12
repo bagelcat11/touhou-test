@@ -30,6 +30,7 @@ func _physics_process(delta: float) -> void:
 	if(!enemy): 
 		isEnemyAlive = false
 		queue_free()
+		#enemy.get_node("sfx_death").play() # uh oh
 	prev_state = curr_state
 	
 	if(isEnemyAlive and enemy.health > 400 and timer < 30): curr_state = State.EASY
@@ -41,6 +42,7 @@ func _physics_process(delta: float) -> void:
 	
 	if(prev_state != curr_state):
 		GlobalVars.emit_signal("enemy_bullet_clear")
+		enemy.get_node("sfx_phase_change").play() # uh oh
 		if(curr_state == State.EASY): start_pattern_easy(400) 
 		if(curr_state == State.MED): start_pattern_med(250) 
 		if(curr_state == State.HARD): start_pattern_hard(0) 
@@ -54,12 +56,14 @@ func start_pattern_easy(minHealth : float) -> void:
 		var angle : float = deg_to_rad(randi_range(0, 7) * 45)
 		shoot_lanes(angle)
 		shoot_lanes(angle + PI)
+		enemy.get_node("sfx_fire").play() # uh oh
 		await get_tree().create_timer(3).timeout
 
 func start_pattern_med(minHealth : float) -> void:
 	while(isEnemyAlive and enemy and curr_state == State.MED):
 		shoot_aimed_lanes(minHealth)
 		shoot_circle_spin(minHealth, deg_to_rad(80))
+		enemy.get_node("sfx_fire").play() # uh oh
 		await get_tree().create_timer(randf_range(0, 0.3)).timeout
 		shoot_circle_spin(minHealth, deg_to_rad(-80))
 		await get_tree().create_timer(5).timeout
@@ -68,6 +72,7 @@ func start_pattern_hard(minHealth : float) -> void:
 	while(isEnemyAlive and enemy and curr_state == State.HARD):
 		shoot_aimed_spiral(minHealth)
 		shoot_circle_lanes(minHealth)
+		enemy.get_node("sfx_fire").play() # uh oh
 		await get_tree().create_timer(6).timeout
 
 

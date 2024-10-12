@@ -112,6 +112,7 @@ func get_dash_vector():
 
 func dash():
 	if(Input.is_action_just_pressed("dash") and can_dash):
+		$sfx_dash.play()
 		sprite.modulate = Color.DARK_TURQUOISE
 		invincibility(dash_length)
 		is_dashing = true
@@ -133,12 +134,14 @@ func dash():
 		dash_particles.emitting = false
 	
 func die():
+	$sfx_die.play()
 	animationPlayer.play("death")
 	GlobalVars.emit_signal("death")
 	
 	
 func harvest():
-	print("gottem")
+	#print("gottem")
+	$sfx_harvest.play()
 	GlobalVars.score += 1000
 	GlobalVars.current_num_harvested += 1
 	#if (GlobalVars.current_num_harvested == 1):
@@ -149,9 +152,11 @@ func harvest():
 		GlobalVars.first_bomb.emit()
 	if (GlobalVars.current_num_harvested % int(GlobalVars.apples_per_bomb) == 0 and GlobalVars.current_num_bombs < 5):
 		GlobalVars.current_num_bombs += 1
+		$sfx_bomb_up.play()
 
 #speed is actually how quickly the circle lerps out so keep it very small
 func summon_bomb(s):
+	$sfx_use_bomb.play()
 	var currSpawner = bomb_vfx.instantiate()
 	currSpawner.position.x = 0
 	currSpawner.position.y = 0
@@ -227,6 +232,7 @@ func _physics_process(delta):
 	# and not is dashing
 	if (Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall())):
 		velocity.y = -jumpForce
+		$sfx_jump.play()
 		
 	# == SHOOTING/COLLECTING ==
 	if (Input.is_action_pressed("shoot")):
@@ -243,6 +249,7 @@ func _physics_process(delta):
 		
 		# actual shooting code
 		if ($shot_cooldown.is_stopped()):
+			$sfx_shoot.play()
 			var b = player_bullet.instantiate()	# 5 dam for non-focus homing mode
 			owner.add_child(b)
 			b.transform = $bullet_emitter.global_transform
@@ -299,6 +306,8 @@ func _physics_process(delta):
 
 	if (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")): # and not is dashing
 		horizontalDirection = lastDirection
+		if (is_on_floor() and not $sfx_walk.playing):
+			$sfx_walk.play()
 		
 	
 	if (is_on_floor() and not can_dash and not is_dashing):
@@ -364,6 +373,7 @@ func _physics_process(delta):
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
+	$sfx_get_hit.play()
 	invincibility(1.5)
 	screenshakeCamera.apply_shake()
 	print(GlobalVars.current_lives)
