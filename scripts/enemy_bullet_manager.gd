@@ -83,6 +83,7 @@ func shoot_lanes(angle : float) -> void:
 			Spawning.spawn({"position": initPos + i * deltaX + j * deltaY, "rotation": angle}, "OneLarge")
 
 func shoot_aimed_lanes(minHealth : float) -> void:
+	if(!enemy): return
 	var initPos = enemy.position
 	for i : int in 3:
 		if(!enemy or enemy.health <= minHealth): return
