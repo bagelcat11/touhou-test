@@ -43,6 +43,7 @@ var dash_direction: Vector2 # guh??? where are we dashing??
 @export var bomb_duration:float = 2
 var bomb_timer = 0
 var is_bombing = false
+@onready var has_bombed = false
 
 ## Cleanup Vars
 var temp
@@ -184,6 +185,9 @@ func _physics_process(delta):
 				#drop()
 	# == Bomb ==
 	if(Input.is_action_just_pressed("bomb") and not is_bombing and GlobalVars.current_num_bombs > 0):
+		if (not has_bombed):
+			has_bombed = true
+			GlobalVars.bomb_tut_done.emit()
 		invincibility(bomb_duration)
 		GlobalVars.current_num_bombs -= 1
 		var curr_width = get_viewport().get_visible_rect().size.x

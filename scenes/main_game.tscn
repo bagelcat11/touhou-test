@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bel5c2ap112f3"]
+[gd_scene load_steps=28 format=3 uid="uid://bel5c2ap112f3"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_fmdvf"]
 [ext_resource type="PackedScene" uid="uid://dnvjf1v5tew17" path="res://scenes/tilemap_test.tscn" id="1_ic1ht"]
@@ -281,6 +281,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("prompt_bomb:theme_override_colors/font_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_5cns1"]
 resource_name = "fade_out_dash"
@@ -342,9 +354,25 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_dbnof"]
+resource_name = "fade_out_bomb"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("prompt_bomb:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_whkou"]
 _data = {
 "RESET": SubResource("Animation_l0xuu"),
+"fade_out_bomb": SubResource("Animation_dbnof"),
 "fade_out_dash": SubResource("Animation_5cns1"),
 "fade_out_harvest": SubResource("Animation_vfft1"),
 "fade_out_move": SubResource("Animation_f55ko"),
@@ -396,7 +424,6 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="prompt_move" type="Label" parent="."]
-z_index = 2
 offset_left = 400.0
 offset_top = 128.0
 offset_right = 572.0
@@ -406,7 +433,6 @@ text = "arrow keys to move!!!!"
 horizontal_alignment = 1
 
 [node name="prompt_dash" type="Label" parent="."]
-z_index = 2
 offset_left = 400.0
 offset_top = 176.0
 offset_right = 572.0
@@ -416,7 +442,6 @@ text = "C to dash!!!!"
 horizontal_alignment = 1
 
 [node name="prompt_harvest" type="Label" parent="."]
-z_index = 2
 offset_left = 400.0
 offset_top = 224.0
 offset_right = 572.0
@@ -426,7 +451,6 @@ text = "pick up the appels!!!!"
 horizontal_alignment = 1
 
 [node name="prompt_shoot" type="Label" parent="."]
-z_index = 2
 offset_left = 336.0
 offset_top = 264.0
 offset_right = 640.0
@@ -437,6 +461,18 @@ press Z to shoot
 (you cannot pick appels while shooting)"
 horizontal_alignment = 1
 
+[node name="prompt_bomb" type="Label" parent="."]
+offset_left = 336.0
+offset_top = 211.0
+offset_right = 640.0
+offset_bottom = 286.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "you got a Bountiful Bomb!!
+press X to get out of a tight spot!"
+horizontal_alignment = 1
+
+[node name="bomb_hide_timer" type="Timer" parent="prompt_bomb"]
+
 [node name="ui_fader" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_whkou")
@@ -446,6 +482,8 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_whkou")
 }
+
+[connection signal="timeout" from="prompt_bomb/bomb_hide_timer" to="." method="_on_bomb_hide_timer_timeout"]
 
 [editable path="TilemapTest"]
 [editable path="TilemapTest/player"]

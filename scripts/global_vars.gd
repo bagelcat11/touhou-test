@@ -8,6 +8,7 @@ signal enemy_bullet_clear()
 signal has_moved()
 signal passed_tutorial()
 signal first_bomb()
+signal bomb_tut_done()
 signal has_shot()
 
 
