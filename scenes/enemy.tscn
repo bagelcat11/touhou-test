@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgp8m8v5p68yl"]
+[gd_scene load_steps=12 format=3 uid="uid://cgp8m8v5p68yl"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_x4g0k"]
 [ext_resource type="Texture2D" uid="uid://bedkd6ii6e50" path="res://assets/bakaminorikofumo.png" id="2_hqlhs"]
@@ -11,6 +11,67 @@
 size = Vector2(84, 116)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gd0mt"]
+
+[sub_resource type="Animation" id="Animation_qcjhd"]
+resource_name = "enemy_die"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.56905]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_8xuno"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ek2xg"]
+_data = {
+"RESET": SubResource("Animation_8xuno"),
+"enemy_die": SubResource("Animation_qcjhd")
+}
 
 [node name="enemy" type="Area2D" groups=["enemies"]]
 z_index = 1
@@ -62,5 +123,10 @@ volume_db = -10.0
 stream = ExtResource("6_kuwwl")
 volume_db = -10.0
 pitch_scale = 0.82
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ek2xg")
+}
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
