@@ -508,8 +508,8 @@ position = Vector2(1116, 278)
 scale = Vector2(2.93333, 2.93333)
 texture = ExtResource("9_cb31q")
 
-[connection signal="button_down" from="Pause Screen/back" to="." method="_on_continue_button_button_down"]
 [connection signal="button_down" from="Pause Screen/back" to="." method="_on_back_button_down"]
+[connection signal="button_down" from="Pause Screen/back" to="." method="_on_continue_button_button_down"]
 [connection signal="button_down" from="Pause Screen/continue" to="." method="_on_continue_button_button_down"]
-[connection signal="button_down" from="Pause Screen/back_to_menu" to="." method="_on_continue_button_button_down"]
 [connection signal="button_down" from="Pause Screen/back_to_menu" to="." method="_on_back_to_menu_button_down"]
+[connection signal="button_down" from="Pause Screen/back_to_menu" to="." method="_on_continue_button_button_down"]
