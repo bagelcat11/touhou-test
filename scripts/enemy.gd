@@ -14,12 +14,14 @@ func _ready() -> void:
 	GlobalVars.connect("enemy_hit", take_damage)
 
 func take_damage(d):
-	health -= d
-	$healthbar.value = health
-	$health_label.text = "%d / %d" % [health, MAX_HEALTH]
 	if (health <= 0):
+		await get_tree().create_timer(1).timeout
 		get_parent().get_node("enemy_mover").queue_free()
 		queue_free()
+	else:
+		health -= d
+		$healthbar.value = health
+		$health_label.text = "%d / %d" % [health, MAX_HEALTH]
 
 func _physics_process(_delta):
 	
