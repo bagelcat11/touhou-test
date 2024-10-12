@@ -214,6 +214,7 @@ shape = SubResource("RectangleShape2D_32sym")
 
 [node name="basket_sprite" type="Sprite2D" parent="basket"]
 position = Vector2(2, -117)
+scale = Vector2(2.17778, 2.17778)
 texture = ExtResource("4_nwgly")
 
 [node name="hurtbox_body" type="StaticBody2D" parent="." groups=["harvesting_player"]]
