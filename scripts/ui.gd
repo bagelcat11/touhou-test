@@ -17,6 +17,7 @@ func _ready() -> void:
 	print(GlobalVars.current_num_harvested)
 	GlobalVars.score = 0
 	$num_bombs.text = "%s x" % GlobalVars.current_num_bombs
+	get_tree().paused = false
 
 func harvest_var_update():
 	current_apples += 1

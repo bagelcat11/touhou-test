@@ -378,6 +378,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	GlobalVars.current_lives -= 1
 	GlobalVars.lost_health.emit(GlobalVars.current_lives)
 	if (GlobalVars.current_lives <= 0):
+		GlobalVars.emit_signal("enemy_bullet_clear")
 		die()
 
 func dash_timer_timeout():

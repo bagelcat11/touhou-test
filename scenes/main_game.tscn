@@ -390,6 +390,9 @@ script = null
 [node name="player" parent="TilemapTest" index="2"]
 position = Vector2(496, 544)
 
+[node name="enemy" parent="TilemapTest" index="4" node_paths=PackedStringArray("cam")]
+cam = NodePath("../Camera2D")
+
 [node name="OrangeLarge" type="Path2D" parent="TilemapTest/EnemyBulletManager" index="2"]
 script = ExtResource("3_1lfr8")
 id = "OrangeLarge"

@@ -20,11 +20,11 @@ func start_things():
 func _physics_process(delta: float) -> void:
 	if (moving):
 		#if(!e): queue_free()
-		if (e.position.distance_to($enemy_location.position) > 0.5):
+		if (e.position.distance_to($enemy_location.position) > 1.5):
 			e.move_to($enemy_location.position)
 		else:
 			moving = false
-			#$time_to_next_move.start()
+			e.position = $enemy_location.position
 	elif ($time_to_next_move.is_stopped()):
 		$time_to_next_move.start()
 
@@ -32,6 +32,8 @@ func _physics_process(delta: float) -> void:
 func _on_time_to_next_move_timeout() -> void:
 	print('heyo')
 	if (!e): return
-	while (e.position.distance_to($enemy_location.position) < 40):
+	var dist : float = e.position.distance_to($enemy_location.position)
+	while (dist < 150 or dist > 350):
 		$enemy_location.progress_ratio = randf()
+		dist = e.position.distance_to($enemy_location.position)
 	moving = true

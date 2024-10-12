@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var MAX_HEALTH = 500
+@export var cam:Camera2D
 @onready var health = MAX_HEALTH
 @onready var bullet_clear_hitbox = $bullet_clear_hitbox
 
@@ -15,7 +16,10 @@ func _ready() -> void:
 
 func take_damage(d):
 	if (health <= 0):
-		await get_tree().create_timer(1).timeout
+		cam.apply_shake()
+		get_parent().get_node("enemy/sfx_death").play() # uh oh
+		get_parent().get_node("enemy/AnimationPlayer").play("enemy_die")
+		await get_tree().create_timer(2.1).timeout
 		get_parent().get_node("enemy_mover").queue_free()
 		queue_free()
 	else:
@@ -31,7 +35,7 @@ func _physics_process(_delta):
 	pass
 	
 func move_to(next_loc):
-	position = lerp(position, next_loc, speed)
+	position = lerp(position, next_loc, speed) + (next_loc - position).limit_length(1)
 	#print(next_loc)
 
 
