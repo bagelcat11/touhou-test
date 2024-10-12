@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bel5c2ap112f3"]
+[gd_scene load_steps=30 format=3 uid="uid://bel5c2ap112f3"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_fmdvf"]
 [ext_resource type="PackedScene" uid="uid://dnvjf1v5tew17" path="res://scenes/tilemap_test.tscn" id="1_ic1ht"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="5_v8gc4"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="7_rfq1i"]
 [ext_resource type="AudioStream" uid="uid://cjb0k7vpkqitr" path="res://sounds/enemy_phase_start.wav" id="9_dfdt1"]
+[ext_resource type="AudioStream" uid="uid://c52645cvk8tmq" path="res://sounds/Hard_Worker.mp3" id="10_07he4"]
 
 [sub_resource type="Curve" id="Curve_j4g18"]
 max_value = 150.0
@@ -491,7 +492,13 @@ libraries = {
 stream = ExtResource("9_dfdt1")
 volume_db = -10.0
 
+[node name="music_level" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_07he4")
+volume_db = -16.0
+autoplay = true
+
 [connection signal="timeout" from="prompt_bomb/bomb_hide_timer" to="." method="_on_bomb_hide_timer_timeout"]
+[connection signal="finished" from="music_level" to="." method="_on_music_level_finished"]
 
 [editable path="TilemapTest"]
 [editable path="TilemapTest/player"]
