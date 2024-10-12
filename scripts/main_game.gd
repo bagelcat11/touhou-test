@@ -77,3 +77,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_bomb_hide_timer_timeout() -> void:
 	$prompt_bomb.hide()
+
+
+func _on_music_level_finished() -> void:
+	$music_level.play()

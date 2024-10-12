@@ -1,9 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://ce36wsihrjkjg"]
+[gd_scene load_steps=9 format=3 uid="uid://ce36wsihrjkjg"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_daj3y"]
 [ext_resource type="Texture2D" uid="uid://catgy4ujdf2sq" path="res://assets/touhou-title.png" id="2_qxn1m"]
 [ext_resource type="Texture2D" uid="uid://b8f8dxnn5sbkx" path="res://assets/touhou-credits.png" id="3_whtuc"]
 [ext_resource type="AudioStream" uid="uid://glk08vi1jgtn" path="res://sounds/ui_select.wav" id="4_vemjd"]
+[ext_resource type="AudioStream" uid="uid://cx2wqbyh4q5pi" path="res://sounds/title_screen.mp3" id="5_r35me"]
+
+[sub_resource type="Animation" id="Animation_h0lnf"]
+resource_name = "fade_out_music"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("music_ui:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-14.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_m556p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("music_ui:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-14.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2to5s"]
+_data = {
+"RESET": SubResource("Animation_m556p"),
+"fade_out_music": SubResource("Animation_h0lnf")
+}
 
 [node name="main_menu" type="Control"]
 process_mode = 3
@@ -73,7 +111,18 @@ texture = ExtResource("3_whtuc")
 stream = ExtResource("4_vemjd")
 volume_db = -10.0
 
+[node name="music_ui" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_r35me")
+volume_db = -14.0
+autoplay = true
+
+[node name="music_fader" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2to5s")
+}
+
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="creds" to="." method="_on_creds_pressed"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="finished" from="music_ui" to="." method="_on_music_ui_finished"]
