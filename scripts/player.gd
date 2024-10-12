@@ -111,7 +111,7 @@ func get_dash_vector():
 
 func dash():
 	if(Input.is_action_just_pressed("dash") and can_dash):
-		sprite.modulate = Color.PALE_TURQUOISE
+		sprite.modulate = Color.DARK_TURQUOISE
 		invincibility(dash_length)
 		is_dashing = true
 		can_dash = false
@@ -144,6 +144,8 @@ func harvest():
 		#GlobalVars.has_moved.emit()
 	if (GlobalVars.current_num_harvested == 3):
 		GlobalVars.passed_tutorial.emit()
+	if (GlobalVars.current_num_harvested == GlobalVars.apples_per_bomb):
+		GlobalVars.first_bomb.emit()
 	if (GlobalVars.current_num_harvested % int(GlobalVars.apples_per_bomb) == 0 and GlobalVars.current_num_bombs < 5):
 		GlobalVars.current_num_bombs += 1
 

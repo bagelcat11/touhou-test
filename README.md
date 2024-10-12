@@ -16,8 +16,8 @@ TODO:
 - [x] "bountiful bonus bomb"
 - [x] figure out actual playspace/ui-space
 - [x] implemented level/arena layouts
-- [ ] make boss move around
-- [ ] implement easy/med/hard/hard2 boss phases
+- [x] make boss move around
+- [x] implement easy/med/hard/hard2 boss phases
 - [ ] implement bomb tutorial
 - [ ] balance score
 - uhhh also various nicer ui elements and basic sfx and things...

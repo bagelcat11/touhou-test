@@ -13,7 +13,9 @@ func _ready() -> void:
 	disable_harvest()
 	GlobalVars.connect("passed_tutorial", enable_enemy)
 	GlobalVars.connect("has_moved", tut_move_done)
+	GlobalVars.connect("first_bomb", bomb_prompt)
 	$prompt_shoot.hide()
+	$prompt_bomb.hide()
 
 
 
@@ -50,6 +52,11 @@ func tut_move_done():
 func tut_dash_done():
 	$ui_fader2_since_i_cant_play_2_anims_at_once.play("fade_out_dash")
 	enable_harvest()
+	
+func bomb_prompt():
+	$ui_fader.play("fade_out_shoot")
+	$prompt_bomb.show()
+	$ui_fader2_since_i_cant_play_2_anims_at_once.play_backwards("fade_out_bomb")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
