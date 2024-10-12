@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bel5c2ap112f3"]
+[gd_scene load_steps=27 format=3 uid="uid://bel5c2ap112f3"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_fmdvf"]
 [ext_resource type="PackedScene" uid="uid://dnvjf1v5tew17" path="res://scenes/tilemap_test.tscn" id="1_ic1ht"]
@@ -96,12 +96,123 @@ r_scale_multi_curve_choice = []
 r_scale_multi_iter_variation = Vector3(0, 0, 0)
 r_scale_multi_scale_variation = Vector3(0, 0, 0)
 
+[sub_resource type="Curve" id="Curve_g3v7y"]
+max_value = 250.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 250), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_of7da"]
+max_value = 10.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 10), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_23p6q"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.66, 1, 0.6, 1, 1, 1, 0.537255, 1, 0.66, 1, 0.6, 1)
+
+[sub_resource type="PackedDataContainer" id="PackedDataContainer_v50sa"]
+script = ExtResource("5_v8gc4")
+anim_more = Array[ExtResource("4_qs7gy")]([])
+damage = 1.0
+speed = 100.0
+scale = 0.25
+angle = 0.0
+groups = PackedStringArray()
+spec_bounces = 0
+spec_no_collision = false
+spec_modulate = SubResource("Gradient_23p6q")
+spec_modulate_loop = 1.0
+spec_trail_length = 0.0
+spec_trail_width = 0.0
+spec_trail_modulate = Color(1, 1, 1, 1)
+spec_rotating_speed = 0.0
+death_after_time = 30.0
+death_outside_box = Rect2(0, 0, 0, 0)
+death_from_collision = true
+a_direction_equation = ""
+a_curve_movement = 0
+a_speed_multiplier = SubResource("Curve_g3v7y")
+a_speed_multi_iterations = 1
+a_speed_multi_scale = 1.0
+trigger_container = ""
+trigger_wait_for_shot = true
+homing_type = 0
+homing_target = NodePath("")
+homing_steer = 0.0
+homing_time_start = 0.0
+homing_duration = 999.0
+scale_multi_iterations = 1
+scale_multiplier = SubResource("Curve_of7da")
+scale_multi_scale = 1.0
+r_randomisation_chances = 1.0
+r_speed_choice = PackedFloat32Array()
+r_speed_variation = Vector3(0, 0, 0)
+r_scale_choice = PackedFloat32Array()
+r_scale_variation = Vector3(0, 0, 0)
+r_angle_choice = PackedFloat32Array()
+r_angle_variation = Vector3(0, 0, 0)
+r_group_choice = []
+r_bounce_choice = PackedInt32Array()
+r_bounce_variation = Vector3(0, 0, 0)
+r_no_coll_chances = 0.0
+r_modulate_variation = Vector3(0, 0, 0)
+r_trail_length_variation = Vector3(0, 0, 0)
+r_trail_color_variation = Vector3(0, 0, 0)
+r_rotating_variation = Vector3(0, 0, 0)
+r_death_after_choice = PackedFloat32Array()
+r_death_after_variation = Vector3(0, 0, 0)
+r_death_outside_chances = 0.0
+r_dir_equation_choice = PackedStringArray()
+r_curve_choice = []
+r_speed_multi_curve_choice = []
+r_speed_multi_iter_variation = Vector3(0, 0, 0)
+r_speed_multi_scale_variation = Vector3(0, 0, 0)
+r_trigger_choice = PackedStringArray()
+r_wait_for_shot_chances = 0.0
+r_homing_target_choice = []
+r_special_target_choice = PackedStringArray()
+r_group_target_choice = PackedStringArray()
+r_pos_target_choice = PackedVector2Array()
+r_steer_choice = PackedFloat32Array()
+r_steer_variation = Vector3(0, 0, 0)
+r_homing_delay_choice = PackedFloat32Array()
+r_homing_delay_variation = Vector3(0, 0, 0)
+r_homing_dur_choice = PackedFloat32Array()
+r_homing_dur_variation = Vector3(0, 0, 0)
+r_scale_multi_curve_choice = []
+r_scale_multi_iter_variation = Vector3(0, 0, 0)
+r_scale_multi_scale_variation = Vector3(0, 0, 0)
+
 [sub_resource type="Curve2D" id="Curve2D_uwxmh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bk8cn"]
 resource_name = "PatternOne"
 script = ExtResource("7_rfq1i")
 bullet = "OrangeLarge"
+nbr = 1
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.5
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
+
+[sub_resource type="Curve2D" id="Curve2D_xljkt"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_fjno5"]
+resource_name = "PatternOne"
+script = ExtResource("7_rfq1i")
+bullet = "YellowLarge"
 nbr = 1
 iterations = 1
 pattern_angle = 0.0
@@ -255,11 +366,22 @@ script = ExtResource("3_1lfr8")
 id = "OrangeLarge"
 props = SubResource("PackedDataContainer_qcmd4")
 
-[node name="OneLarge" type="Path2D" parent="TilemapTest/EnemyBulletManager" index="4"]
+[node name="YellowLarge" type="Path2D" parent="TilemapTest/EnemyBulletManager" index="3"]
+script = ExtResource("3_1lfr8")
+id = "YellowLarge"
+props = SubResource("PackedDataContainer_v50sa")
+
+[node name="OneLarge" type="Path2D" parent="TilemapTest/EnemyBulletManager" index="5"]
 curve = SubResource("Curve2D_uwxmh")
 script = ExtResource("3_sd45p")
 id = "OneLarge"
 pattern = SubResource("NavigationPolygon_bk8cn")
+
+[node name="OneLargeYellow" type="Path2D" parent="TilemapTest/EnemyBulletManager" index="6"]
+curve = SubResource("Curve2D_xljkt")
+script = ExtResource("3_sd45p")
+id = "OneLargeYellow"
+pattern = SubResource("NavigationPolygon_fjno5")
 
 [node name="UI" parent="." instance=ExtResource("2_j3bll")]
 z_index = 2

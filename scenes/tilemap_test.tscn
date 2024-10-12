@@ -439,8 +439,8 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 10), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_h02jh"]
-offsets = PackedFloat32Array(0.5)
-colors = PackedColorArray(1, 0.831373, 0.705882, 1)
+offsets = PackedFloat32Array(0.514085)
+colors = PackedColorArray(1, 0.34, 0.538, 1)
 
 [sub_resource type="PackedDataContainer" id="PackedDataContainer_qjxyt"]
 script = ExtResource("8_r00m1")
@@ -531,7 +531,7 @@ forced_target = NodePath("")
 forced_lookat_mouse = false
 forced_pattern_lookat = true
 cooldown_stasis = false
-cooldown_spawn = 1.0
+cooldown_spawn = 0.16
 cooldown_shoot = 0.5
 cooldown_next_spawn = 0.0
 cooldown_next_shoot = 0.0

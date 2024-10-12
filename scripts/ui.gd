@@ -32,12 +32,12 @@ func update_lives(health_left):
 func reset_apples():
 	current_apples = 0
 	bombBar.value = 0
-	$num_bombs.text = "%s x" % GlobalVars.current_num_bombs
 
 func update_harvested():
 	$num_harvested.text = "Appels: %s" % GlobalVars.current_num_harvested
 	
 func update_bombs():
+	$num_bombs.text = "%s x" % GlobalVars.current_num_bombs
 	bombBar.value = lerp(bombBar.value, (current_apples/GlobalVars.apples_per_bomb)*100, 0.15)
 	if(current_apples == GlobalVars.apples_per_bomb):
 		ani.play("BOMBGAIN")

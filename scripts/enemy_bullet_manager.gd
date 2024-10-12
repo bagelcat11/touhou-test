@@ -32,8 +32,8 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	prev_state = curr_state
 	
-	if(isEnemyAlive and enemy.health > 400 and timer < 35): curr_state = State.EASY
-	elif(isEnemyAlive and enemy.health > 200 and timer < 70): curr_state = State.MED
+	if(isEnemyAlive and enemy.health > 400 and timer < 30): curr_state = State.EASY
+	elif(isEnemyAlive and enemy.health > 250 and timer < 70): curr_state = State.MED
 	else: curr_state = State.HARD
 	
 	if (isEnemyAlive):
@@ -50,7 +50,6 @@ func _physics_process(delta: float) -> void:
 
 
 func start_pattern_easy(minHealth : float) -> void:
-	await get_tree().create_timer(1.5).timeout
 	while(isEnemyAlive and enemy and curr_state == State.EASY):
 		var angle : float = deg_to_rad(randi_range(0, 7) * 45)
 		shoot_lanes(angle)
@@ -58,13 +57,17 @@ func start_pattern_easy(minHealth : float) -> void:
 		await get_tree().create_timer(3).timeout
 
 func start_pattern_med(minHealth : float) -> void:
-	pass
+	while(isEnemyAlive and enemy and curr_state == State.MED):
+		shoot_aimed_lanes(minHealth)
+		shoot_circle_spin(minHealth, deg_to_rad(80))
+		await get_tree().create_timer(randf_range(0, 0.3)).timeout
+		shoot_circle_spin(minHealth, deg_to_rad(-80))
+		await get_tree().create_timer(5).timeout
 
 func start_pattern_hard(minHealth : float) -> void:
-	await get_tree().create_timer(1.5).timeout
 	while(isEnemyAlive and enemy and curr_state == State.HARD):
 		shoot_aimed_spiral(minHealth)
-		shoot_circle(minHealth)
+		shoot_circle_lanes(minHealth)
 		await get_tree().create_timer(6).timeout
 
 
@@ -72,11 +75,37 @@ func start_pattern_hard(minHealth : float) -> void:
 func shoot_lanes(angle : float) -> void:
 	var deltaX = Vector2(35, 0).rotated(angle)
 	var deltaY = Vector2(0, 135).rotated(angle)
+	if(!enemy): return
 	var initPos = enemy.position - 4 * deltaY
 	
 	for i in 5:
 		for j in 9:
 			Spawning.spawn({"position": initPos + i * deltaX + j * deltaY, "rotation": angle}, "OneLarge")
+
+func shoot_aimed_lanes(minHealth : float) -> void:
+	var initPos = enemy.position
+	for i : int in 3:
+		if(!enemy or enemy.health <= minHealth): return
+		var playerPos = player.position
+		var angle = atan2((playerPos.y - initPos.y), (playerPos.x - initPos.x))
+		for j : int in 8:
+			Spawning.spawn({"position": initPos, "rotation": angle + j * deg_to_rad(45)}, "OneLargeYellow")
+		await get_tree().create_timer(0.2).timeout
+
+func shoot_circle_spin(minHealth : float, deltaAngle : float) -> void:
+	if(!enemy or enemy.health <= minHealth): return
+	var initPos : Vector2 = enemy.position
+	var radius : Vector2 = Vector2(100, 0)
+	var patternAngle : float = randf_range(0, 2 * PI)
+	for i : int in 4:
+		for j : int in 14:
+			var newAngle = patternAngle + j * deg_to_rad(360 / 14)
+			Spawning.spawn({
+				"position": initPos + radius.rotated(newAngle), 
+				"rotation": newAngle + deltaAngle + deg_to_rad(randf_range(-2, 2))}, 
+				"One"
+			)
+		await get_tree().create_timer(0.15).timeout
 
 func shoot_aimed_spiral(minHealth : float) -> void:
 	var numShots : int = 45
@@ -101,10 +130,9 @@ func shoot_aimed_spiral(minHealth : float) -> void:
 			)
 		await get_tree().create_timer(1.35 / numShots).timeout
 
-func shoot_circle(minHealth : float) -> void:
+func shoot_circle_lanes(minHealth : float) -> void:
 	await get_tree().create_timer(0.75).timeout
 	for i : int in 2:
 		if(!enemy or enemy.health <= minHealth): return
 		Spawning.spawn({"position": enemy.position, "rotation": randf_range(0, 2 * PI)}, "Circle")
 		await get_tree().create_timer(2).timeout
-	
