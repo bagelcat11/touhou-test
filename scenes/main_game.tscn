@@ -250,9 +250,6 @@ script = null
 [node name="player" parent="TilemapTest" index="2"]
 position = Vector2(496, 544)
 
-[node name="sprite" parent="TilemapTest/player" index="0"]
-skew = 0.0
-
 [node name="OrangeLarge" type="Path2D" parent="TilemapTest/EnemyBulletManager" index="2"]
 script = ExtResource("3_1lfr8")
 id = "OrangeLarge"
@@ -265,13 +262,7 @@ id = "OneLarge"
 pattern = SubResource("NavigationPolygon_bk8cn")
 
 [node name="UI" parent="." instance=ExtResource("2_j3bll")]
-<<<<<<< Updated upstream
 z_index = 2
-offset_left = 45.0
-offset_top = 16.0
-offset_right = 45.0
-offset_bottom = 16.0
-=======
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -281,7 +272,6 @@ offset_right = 1189.0
 offset_bottom = 681.0
 grow_horizontal = 1
 grow_vertical = 1
->>>>>>> Stashed changes
 
 [node name="prompt_move" type="Label" parent="."]
 z_index = 2

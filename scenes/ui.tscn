@@ -289,6 +289,7 @@ offset_bottom = 270.0
 theme_override_font_sizes/font_size = 32
 text = "XXX points"
 horizontal_alignment = 2
+
 [node name="Invert" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_0ssq3")
 layout_mode = 0
