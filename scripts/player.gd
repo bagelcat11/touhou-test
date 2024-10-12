@@ -112,6 +112,7 @@ func get_dash_vector():
 func dash():
 	if(Input.is_action_just_pressed("dash") and can_dash):
 		sprite.modulate = Color.PALE_TURQUOISE
+		invincibility(dash_length)
 		is_dashing = true
 		can_dash = false
 		dash_direction = get_dash_vector()
