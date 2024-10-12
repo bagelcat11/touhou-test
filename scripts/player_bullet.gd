@@ -21,5 +21,5 @@ func _physics_process(_delta):
 
 func _on_area_entered(area: Node2D) -> void:
 	if area.is_in_group("enemies"):
-		GlobalVars.enemy_hit.emit(100)
+		GlobalVars.enemy_hit.emit(1)
 		queue_free()

@@ -6,6 +6,21 @@
 [ext_resource type="AudioStream" uid="uid://glk08vi1jgtn" path="res://sounds/ui_select.wav" id="4_vemjd"]
 [ext_resource type="AudioStream" uid="uid://cx2wqbyh4q5pi" path="res://sounds/title_screen.mp3" id="5_r35me"]
 
+[sub_resource type="Animation" id="Animation_m556p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("music_ui:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-14.0]
+}
+
 [sub_resource type="Animation" id="Animation_h0lnf"]
 resource_name = "fade_out_music"
 length = 0.5
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-14.0, -80.0]
-}
-
-[sub_resource type="Animation" id="Animation_m556p"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("music_ui:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-14.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2to5s"]
