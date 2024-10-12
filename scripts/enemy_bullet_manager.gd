@@ -5,8 +5,8 @@ var timer : float = 0
 var enemy
 var player
 
-enum State {INIT, EASY, MED, HARD} 
-var curr_state : State = State.INIT
+enum State {START, EASY, MED, HARD, END} 
+var curr_state : State = State.START
 var prev_state : State = curr_state
 
 @onready var isEnemyAlive : bool = true
@@ -35,7 +35,8 @@ func _physics_process(delta: float) -> void:
 	
 	if(isEnemyAlive and enemy.health > 400 and timer < 30): curr_state = State.EASY
 	elif(isEnemyAlive and enemy.health > 250 and timer < 70): curr_state = State.MED
-	else: curr_state = State.HARD
+	elif(isEnemyAlive and enemy.health > 0): curr_state = State.HARD
+	else: curr_state = State.END
 	
 	if (isEnemyAlive):
 		global_position = enemy.get_global_position()
