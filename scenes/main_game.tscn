@@ -260,12 +260,14 @@ id = "OneLarge"
 pattern = SubResource("NavigationPolygon_bk8cn")
 
 [node name="UI" parent="." instance=ExtResource("2_j3bll")]
+z_index = 2
 offset_left = 45.0
 offset_top = 16.0
 offset_right = 45.0
 offset_bottom = 16.0
 
 [node name="prompt_move" type="Label" parent="."]
+z_index = 2
 offset_left = 400.0
 offset_top = 128.0
 offset_right = 572.0
@@ -275,6 +277,7 @@ text = "arrow keys to move!!!!"
 horizontal_alignment = 1
 
 [node name="prompt_dash" type="Label" parent="."]
+z_index = 2
 offset_left = 400.0
 offset_top = 176.0
 offset_right = 572.0
@@ -284,6 +287,7 @@ text = "C to dash!!!!"
 horizontal_alignment = 1
 
 [node name="prompt_harvest" type="Label" parent="."]
+z_index = 2
 offset_left = 400.0
 offset_top = 224.0
 offset_right = 572.0
@@ -293,6 +297,7 @@ text = "pick up the appels!!!!"
 horizontal_alignment = 1
 
 [node name="prompt_shoot" type="Label" parent="."]
+z_index = 2
 offset_left = 336.0
 offset_top = 264.0
 offset_right = 640.0

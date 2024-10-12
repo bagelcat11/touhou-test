@@ -10,6 +10,7 @@ signal has_moved()
 signal passed_tutorial()
 signal has_shot()
 var score
+signal enemy_bullet_clear()
 
 func exit():
 	get_tree().quit()

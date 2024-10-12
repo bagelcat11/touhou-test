@@ -571,6 +571,7 @@ wait_tween_time = 0.0
 [node name="TilemapTest" type="Node2D"]
 
 [node name="Platforms" type="TileMap" parent="."]
+z_index = 1
 position = Vector2(0, 16)
 scale = Vector2(5.54, 5.54)
 tile_set = SubResource("TileSet_cl7pn")
@@ -582,6 +583,7 @@ use_parent_material = true
 tile_set = SubResource("TileSet_cl7pn")
 
 [node name="Grass_Floor" type="TileMap" parent="."]
+z_index = 1
 scale = Vector2(5.54, 5.54)
 tile_set = SubResource("TileSet_lcp0i")
 format = 2

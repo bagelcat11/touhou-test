@@ -6,10 +6,12 @@ var enemy
 var player
 
 enum State {INIT, EASY, MED, HARD} 
-var curr_state = State.INIT
-var prev_state = curr_state
+var curr_state : State = State.INIT
+var prev_state : State = curr_state
 
-@onready var isEnemyAlive = true
+@onready var isEnemyAlive : bool = true
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,14 +19,10 @@ func _ready() -> void:
 	Spawning.create_pool("Orange", "0", 1000)
 	Spawning.create_pool("OrangeLarge", "0", 1000)
 	for a in owner.get_children():
-		#print(a)
 		if (isEnemyAlive and a.is_in_group("enemies")):
 			enemy = a
 		if (a.is_in_group("player")):
 			player = a
-	
-	# Start shot pattern
-	#start_pattern_hard(400)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,6 +40,7 @@ func _physics_process(delta: float) -> void:
 		global_position = enemy.get_global_position()
 	
 	if(prev_state != curr_state):
+		GlobalVars.emit_signal("enemy_bullet_clear")
 		if(curr_state == State.EASY): start_pattern_easy(400) 
 		if(curr_state == State.MED): start_pattern_med(250) 
 		if(curr_state == State.HARD): start_pattern_hard(0) 
@@ -80,21 +79,21 @@ func shoot_lanes(angle : float) -> void:
 			Spawning.spawn({"position": initPos + i * deltaX + j * deltaY, "rotation": angle}, "OneLarge")
 
 func shoot_aimed_spiral(minHealth : float) -> void:
-	var numShots = 45
-	var angle
+	var numShots : int = 45
+	var angle : float
 	if(!enemy or enemy.health <= minHealth): return
-	var initPos = enemy.position
-	var playerPos = player.position
-	var patternAngle = atan2((playerPos.y - initPos.y), (playerPos.x - initPos.x))
-	var angleToPlayer
+	var initPos : Vector2 = enemy.position
+	var playerPos : Vector2 = player.position
+	var patternAngle : float = atan2((playerPos.y - initPos.y), (playerPos.x - initPos.x))
+	var angleToPlayer : float
 	
-	for i in range(numShots):
+	for i : int in range(numShots):
 		if(!enemy or enemy.health <= minHealth): return
 		angle = patternAngle + lerpf(0, 6 * PI, float(i) / (numShots - 1))
 		initPos = enemy.position + (120 / numShots * i) * Vector2(cos(angle), sin(angle))
 		playerPos = player.position
 		angleToPlayer = atan2((playerPos.y - initPos.y), (playerPos.x - initPos.x))
-		for j in range(-1, 2):
+		for j : int in range(-1, 2):
 			Spawning.spawn({ \
 				"position": initPos, \
 				"rotation": angleToPlayer + deg_to_rad(65) * j}, \
@@ -104,7 +103,7 @@ func shoot_aimed_spiral(minHealth : float) -> void:
 
 func shoot_circle(minHealth : float) -> void:
 	await get_tree().create_timer(0.75).timeout
-	for i in 2:
+	for i : int in 2:
 		if(!enemy or enemy.health <= minHealth): return
 		Spawning.spawn({"position": enemy.position, "rotation": randf_range(0, 2 * PI)}, "Circle")
 		await get_tree().create_timer(2).timeout

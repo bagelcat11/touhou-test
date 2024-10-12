@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgp8m8v5p68yl"]
+[gd_scene load_steps=6 format=3 uid="uid://cgp8m8v5p68yl"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_x4g0k"]
 [ext_resource type="Texture2D" uid="uid://bedkd6ii6e50" path="res://assets/bakaminorikofumo.png" id="2_hqlhs"]
+[ext_resource type="Texture2D" uid="uid://dhxlvga6w1bet" path="res://assets/whitecircle.png" id="3_6751r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_biiv2"]
 size = Vector2(84, 116)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gd0mt"]
 
 [node name="enemy" type="Area2D" groups=["enemies"]]
 z_index = 1
@@ -19,6 +22,15 @@ texture = ExtResource("2_hqlhs")
 [node name="hitbox" type="CollisionShape2D" parent="."]
 z_index = 1
 shape = SubResource("RectangleShape2D_biiv2")
+
+[node name="bullet_clear_hitbox" type="StaticBody2D" parent="."]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_clear_hitbox"]
+shape = SubResource("CircleShape2D_gd0mt")
+
+[node name="Sprite2D" type="Sprite2D" parent="bullet_clear_hitbox"]
+texture = ExtResource("3_6751r")
 
 [node name="healthbar" type="ProgressBar" parent="."]
 offset_left = -58.0
