@@ -240,13 +240,18 @@ _data = {
 "fade_out_shoot": SubResource("Animation_fepew")
 }
 
-[node name="MAIN_GAME" type="Node2D"]
+[node name="MAIN_GAME" type="Node2D" node_paths=PackedStringArray("cam")]
 script = ExtResource("1_fmdvf")
+cam = NodePath("TilemapTest/Camera2D")
 
 [node name="TilemapTest" parent="." instance=ExtResource("1_ic1ht")]
+script = null
 
 [node name="player" parent="TilemapTest" index="2"]
 position = Vector2(496, 544)
+
+[node name="sprite" parent="TilemapTest/player" index="0"]
+skew = 0.0
 
 [node name="OrangeLarge" type="Path2D" parent="TilemapTest/EnemyBulletManager" index="2"]
 script = ExtResource("3_1lfr8")
@@ -260,11 +265,23 @@ id = "OneLarge"
 pattern = SubResource("NavigationPolygon_bk8cn")
 
 [node name="UI" parent="." instance=ExtResource("2_j3bll")]
+<<<<<<< Updated upstream
 z_index = 2
 offset_left = 45.0
 offset_top = 16.0
 offset_right = 45.0
 offset_bottom = 16.0
+=======
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -5.0
+offset_top = 4.0
+offset_right = 1189.0
+offset_bottom = 681.0
+grow_horizontal = 1
+grow_vertical = 1
+>>>>>>> Stashed changes
 
 [node name="prompt_move" type="Label" parent="."]
 z_index = 2
@@ -319,3 +336,4 @@ libraries = {
 }
 
 [editable path="TilemapTest"]
+[editable path="TilemapTest/player"]

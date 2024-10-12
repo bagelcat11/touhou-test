@@ -131,9 +131,9 @@ func dash():
 		dash_particles.emitting = false
 	
 func die():
-	print("i am kil")
-	#queue_free()
-	#GlobalVars.current_lives = 3
+	animationPlayer.play("death")
+	GlobalVars.emit_signal("death")
+	
 	
 func harvest():
 	print("gottem")
@@ -158,6 +158,11 @@ func summon_bomb(s):
 
 # remove the underscore on delta if you end up using it
 func _physics_process(delta):
+	
+	## DEBUG DEATH
+	if(Input.is_action_just_pressed("debug_death")):
+		die()
+	
 	if(velocity.x < 0):
 		sprite.flip_h = true
 	elif(velocity.x > 0):

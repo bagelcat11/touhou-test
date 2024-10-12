@@ -2,14 +2,27 @@ extends Node2D
 
 @onready var tutorial_done = false
 @onready var hasDashedB4 = false
+@export var cam: Camera2D
+var player_dead = false
+@onready var UI = $UI
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GlobalVars.connect("death",die)
 	disable_enemy()
 	disable_harvest()
 	GlobalVars.connect("passed_tutorial", enable_enemy)
 	GlobalVars.connect("has_moved", tut_move_done)
 	$prompt_shoot.hide()
+
+
+
+func die():
+	UI._invertColors()
+	cam.apply_shake()
+	player_dead = true
 	
+
 func enable_enemy():
 	$TilemapTest/enemy.show()
 	$TilemapTest/enemy_mover.process_mode = Node.PROCESS_MODE_INHERIT
@@ -44,3 +57,5 @@ func _physics_process(delta: float) -> void:
 		hasDashedB4 = true
 		#print("yes!!!!!!!!!")
 		tut_dash_done()
+	if(player_dead and Engine.time_scale > 0.01):
+		Engine.time_scale = lerp(Engine.time_scale,0.005, 0.01)

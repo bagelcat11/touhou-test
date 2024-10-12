@@ -1,5 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://dnvjf1v5tew17"]
 
+[ext_resource type="Script" path="res://scenes/LevelHandler.gd" id="1_if67x"]
 [ext_resource type="Texture2D" uid="uid://2ebmlf42bc2u" path="res://assets/Tilesets/tileset.png" id="1_l20fb"]
 [ext_resource type="PackedScene" uid="uid://b7vbisd0fd7yx" path="res://scenes/player.tscn" id="2_vrx52"]
 [ext_resource type="Script" path="res://scripts/enemy_mover.gd" id="3_anf7x"]
@@ -569,6 +570,7 @@ wait_tween_length = 0.0
 wait_tween_time = 0.0
 
 [node name="TilemapTest" type="Node2D"]
+script = ExtResource("1_if67x")
 
 [node name="Platforms" type="TileMap" parent="."]
 z_index = 1

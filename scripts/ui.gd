@@ -29,6 +29,8 @@ func update_bombs():
 func update_score():
 	$score.text = "%s points" % GlobalVars.score
 
+func _invertColors():
+	ani.play("INVERTCOLORS")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

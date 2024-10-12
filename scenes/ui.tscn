@@ -1,7 +1,36 @@
-[gd_scene load_steps=10 format=3 uid="uid://c38v4mq3f77se"]
+[gd_scene load_steps=14 format=3 uid="uid://c38v4mq3f77se"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_eh4re"]
 [ext_resource type="Texture2D" uid="uid://hmcwu481iwff" path="res://assets/healthbar.png" id="2_yyo6b"]
+[ext_resource type="Shader" path="res://scenes/invertColors.gdshader" id="3_8y1ny"]
+
+[sub_resource type="Animation" id="Animation_p8005"]
+resource_name = "INVERTCOLORS"
+length = 0.4667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Invert:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(11, 11), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Invert2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.23, 1.23), Vector2(11, 11), Vector2(1.23, 1.23)]
+}
 
 [sub_resource type="Animation" id="Animation_ub5he"]
 length = 0.001
@@ -28,6 +57,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Invert:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Invert2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.23, 1.23)]
 }
 
 [sub_resource type="Animation" id="Animation_rv7ck"]
@@ -172,6 +225,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_txwex"]
 _data = {
+"INVERTCOLORS": SubResource("Animation_p8005"),
 "RESET": SubResource("Animation_ub5he"),
 "health_flash_1": SubResource("Animation_rv7ck"),
 "health_flash_2": SubResource("Animation_fuff7"),
@@ -179,6 +233,12 @@ _data = {
 "health_flash_4": SubResource("Animation_eqxc6"),
 "health_flash_5": SubResource("Animation_3x08i")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ssq3"]
+shader = ExtResource("3_8y1ny")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ta55p"]
+shader = ExtResource("3_8y1ny")
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -229,3 +289,25 @@ offset_bottom = 270.0
 theme_override_font_sizes/font_size = 32
 text = "XXX points"
 horizontal_alignment = 2
+[node name="Invert" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0ssq3")
+layout_mode = 0
+offset_left = -128.0
+offset_top = -72.0
+
+[node name="Invert2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ta55p")
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 158.0
+offset_top = 97.0
+offset_right = 286.0
+offset_bottom = 175.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 3.14159
+scale = Vector2(1.23, 1.23)
