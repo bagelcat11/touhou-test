@@ -18,6 +18,7 @@ func _ready() -> void:
 	Spawning.create_pool("Yellow-Red", "0", 1000)
 	Spawning.create_pool("Orange", "0", 1000)
 	Spawning.create_pool("OrangeLarge", "0", 1000)
+	Spawning.create_pool("YellowLarge", "0", 500)
 	for a in owner.get_children():
 		if (isEnemyAlive and a.is_in_group("enemies")):
 			enemy = a

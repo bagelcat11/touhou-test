@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dnvjf1v5tew17"]
+[gd_scene load_steps=34 format=3 uid="uid://dnvjf1v5tew17"]
 
 [ext_resource type="Script" path="res://scripts/LevelHandler.gd" id="1_if67x"]
 [ext_resource type="Texture2D" uid="uid://2ebmlf42bc2u" path="res://assets/Tilesets/tileset.png" id="1_l20fb"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="10_l0wvo"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="11_ujb6c"]
 [ext_resource type="PackedScene" uid="uid://clogeja8mxgkc" path="res://scenes/harvestable_spawner.tscn" id="12_ibsw0"]
+[ext_resource type="Texture2D" uid="uid://b8g8vf25jqpm1" path="res://assets/stagebackground.png" id="16_ujanp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hkcjy"]
 texture = ExtResource("1_l20fb")
@@ -651,5 +652,11 @@ id = "Circle"
 pattern = SubResource("NavigationPolygon_i2wby")
 
 [node name="harvestable_spawner" parent="." instance=ExtResource("12_ibsw0")]
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(479, 327)
+scale = Vector2(2.14198, 2.14198)
+texture = ExtResource("16_ujanp")
 
 [connection signal="timeout" from="enemy_mover/time_to_next_move" to="enemy_mover" method="_on_time_to_next_move_timeout"]
