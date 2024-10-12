@@ -35,7 +35,7 @@ func _physics_process(_delta):
 	pass
 	
 func move_to(next_loc):
-	position = lerp(position, next_loc, speed)
+	position = lerp(position, next_loc, speed) + (next_loc - position).limit_length(1)
 	#print(next_loc)
 
 
