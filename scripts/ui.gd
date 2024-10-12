@@ -36,7 +36,7 @@ func reset_apples():
 	bombBar.value = 0
 
 func update_harvested():
-	$num_harvested.text = "Appels: %s" % GlobalVars.current_num_harvested
+	$num_harvested.text = "%s x" % GlobalVars.current_num_harvested
 	
 func update_bombs():
 	$num_bombs.text = "%s x" % GlobalVars.current_num_bombs

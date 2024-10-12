@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c38v4mq3f77se"]
+[gd_scene load_steps=24 format=3 uid="uid://c38v4mq3f77se"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_eh4re"]
 [ext_resource type="Texture2D" uid="uid://hmcwu481iwff" path="res://assets/healthbar.png" id="2_yyo6b"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dxolmtsi6bcyk" path="res://assets/bombBarBackground2.png" id="5_yuvub"]
 [ext_resource type="Texture2D" uid="uid://csu63vvv3m1je" path="res://assets/BOMBBAR_SPRITESHEET.png" id="6_we4y2"]
 [ext_resource type="Texture2D" uid="uid://bi3hmpiamokm2" path="res://assets/BombCard.png" id="8_flgsb"]
+[ext_resource type="Texture2D" uid="uid://b7lra0m57nbe8" path="res://assets/appel.png" id="9_cb31q"]
 
 [sub_resource type="Animation" id="Animation_mro5s"]
 resource_name = "BOMBGAIN"
@@ -350,8 +351,8 @@ grow_vertical = 2
 script = ExtResource("1_eh4re")
 
 [node name="Healthbar" type="Sprite2D" parent="."]
-position = Vector2(1032, 48)
-scale = Vector2(8.98, 8.98)
+position = Vector2(1070, 95)
+scale = Vector2(7.34714, 7.34714)
 texture = ExtResource("2_yyo6b")
 vframes = 7
 
@@ -362,20 +363,21 @@ libraries = {
 
 [node name="num_harvested" type="Label" parent="."]
 layout_mode = 0
-offset_left = 889.0
-offset_top = 80.0
-offset_right = 1129.0
-offset_bottom = 142.0
-theme_override_font_sizes/font_size = 32
-text = "Appels: XX"
+offset_left = 844.0
+offset_top = 256.0
+offset_right = 1084.0
+offset_bottom = 318.0
+theme_override_fonts/font = ExtResource("3_sva87")
+theme_override_font_sizes/font_size = 40
+text = "1 x"
 horizontal_alignment = 2
 
 [node name="num_bombs" type="Label" parent="."]
 layout_mode = 0
-offset_left = 830.0
-offset_top = 298.0
-offset_right = 1070.0
-offset_bottom = 406.0
+offset_left = 843.0
+offset_top = 333.0
+offset_right = 1083.0
+offset_bottom = 441.0
 theme_override_fonts/font = ExtResource("3_sva87")
 theme_override_font_sizes/font_size = 40
 text = "6 x"
@@ -383,10 +385,10 @@ horizontal_alignment = 2
 
 [node name="score" type="Label" parent="."]
 layout_mode = 0
-offset_left = 954.0
-offset_top = 167.0
-offset_right = 1146.0
-offset_bottom = 246.0
+offset_left = 975.0
+offset_top = 144.0
+offset_right = 1167.0
+offset_bottom = 223.0
 theme_override_fonts/font = ExtResource("3_sva87")
 theme_override_font_sizes/font_size = 32
 text = "
@@ -395,10 +397,10 @@ horizontal_alignment = 1
 
 [node name="score_header" type="Label" parent="."]
 layout_mode = 0
-offset_left = 954.0
-offset_top = 167.0
-offset_right = 1146.0
-offset_bottom = 246.0
+offset_left = 975.0
+offset_top = 144.0
+offset_right = 1167.0
+offset_bottom = 223.0
 theme_override_fonts/font = ExtResource("3_sva87")
 theme_override_font_sizes/font_size = 32
 text = "Score"
@@ -430,12 +432,12 @@ scale = Vector2(1.23, 1.23)
 [node name="bombProg" type="TextureProgressBar" parent="."]
 clip_contents = true
 layout_mode = 0
-offset_left = 1018.0
+offset_left = 1031.0
 offset_top = 594.0
-offset_right = 1046.0
+offset_right = 1059.0
 offset_bottom = 611.0
 rotation = -1.5708
-scale = Vector2(5.91, 5.91)
+scale = Vector2(5.91, 5.95432)
 texture_over = ExtResource("4_qb770")
 texture_progress = ExtResource("5_yuvub")
 texture_progress_offset = Vector2(1, 0)
@@ -450,7 +452,7 @@ vframes = 3
 frame = 13
 
 [node name="BombCard" type="Sprite2D" parent="."]
-position = Vector2(1102, 322)
+position = Vector2(1115, 357)
 scale = Vector2(2.8, 2.8)
 texture = ExtResource("8_flgsb")
 
@@ -498,6 +500,11 @@ text = "Back To Menu"
 libraries = {
 "": SubResource("AnimationLibrary_i7sjq")
 }
+
+[node name="Appel" type="Sprite2D" parent="."]
+position = Vector2(1116, 278)
+scale = Vector2(2.93333, 2.93333)
+texture = ExtResource("9_cb31q")
 
 [connection signal="button_down" from="Pause Screen/back" to="." method="_on_back_button_down"]
 [connection signal="button_down" from="Pause Screen/back" to="." method="_on_continue_button_button_down"]
