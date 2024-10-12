@@ -24,7 +24,7 @@ size = Vector2(55, 78)
 radius = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32sym"]
-size = Vector2(70, 126)
+size = Vector2(70, 127)
 
 [sub_resource type="Curve" id="Curve_r2prw"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.54343, 0.0, 0, 0]
@@ -209,12 +209,12 @@ collision_layer = 32
 collision_mask = 32
 
 [node name="basket_hitbox" type="CollisionShape2D" parent="basket"]
-position = Vector2(2, -64)
+position = Vector2(2, -64.5)
 shape = SubResource("RectangleShape2D_32sym")
 
 [node name="basket_sprite" type="Sprite2D" parent="basket"]
-position = Vector2(2, -117)
-scale = Vector2(2.17778, 2.17778)
+position = Vector2(2.66667, -117.333)
+scale = Vector2(1.53403, 1.62222)
 texture = ExtResource("4_nwgly")
 
 [node name="hurtbox_body" type="StaticBody2D" parent="." groups=["harvesting_player"]]
