@@ -19,7 +19,7 @@ func take_damage(d):
 		get_parent().get_node("enemy_mover").queue_free()
 		queue_free()
 	else:
-		health -= d * 10
+		health -= d
 		$healthbar.value = health
 		$health_label.text = "%d / %d" % [health, MAX_HEALTH]
 
