@@ -1,6 +1,6 @@
 extends Node2D
 
-var timer:float = 0
+var timer : float = 0
 
 var enemy
 var player
@@ -52,7 +52,7 @@ func _physics_process(delta: float) -> void:
 func start_pattern_easy(minHealth : float) -> void:
 	await get_tree().create_timer(1.5).timeout
 	while(isEnemyAlive and enemy and curr_state == State.EASY):
-		var angle:float = deg_to_rad(randi_range(0, 7) * 45)
+		var angle : float = deg_to_rad(randi_range(0, 7) * 45)
 		shoot_lanes(angle)
 		shoot_lanes(angle + PI)
 		await get_tree().create_timer(3).timeout

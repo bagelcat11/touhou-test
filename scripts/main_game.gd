@@ -58,4 +58,4 @@ func _physics_process(delta: float) -> void:
 		#print("yes!!!!!!!!!")
 		tut_dash_done()
 	if(player_dead and Engine.time_scale > 0.01):
-		Engine.time_scale = lerp(Engine.time_scale,0.005, 0.01)
+		Engine.time_scale = lerp(Engine.time_scale, 0.005, 0.025)
