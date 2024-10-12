@@ -1,10 +1,12 @@
 extends Control
 
 @onready var ani = $AnimationPlayer
+@onready var scoreAni = $scoreHandler
 var list_of_anims
 @onready var bombBar = $bombProg
 
 var current_apples = 0
+var displayed_score:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,14 +47,35 @@ func update_bombs():
 		
 		
 func update_score():
-	$score.text = "%s points" % GlobalVars.score
+	if((GlobalVars.score-displayed_score) > 5):
+		scoreAni.play("score_flash")
+		displayed_score = lerp(displayed_score,GlobalVars.score, ease(0.1, 0.4))
+	else:
+		scoreAni.stop()
+		$score.modulate = Color.WHITE
+		displayed_score = GlobalVars.score
+	$score.text = "\n%d" % displayed_score
+	
 
 func _invertColors():
 	ani.play("INVERTCOLORS")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if (Input.is_action_just_pressed("pause")):
+		get_tree().paused = !get_tree().paused
+		$"Pause Screen".visible = !$"Pause Screen".visible
 	# could optimize this by picking up signals instead of checking every frame...
 	update_harvested()
 	update_bombs()
 	update_score()
+
+
+
+func _on_back_to_menu_button_down() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func _on_back_button_down() -> void:
+	$"Pause Screen".visible = false
+	get_tree().paused = false

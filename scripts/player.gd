@@ -177,8 +177,6 @@ func _physics_process(delta):
 	elif(velocity.x > 0):
 		sprite.flip_h = false
 		
-	if (Input.is_key_pressed(KEY_ESCAPE)):
-		get_tree().quit()
 	
 	#print(velocity)
 	dash()

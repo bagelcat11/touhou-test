@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c38v4mq3f77se"]
+[gd_scene load_steps=23 format=3 uid="uid://c38v4mq3f77se"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_eh4re"]
 [ext_resource type="Texture2D" uid="uid://hmcwu481iwff" path="res://assets/healthbar.png" id="2_yyo6b"]
@@ -129,6 +129,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [13]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("score:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_rv7ck"]
@@ -289,7 +301,46 @@ shader = ExtResource("3_8y1ny")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ta55p"]
 shader = ExtResource("3_8y1ny")
 
+[sub_resource type="Animation" id="Animation_t580a"]
+resource_name = "score_flash"
+length = 0.209
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("score:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.968606, 0.630109, 0.258154, 1), Color(0.973447, 0.346822, 0.324798, 1), Color(0.523857, 1, 0.44879, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_obxbu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("score:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i7sjq"]
+_data = {
+"RESET": SubResource("Animation_obxbu"),
+"score_flash": SubResource("Animation_t580a")
+}
+
 [node name="UI" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -332,13 +383,26 @@ horizontal_alignment = 2
 
 [node name="score" type="Label" parent="."]
 layout_mode = 0
-offset_left = 672.0
-offset_top = 208.0
-offset_right = 1129.0
-offset_bottom = 270.0
+offset_left = 954.0
+offset_top = 167.0
+offset_right = 1146.0
+offset_bottom = 246.0
+theme_override_fonts/font = ExtResource("3_sva87")
 theme_override_font_sizes/font_size = 32
-text = "XXX points"
-horizontal_alignment = 2
+text = "
+0"
+horizontal_alignment = 1
+
+[node name="score_header" type="Label" parent="."]
+layout_mode = 0
+offset_left = 954.0
+offset_top = 167.0
+offset_right = 1146.0
+offset_bottom = 246.0
+theme_override_fonts/font = ExtResource("3_sva87")
+theme_override_font_sizes/font_size = 32
+text = "Score"
+horizontal_alignment = 1
 
 [node name="Invert" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_0ssq3")
@@ -389,3 +453,54 @@ frame = 13
 position = Vector2(1102, 322)
 scale = Vector2(2.8, 2.8)
 texture = ExtResource("8_flgsb")
+
+[node name="Pause Screen" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="back" type="Button" parent="Pause Screen"]
+z_index = 1
+layout_mode = 0
+offset_left = 478.0
+offset_top = 276.0
+offset_right = 707.0
+offset_bottom = 339.0
+text = "BACK"
+
+[node name="ColorRect" type="ColorRect" parent="Pause Screen"]
+layout_mode = 0
+offset_right = 1160.0
+offset_bottom = 661.0
+color = Color(0, 0, 0, 0.435294)
+
+[node name="continue" type="Button" parent="Pause Screen"]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 479.0
+offset_top = 277.0
+offset_right = 708.0
+offset_bottom = 340.0
+text = "Continue?"
+
+[node name="back_to_menu" type="Button" parent="Pause Screen"]
+z_index = 1
+layout_mode = 0
+offset_left = 479.0
+offset_top = 466.0
+offset_right = 708.0
+offset_bottom = 529.0
+text = "Back To Menu"
+
+[node name="scoreHandler" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i7sjq")
+}
+
+[connection signal="button_down" from="Pause Screen/back" to="." method="_on_back_button_down"]
+[connection signal="button_down" from="Pause Screen/back" to="." method="_on_continue_button_button_down"]
+[connection signal="button_down" from="Pause Screen/continue" to="." method="_on_continue_button_button_down"]
+[connection signal="button_down" from="Pause Screen/back_to_menu" to="." method="_on_back_to_menu_button_down"]
+[connection signal="button_down" from="Pause Screen/back_to_menu" to="." method="_on_continue_button_button_down"]
