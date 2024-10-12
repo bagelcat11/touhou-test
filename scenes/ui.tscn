@@ -219,3 +219,13 @@ offset_bottom = 206.0
 theme_override_font_sizes/font_size = 32
 text = "Bombs: XX"
 horizontal_alignment = 2
+
+[node name="score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 672.0
+offset_top = 208.0
+offset_right = 1129.0
+offset_bottom = 270.0
+theme_override_font_sizes/font_size = 32
+text = "XXX points"
+horizontal_alignment = 2

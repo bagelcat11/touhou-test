@@ -12,6 +12,7 @@ func _ready() -> void:
 	
 func enable_enemy():
 	$TilemapTest/enemy.show()
+	$TilemapTest/enemy_mover.process_mode = Node.PROCESS_MODE_INHERIT
 	$TilemapTest/enemy.process_mode = Node.PROCESS_MODE_INHERIT
 	$TilemapTest/EnemyBulletManager.process_mode = Node.PROCESS_MODE_INHERIT
 	$prompt_harvest.hide()
@@ -20,6 +21,7 @@ func enable_enemy():
 	
 func disable_enemy():
 	$TilemapTest/enemy.hide()
+	$TilemapTest/enemy_mover.process_mode = Node.PROCESS_MODE_DISABLED
 	$TilemapTest/enemy.process_mode = Node.PROCESS_MODE_DISABLED
 	$TilemapTest/EnemyBulletManager.process_mode = Node.PROCESS_MODE_DISABLED
 	
