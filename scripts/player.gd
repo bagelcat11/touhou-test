@@ -62,7 +62,7 @@ func _ready() -> void:
 	#dashVec = Vector2(0, 0)
 	$basket/basket_sprite.hide()
 	GlobalVars.current_lives = 6
-	GlobalVars.current_num_harvested = 2 # CHANGE THIS BACK TO 0 LATER
+	GlobalVars.current_num_harvested = 0 # CHANGE THIS BACK TO 0 LATER
 	GlobalVars.current_num_bombs = 0
 
 	GlobalVars.connect("player_harvest", harvest)
@@ -144,7 +144,7 @@ func harvest():
 		#GlobalVars.has_moved.emit()
 	if (GlobalVars.current_num_harvested == 3):
 		GlobalVars.passed_tutorial.emit()
-	if (GlobalVars.current_num_harvested % 10 == 0 and GlobalVars.current_num_bombs < 5):
+	if (GlobalVars.current_num_harvested % int(GlobalVars.apples_per_bomb) == 0 and GlobalVars.current_num_bombs < 5):
 		GlobalVars.current_num_bombs += 1
 
 #speed is actually how quickly the circle lerps out so keep it very small

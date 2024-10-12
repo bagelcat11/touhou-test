@@ -14,6 +14,6 @@ func die():
 
 func _process(delta: float) -> void:
 	if(player_dead and Engine.time_scale > 0.01):
-		Engine.time_scale = lerp(Engine.time_scale,0.005, 0.01)
+		Engine.time_scale = lerp(Engine.time_scale, 0.005, ease(delta * 1.75, 0.4))
 	
 	
