@@ -6,8 +6,8 @@ var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-	$spawn_timer.start(3)
+	GlobalVars.connect("player_harvest", _player_harvest)
+	$spawn_timer.start(3.5)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,4 +25,9 @@ func spawn_harvestable():
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_harvestable()
-	$spawn_timer.start(rng.randi_range(2, 5))
+	$spawn_timer.start(3.5)
+
+func _player_harvest() -> void:
+	$spawn_timer.start(4.5)
+	await get_tree().create_timer(1.0).timeout
+	spawn_harvestable()
