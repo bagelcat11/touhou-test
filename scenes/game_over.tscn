@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://rg3thbxtt026"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_gr4kt"]
+[ext_resource type="Texture2D" uid="uid://dok0wrl116wie" path="res://assets/game-over-popup.png" id="2_lqpwh"]
+[ext_resource type="FontFile" uid="uid://du8245yyvsq48" path="res://assets/Renogare-Regular.otf" id="3_dl0b6"]
+[ext_resource type="Texture2D" uid="uid://b7lra0m57nbe8" path="res://assets/appel.png" id="3_rfaq5"]
+[ext_resource type="Texture2D" uid="uid://dxm31snmiy5ud" path="res://assets/heart.png" id="3_w3i7y"]
+[ext_resource type="Texture2D" uid="uid://bi3hmpiamokm2" path="res://assets/BombCard.png" id="4_ibx1m"]
+
+[sub_resource type="Animation" id="Animation_qmenm"]
+resource_name = "game_over_fade"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("game_over_popup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_apejo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("game_over_popup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pk6w7"]
+_data = {
+"RESET": SubResource("Animation_apejo"),
+"game_over_fade": SubResource("Animation_qmenm")
+}
+
+[node name="game_over" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gr4kt")
+
+[node name="ui_fader" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pk6w7")
+}
+
+[node name="game_over_popup" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 4
+position = Vector2(576, 322)
+scale = Vector2(0.6, 0.603704)
+texture = ExtResource("2_lqpwh")
+
+[node name="Heart" type="Sprite2D" parent="game_over_popup"]
+position = Vector2(-366.667, -16.5644)
+scale = Vector2(9.33436, 9.33436)
+texture = ExtResource("3_w3i7y")
+
+[node name="final_score" type="Label" parent="game_over_popup"]
+offset_left = -318.333
+offset_top = -188.834
+offset_right = 72.6666
+offset_bottom = 88.1656
+theme_override_fonts/font = ExtResource("3_dl0b6")
+theme_override_font_sizes/font_size = 31
+text = "X NUM = NUMNUMNUM
+
+X NUM = NUMNUMNUM
+
+X NUM = NUMNUMNUM
+---
+NUMNUMNUM"
+metadata/_edit_use_anchors_ = true
+
+[node name="appel" type="Sprite2D" parent="game_over_popup"]
+position = Vector2(-368.333, -175.583)
+scale = Vector2(4.20833, 3.90295)
+texture = ExtResource("3_rfaq5")
+
+[node name="bomb" type="Sprite2D" parent="game_over_popup"]
+position = Vector2(-368.333, -96.0736)
+scale = Vector2(2.9951, 2.68405)
+texture = ExtResource("4_ibx1m")
+
+[node name="back2menu" type="TextureButton" parent="game_over_popup"]
+offset_left = -173.333
+offset_top = 115.951
+offset_right = -133.333
+offset_bottom = 155.951

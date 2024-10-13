@@ -50,7 +50,7 @@ func update_bombs():
 func update_score():
 	if((GlobalVars.score-displayed_score) > 5):
 		scoreAni.play("score_flash")
-		displayed_score = lerp(displayed_score,GlobalVars.score, ease(0.1, 0.4))
+		displayed_score = lerp(displayed_score,int(GlobalVars.score), ease(0.1, 0.4))
 	else:
 		scoreAni.stop()
 		$score.modulate = Color.WHITE
@@ -63,9 +63,9 @@ func _invertColors():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	if (Input.is_action_just_pressed("pause")):
-		get_tree().paused = !get_tree().paused
-		$"Pause Screen".visible = !$"Pause Screen".visible
+	#if (Input.is_action_just_pressed("pause")):
+		#get_tree().paused = !get_tree().paused
+		#$"Pause Screen".visible = !$"Pause Screen".visible
 	# could optimize this by picking up signals instead of checking every frame...
 	update_harvested()
 	update_bombs()
@@ -74,6 +74,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_back_to_menu_button_down() -> void:
+	Spawning.reset()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 

@@ -19,6 +19,7 @@ func take_damage(d):
 		cam.apply_shake()
 		get_parent().get_node("enemy/sfx_death").play() # uh oh
 		get_parent().get_node("enemy/AnimationPlayer").play("enemy_die")
+		GlobalVars.enemy_death.emit()
 		await get_tree().create_timer(2.7).timeout
 		get_parent().get_node("enemy_mover").queue_free()
 		queue_free()

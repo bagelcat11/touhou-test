@@ -432,6 +432,10 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_rxra3"]
+resource_name = "game_over_fade"
+length = 0.3
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_whkou"]
 _data = {
 "RESET": SubResource("Animation_l0xuu"),
@@ -439,7 +443,8 @@ _data = {
 "fade_out_dash": SubResource("Animation_5cns1"),
 "fade_out_harvest": SubResource("Animation_vfft1"),
 "fade_out_move": SubResource("Animation_f55ko"),
-"fade_out_shoot": SubResource("Animation_fepew")
+"fade_out_shoot": SubResource("Animation_fepew"),
+"game_over_fade": SubResource("Animation_rxra3")
 }
 
 [node name="MAIN_GAME" type="Node2D" node_paths=PackedStringArray("cam")]
@@ -614,3 +619,4 @@ autoplay = true
 
 [editable path="TilemapTest"]
 [editable path="TilemapTest/player"]
+[editable path="UI"]
