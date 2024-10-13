@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bel5c2ap112f3"]
+[gd_scene load_steps=31 format=3 uid="uid://bel5c2ap112f3"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_fmdvf"]
 [ext_resource type="PackedScene" uid="uid://dnvjf1v5tew17" path="res://scenes/tilemap_test.tscn" id="1_ic1ht"]
@@ -371,6 +371,10 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_rxra3"]
+resource_name = "game_over_fade"
+length = 0.3
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_whkou"]
 _data = {
 "RESET": SubResource("Animation_l0xuu"),
@@ -378,7 +382,8 @@ _data = {
 "fade_out_dash": SubResource("Animation_5cns1"),
 "fade_out_harvest": SubResource("Animation_vfft1"),
 "fade_out_move": SubResource("Animation_f55ko"),
-"fade_out_shoot": SubResource("Animation_fepew")
+"fade_out_shoot": SubResource("Animation_fepew"),
+"game_over_fade": SubResource("Animation_rxra3")
 }
 
 [node name="MAIN_GAME" type="Node2D" node_paths=PackedStringArray("cam")]
@@ -390,10 +395,6 @@ script = null
 
 [node name="player" parent="TilemapTest" index="2"]
 position = Vector2(496, 544)
-
-[node name="basket_sprite" parent="TilemapTest/player/basket" index="1"]
-position = Vector2(2.66667, -117.333)
-scale = Vector2(1.53403, 1.62222)
 
 [node name="enemy" parent="TilemapTest" index="4" node_paths=PackedStringArray("cam")]
 cam = NodePath("../Camera2D")
@@ -506,3 +507,4 @@ autoplay = true
 
 [editable path="TilemapTest"]
 [editable path="TilemapTest/player"]
+[editable path="UI"]

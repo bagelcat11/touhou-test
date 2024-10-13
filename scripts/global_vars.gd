@@ -10,7 +10,7 @@ signal passed_tutorial()
 signal first_bomb()
 signal bomb_tut_done()
 signal has_shot()
-
+signal enemy_death()
 
 var current_lives
 var current_num_harvested

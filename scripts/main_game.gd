@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var over_screen : PackedScene = preload("res://scenes/game_over.tscn")
 @onready var tutorial_done = false
 @onready var hasDashedB4 = false
 @export var cam: Camera2D
@@ -15,8 +16,10 @@ func _ready() -> void:
 	GlobalVars.connect("has_moved", tut_move_done)
 	GlobalVars.connect("first_bomb", bomb_prompt)
 	GlobalVars.connect("bomb_tut_done", bomb_tut_done)
+	GlobalVars.connect("enemy_death", game_over)
 	$prompt_shoot.hide()
 	$prompt_bomb.hide()
+	#$game_over_popup.hide()
 
 
 
@@ -74,6 +77,14 @@ func _physics_process(delta: float) -> void:
 	if(player_dead and Engine.time_scale > 0.01):
 		Engine.time_scale = lerp(Engine.time_scale, 0.005, ease(delta * 1.75, 0.4))
 
+
+func game_over():
+	var g = over_screen.instantiate()
+	add_child(g)
+	#await get_tree().create_timer(2.7).timeout
+	#$game_over_popup.show()
+	#$ui_fader.play("game_over_fade")
+	
 
 func _on_bomb_hide_timer_timeout() -> void:
 	$prompt_bomb.hide()
