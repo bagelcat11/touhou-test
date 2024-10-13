@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://ce36wsihrjkjg"]
+[gd_scene load_steps=13 format=3 uid="uid://ce36wsihrjkjg"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_daj3y"]
 [ext_resource type="Texture2D" uid="uid://catgy4ujdf2sq" path="res://assets/touhou-title.png" id="2_qxn1m"]
 [ext_resource type="Texture2D" uid="uid://b8f8dxnn5sbkx" path="res://assets/touhou-credits.png" id="3_whtuc"]
 [ext_resource type="AudioStream" uid="uid://glk08vi1jgtn" path="res://sounds/ui_select.wav" id="4_vemjd"]
 [ext_resource type="AudioStream" uid="uid://cx2wqbyh4q5pi" path="res://sounds/title_screen.mp3" id="5_r35me"]
+[ext_resource type="Texture2D" uid="uid://dnfukhlttbr0n" path="res://assets/test_button1.png" id="6_36pa5"]
+[ext_resource type="Texture2D" uid="uid://b6nsa1fpaospl" path="res://assets/test_button2.png" id="7_guosr"]
+[ext_resource type="Texture2D" uid="uid://6o4r58vu48n6" path="res://assets/test_button3.png" id="7_qhayd"]
+[ext_resource type="FontFile" uid="uid://dlqeoa1vcp7xr" path="res://assets/SoukouMincho.ttf" id="8_gno1h"]
 
 [sub_resource type="Animation" id="Animation_m556p"]
 length = 0.001
@@ -54,48 +58,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_daj3y")
 
-[node name="start" type="Button" parent="."]
-z_index = 1
-layout_mode = 0
-offset_left = 423.0
-offset_top = 343.0
-offset_right = 730.0
-offset_bottom = 434.0
-theme_override_font_sizes/font_size = 40
-text = "New Game"
-
-[node name="quit" type="Button" parent="."]
-z_index = 1
-layout_mode = 0
-offset_left = 477.0
-offset_top = 534.0
-offset_right = 676.0
-offset_bottom = 570.0
-theme_override_font_sizes/font_size = 20
-text = "Quit"
-
-[node name="creds" type="Button" parent="."]
-z_index = 1
-layout_mode = 0
-offset_left = 477.0
-offset_top = 470.0
-offset_right = 676.0
-offset_bottom = 506.0
-theme_override_font_sizes/font_size = 20
-text = "Credits"
-
-[node name="back" type="Button" parent="."]
-visible = false
-z_index = 1
-layout_mode = 0
-offset_left = 992.0
-offset_top = 40.0
-offset_right = 1112.0
-offset_bottom = 76.0
-theme_override_font_sizes/font_size = 20
-text = "Back
-"
-
 [node name="bg" type="Sprite2D" parent="."]
 position = Vector2(576, 324)
 scale = Vector2(0.6, 0.6)
@@ -111,6 +73,29 @@ texture = ExtResource("3_whtuc")
 stream = ExtResource("4_vemjd")
 volume_db = -10.0
 
+[node name="Starts" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 350.0
+offset_right = 725.0
+offset_bottom = 427.0
+texture_normal = ExtResource("6_36pa5")
+texture_pressed = ExtResource("7_qhayd")
+texture_hover = ExtResource("7_guosr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Starts"]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 295.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0.45702, 1.75677e-06, 0.286766, 1)
+theme_override_fonts/font = ExtResource("8_gno1h")
+theme_override_font_sizes/font_size = 36
+text = "New Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="music_ui" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_r35me")
 volume_db = -14.0
@@ -121,8 +106,77 @@ libraries = {
 "": SubResource("AnimationLibrary_2to5s")
 }
 
-[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="creds" to="." method="_on_creds_pressed"]
-[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[node name="Credits" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 470.0
+offset_right = 676.0
+offset_bottom = 506.0
+texture_normal = ExtResource("6_36pa5")
+texture_pressed = ExtResource("7_qhayd")
+texture_hover = ExtResource("7_guosr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 0
+offset_right = 199.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0.458824, 0, 0.286275, 1)
+theme_override_fonts/font = ExtResource("8_gno1h")
+theme_override_font_sizes/font_size = 21
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 534.0
+offset_right = 676.0
+offset_bottom = 570.0
+texture_normal = ExtResource("6_36pa5")
+texture_pressed = ExtResource("7_qhayd")
+texture_hover = ExtResource("7_guosr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Quit"]
+layout_mode = 0
+offset_right = 199.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0.458824, 0, 0.286275, 1)
+theme_override_fonts/font = ExtResource("8_gno1h")
+theme_override_font_sizes/font_size = 21
+text = "Quit
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 992.0
+offset_top = 40.0
+offset_right = 1111.0
+offset_bottom = 76.0
+texture_normal = ExtResource("6_36pa5")
+texture_pressed = ExtResource("7_qhayd")
+texture_hover = ExtResource("7_guosr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Back"]
+layout_mode = 0
+offset_left = -41.0
+offset_top = -1.0
+offset_right = 158.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0.458824, 0, 0.286275, 1)
+theme_override_fonts/font = ExtResource("8_gno1h")
+theme_override_font_sizes/font_size = 21
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="Starts" to="." method="_on_start_2_button_up"]
 [connection signal="finished" from="music_ui" to="." method="_on_music_ui_finished"]
+[connection signal="button_up" from="Credits" to="." method="_on_credits_button_up"]
+[connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]
+[connection signal="button_up" from="Back" to="." method="_on_back_pressed"]

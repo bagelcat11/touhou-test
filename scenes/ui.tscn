@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_eh4re"]
 [ext_resource type="Texture2D" uid="uid://hmcwu481iwff" path="res://assets/healthbar.png" id="2_yyo6b"]
 [ext_resource type="Shader" path="res://scenes/invertColors.gdshader" id="3_8y1ny"]
-[ext_resource type="FontFile" uid="uid://du8245yyvsq48" path="res://assets/Renogare-Regular.otf" id="3_sva87"]
+[ext_resource type="FontFile" uid="uid://dn2w1ec2cwkuf" path="res://assets/Pixel.ttf" id="3_ffpsc"]
 [ext_resource type="Texture2D" uid="uid://w5jrt05vteef" path="res://assets/bombBarContainer2.png" id="4_qb770"]
 [ext_resource type="Texture2D" uid="uid://dxolmtsi6bcyk" path="res://assets/bombBarBackground2.png" id="5_yuvub"]
 [ext_resource type="Texture2D" uid="uid://csu63vvv3m1je" path="res://assets/BOMBBAR_SPRITESHEET.png" id="6_we4y2"]
@@ -367,7 +367,7 @@ offset_left = 844.0
 offset_top = 256.0
 offset_right = 1084.0
 offset_bottom = 318.0
-theme_override_fonts/font = ExtResource("3_sva87")
+theme_override_fonts/font = ExtResource("3_ffpsc")
 theme_override_font_sizes/font_size = 40
 text = "1 x"
 horizontal_alignment = 2
@@ -378,7 +378,7 @@ offset_left = 843.0
 offset_top = 333.0
 offset_right = 1083.0
 offset_bottom = 441.0
-theme_override_fonts/font = ExtResource("3_sva87")
+theme_override_fonts/font = ExtResource("3_ffpsc")
 theme_override_font_sizes/font_size = 40
 text = "6 x"
 horizontal_alignment = 2
@@ -389,7 +389,7 @@ offset_left = 975.0
 offset_top = 144.0
 offset_right = 1167.0
 offset_bottom = 223.0
-theme_override_fonts/font = ExtResource("3_sva87")
+theme_override_fonts/font = ExtResource("3_ffpsc")
 theme_override_font_sizes/font_size = 32
 text = "
 0"
@@ -401,7 +401,7 @@ offset_left = 975.0
 offset_top = 144.0
 offset_right = 1167.0
 offset_bottom = 223.0
-theme_override_fonts/font = ExtResource("3_sva87")
+theme_override_fonts/font = ExtResource("3_ffpsc")
 theme_override_font_sizes/font_size = 32
 text = "Score"
 horizontal_alignment = 1
