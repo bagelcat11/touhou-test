@@ -9,6 +9,7 @@ func _ready() -> void:
 	var lifescore = GlobalVars.current_lives / 2.0 * 5000
 	var totalscore = applescore + cardscore + lifescore
 	GlobalVars.score = totalscore
+	# guh????
 	$game_over_popup/final_score.text = "X %s = %s\n\nX %s = %s\n\nX %s = %s\n---\n%s" % [GlobalVars.current_num_harvested, applescore, GlobalVars.current_num_bombs, cardscore, GlobalVars.current_lives / 2.0, lifescore, totalscore]
 	#get_tree().paused = true
 
@@ -16,3 +17,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_back_2_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

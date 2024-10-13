@@ -1,11 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://rg3thbxtt026"]
+[gd_scene load_steps=14 format=3 uid="uid://rg3thbxtt026"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_gr4kt"]
 [ext_resource type="Texture2D" uid="uid://dok0wrl116wie" path="res://assets/game-over-popup.png" id="2_lqpwh"]
-[ext_resource type="FontFile" uid="uid://du8245yyvsq48" path="res://assets/Renogare-Regular.otf" id="3_dl0b6"]
 [ext_resource type="Texture2D" uid="uid://b7lra0m57nbe8" path="res://assets/appel.png" id="3_rfaq5"]
 [ext_resource type="Texture2D" uid="uid://dxm31snmiy5ud" path="res://assets/heart.png" id="3_w3i7y"]
+[ext_resource type="FontFile" uid="uid://dn2w1ec2cwkuf" path="res://assets/Pixel.ttf" id="4_eikwb"]
 [ext_resource type="Texture2D" uid="uid://bi3hmpiamokm2" path="res://assets/BombCard.png" id="4_ibx1m"]
+[ext_resource type="Texture2D" uid="uid://dnfukhlttbr0n" path="res://assets/test_button1.png" id="7_7ui26"]
+[ext_resource type="Texture2D" uid="uid://6o4r58vu48n6" path="res://assets/test_button3.png" id="8_pvijb"]
+[ext_resource type="Texture2D" uid="uid://b6nsa1fpaospl" path="res://assets/test_button2.png" id="9_rn6df"]
+[ext_resource type="FontFile" uid="uid://dlqeoa1vcp7xr" path="res://assets/SoukouMincho.ttf" id="10_gfnxp"]
 
 [sub_resource type="Animation" id="Animation_qmenm"]
 resource_name = "game_over_fade"
@@ -76,7 +80,7 @@ offset_left = -318.333
 offset_top = -188.834
 offset_right = 72.6666
 offset_bottom = 88.1656
-theme_override_fonts/font = ExtResource("3_dl0b6")
+theme_override_fonts/font = ExtResource("4_eikwb")
 theme_override_font_sizes/font_size = 31
 text = "X NUM = NUMNUMNUM
 
@@ -98,7 +102,31 @@ scale = Vector2(2.9951, 2.68405)
 texture = ExtResource("4_ibx1m")
 
 [node name="back2menu" type="TextureButton" parent="game_over_popup"]
-offset_left = -173.333
-offset_top = 115.951
-offset_right = -133.333
-offset_bottom = 155.951
+offset_left = -253.333
+offset_top = 129.202
+offset_right = -53.3333
+offset_bottom = 209.202
+texture_normal = ExtResource("7_7ui26")
+texture_pressed = ExtResource("8_pvijb")
+texture_hover = ExtResource("9_rn6df")
+stretch_mode = 0
+
+[node name="buttonlabel" type="Label" parent="game_over_popup"]
+anchors_preset = -1
+anchor_left = 0.00034728
+anchor_top = -0.000340836
+anchor_right = -0.121528
+anchor_bottom = -0.202193
+offset_left = -254.0
+offset_top = 129.571
+offset_right = 180.0
+offset_bottom = 427.571
+theme_override_colors/font_color = Color(0.458824, 0, 0.286275, 1)
+theme_override_fonts/font = ExtResource("10_gfnxp")
+theme_override_font_sizes/font_size = 36
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="game_over_popup/back2menu" to="." method="_on_back_2_menu_pressed"]
