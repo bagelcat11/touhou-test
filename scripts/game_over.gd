@@ -1,0 +1,18 @@
+extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	$ui_fader.play("game_over_fade")
+	var applescore = GlobalVars.score
+	var cardscore = GlobalVars.current_num_bombs * 5000
+	var lifescore = GlobalVars.current_lives / 2.0 * 5000
+	var totalscore = applescore + cardscore + lifescore
+	GlobalVars.score = totalscore
+	$game_over_popup/final_score.text = "X %s = %s\n\nX %s = %s\n\nX %s = %s\n---\n%s" % [GlobalVars.current_num_harvested, applescore, GlobalVars.current_num_bombs, cardscore, GlobalVars.current_lives / 2.0, lifescore, totalscore]
+	#get_tree().paused = true
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
