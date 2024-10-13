@@ -4,7 +4,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$ui_fader.play("game_over_fade")
-	var applescore = GlobalVars.score
+	var applescore = GlobalVars.current_num_harvested * 5000
 	var cardscore = GlobalVars.current_num_bombs * 5000
 	var lifescore = GlobalVars.current_lives / 2.0 * 5000
 	var totalscore = applescore + cardscore + lifescore

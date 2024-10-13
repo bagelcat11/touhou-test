@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bel5c2ap112f3"]
+[gd_scene load_steps=32 format=3 uid="uid://bel5c2ap112f3"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_fmdvf"]
 [ext_resource type="PackedScene" uid="uid://dnvjf1v5tew17" path="res://scenes/tilemap_test.tscn" id="1_ic1ht"]
@@ -493,6 +493,18 @@ offset_right = 1189.0
 offset_bottom = 681.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Back" parent="UI/Pause Screen" index="3"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 228.0
+offset_bottom = 62.0
+
+[node name="Back_to_menu" parent="UI/Pause Screen" index="4"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 228.0
+offset_bottom = 62.0
 
 [node name="prompt_move" type="Label" parent="."]
 offset_left = 326.0
