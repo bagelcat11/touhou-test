@@ -1,4 +1,4 @@
-in-progress prototype/template for a movement-focused bullet hell 2d platformer.
+A game made for the GDA Fall Fair Jam 2024, with the "Bountiful" theme.
 
 TODO:
 - [x] basic player movement
@@ -19,5 +19,5 @@ TODO:
 - [x] make boss move around
 - [x] implement easy/med/hard/hard2 boss phases
 - [x] implement bomb tutorial
-- [ ] balance score
+- [x] balance score
 - uhhh also various nicer ui elements and basic sfx and things...
