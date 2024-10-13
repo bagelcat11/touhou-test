@@ -20,4 +20,5 @@ func _process(delta: float) -> void:
 
 
 func _on_back_2_menu_pressed() -> void:
+	Engine.time_scale = 1
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

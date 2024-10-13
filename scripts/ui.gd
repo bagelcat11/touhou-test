@@ -63,9 +63,9 @@ func _invertColors():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	#if (Input.is_action_just_pressed("pause")):
-		#get_tree().paused = !get_tree().paused
-		#$"Pause Screen".visible = !$"Pause Screen".visible
+	if (Input.is_action_just_pressed("pause")):
+		get_tree().paused = !get_tree().paused
+		$"Pause Screen".visible = !$"Pause Screen".visible
 	# could optimize this by picking up signals instead of checking every frame...
 	update_harvested()
 	update_bombs()

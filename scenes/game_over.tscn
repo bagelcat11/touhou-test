@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://rg3thbxtt026"]
+[gd_scene load_steps=14 format=3 uid="uid://c2dxj0v10ctqb"]
 
 [ext_resource type="Script" path="res://scripts/game_over.gd" id="1_gr4kt"]
 [ext_resource type="Texture2D" uid="uid://dok0wrl116wie" path="res://assets/game-over-popup.png" id="2_lqpwh"]
 [ext_resource type="Texture2D" uid="uid://b7lra0m57nbe8" path="res://assets/appel.png" id="3_rfaq5"]
-[ext_resource type="Texture2D" uid="uid://dxm31snmiy5ud" path="res://assets/heart.png" id="3_w3i7y"]
+[ext_resource type="Texture2D" uid="uid://be2n4v7e7jvsm" path="res://assets/isolated_heart.png" id="3_un3sv"]
 [ext_resource type="FontFile" uid="uid://dn2w1ec2cwkuf" path="res://assets/Pixel.ttf" id="4_eikwb"]
 [ext_resource type="Texture2D" uid="uid://bi3hmpiamokm2" path="res://assets/BombCard.png" id="4_ibx1m"]
 [ext_resource type="Texture2D" uid="uid://dnfukhlttbr0n" path="res://assets/test_button1.png" id="7_7ui26"]
@@ -73,7 +73,7 @@ texture = ExtResource("2_lqpwh")
 [node name="Heart" type="Sprite2D" parent="game_over_popup"]
 position = Vector2(-366.667, -16.5644)
 scale = Vector2(9.33436, 9.33436)
-texture = ExtResource("3_w3i7y")
+texture = ExtResource("3_un3sv")
 
 [node name="final_score" type="Label" parent="game_over_popup"]
 offset_left = -318.333
