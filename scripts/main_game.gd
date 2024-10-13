@@ -17,6 +17,7 @@ func _ready() -> void:
 	GlobalVars.connect("first_bomb", bomb_prompt)
 	GlobalVars.connect("bomb_tut_done", bomb_tut_done)
 	GlobalVars.connect("enemy_death", game_over)
+	GlobalVars.connect("death", game_over)
 	$prompt_shoot.hide()
 	$prompt_bomb.hide()
 	#$game_over_popup.hide()

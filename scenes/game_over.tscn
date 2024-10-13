@@ -11,6 +11,21 @@
 [ext_resource type="Texture2D" uid="uid://b6nsa1fpaospl" path="res://assets/test_button2.png" id="9_rn6df"]
 [ext_resource type="FontFile" uid="uid://dlqeoa1vcp7xr" path="res://assets/SoukouMincho.ttf" id="10_gfnxp"]
 
+[sub_resource type="Animation" id="Animation_apejo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("game_over_popup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_qmenm"]
 resource_name = "game_over_fade"
 length = 0.3
@@ -25,21 +40,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_apejo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("game_over_popup:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pk6w7"]
@@ -113,8 +113,8 @@ stretch_mode = 0
 
 [node name="buttonlabel" type="Label" parent="game_over_popup"]
 anchors_preset = -1
-anchor_left = 0.00034728
-anchor_top = -0.000340836
+anchor_left = -0.121528
+anchor_top = -0.202193
 anchor_right = -0.121528
 anchor_bottom = -0.202193
 offset_left = -254.0
