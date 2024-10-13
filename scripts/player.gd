@@ -168,9 +168,9 @@ func summon_bomb(s):
 # remove the underscore on delta if you end up using it
 func _physics_process(delta):
 	
-	## DEBUG DEATH
-	if(Input.is_action_just_pressed("debug_death")):
-		die()
+	### DEBUG DEATH
+	#if(Input.is_action_just_pressed("debug_death")):
+		#die()
 	
 	if(velocity.x < 0):
 		sprite.flip_h = true
