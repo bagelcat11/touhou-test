@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c38v4mq3f77se"]
+[gd_scene load_steps=28 format=3 uid="uid://c38v4mq3f77se"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_eh4re"]
 [ext_resource type="Texture2D" uid="uid://hmcwu481iwff" path="res://assets/healthbar.png" id="2_yyo6b"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://csu63vvv3m1je" path="res://assets/BOMBBAR_SPRITESHEET.png" id="6_we4y2"]
 [ext_resource type="Texture2D" uid="uid://bi3hmpiamokm2" path="res://assets/BombCard.png" id="8_flgsb"]
 [ext_resource type="Texture2D" uid="uid://b7lra0m57nbe8" path="res://assets/appel.png" id="9_cb31q"]
+[ext_resource type="Texture2D" uid="uid://dnfukhlttbr0n" path="res://assets/test_button1.png" id="9_iskso"]
+[ext_resource type="Texture2D" uid="uid://6o4r58vu48n6" path="res://assets/test_button3.png" id="10_4f228"]
+[ext_resource type="Texture2D" uid="uid://b6nsa1fpaospl" path="res://assets/test_button2.png" id="11_lafyj"]
+[ext_resource type="FontFile" uid="uid://dlqeoa1vcp7xr" path="res://assets/SoukouMincho.ttf" id="12_w4vvd"]
 
 [sub_resource type="Animation" id="Animation_mro5s"]
 resource_name = "BOMBGAIN"
@@ -470,15 +474,6 @@ offset_right = 1160.0
 offset_bottom = 661.0
 color = Color(0, 0, 0, 0.435294)
 
-[node name="back" type="Button" parent="Pause Screen"]
-z_index = 6
-layout_mode = 0
-offset_left = 478.0
-offset_top = 276.0
-offset_right = 707.0
-offset_bottom = 339.0
-text = "BACK"
-
 [node name="continue" type="Button" parent="Pause Screen"]
 visible = false
 z_index = 7
@@ -498,6 +493,55 @@ offset_right = 708.0
 offset_bottom = 529.0
 text = "Back To Menu"
 
+[node name="Back" type="TextureButton" parent="Pause Screen"]
+z_index = 7
+offset_left = 479.0
+offset_top = 277.0
+offset_right = 707.0
+offset_bottom = 339.0
+texture_normal = ExtResource("9_iskso")
+texture_pressed = ExtResource("10_4f228")
+texture_hover = ExtResource("11_lafyj")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Pause Screen/Back"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 228.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.458824, 0, 0.286275, 1)
+theme_override_fonts/font = ExtResource("12_w4vvd")
+theme_override_font_sizes/font_size = 21
+text = "Back
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back_to_menu" type="TextureButton" parent="Pause Screen"]
+z_index = 7
+offset_left = 479.0
+offset_top = 467.0
+offset_right = 707.0
+offset_bottom = 529.0
+texture_normal = ExtResource("9_iskso")
+texture_pressed = ExtResource("10_4f228")
+texture_hover = ExtResource("11_lafyj")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Pause Screen/Back_to_menu"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 228.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.458824, 0, 0.286275, 1)
+theme_override_fonts/font = ExtResource("12_w4vvd")
+theme_override_font_sizes/font_size = 21
+text = "Back to Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="scoreHandler" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_i7sjq")
@@ -508,8 +552,8 @@ position = Vector2(1116, 278)
 scale = Vector2(2.93333, 2.93333)
 texture = ExtResource("9_cb31q")
 
-[connection signal="button_down" from="Pause Screen/back" to="." method="_on_back_button_down"]
-[connection signal="button_down" from="Pause Screen/back" to="." method="_on_continue_button_button_down"]
 [connection signal="button_down" from="Pause Screen/continue" to="." method="_on_continue_button_button_down"]
 [connection signal="button_down" from="Pause Screen/back_to_menu" to="." method="_on_back_to_menu_button_down"]
 [connection signal="button_down" from="Pause Screen/back_to_menu" to="." method="_on_continue_button_button_down"]
+[connection signal="button_up" from="Pause Screen/Back" to="." method="_on_back_button_down"]
+[connection signal="button_down" from="Pause Screen/Back_to_menu" to="." method="_on_back_to_menu_button_down"]
