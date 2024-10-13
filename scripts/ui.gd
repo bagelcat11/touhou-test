@@ -74,6 +74,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_back_to_menu_button_down() -> void:
+	Spawning.reset()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
