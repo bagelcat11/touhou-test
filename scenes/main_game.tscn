@@ -495,12 +495,6 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="Back" parent="UI/Pause Screen" index="3"]
-
-layout_mode = 0
-
-[node name="Back_to_menu" parent="UI/Pause Screen" index="4"]
-layout_mode = 0
-
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 228.0
@@ -511,7 +505,6 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 228.0
 offset_bottom = 62.0
-
 
 [node name="prompt_move" type="Label" parent="."]
 offset_left = 342.0
