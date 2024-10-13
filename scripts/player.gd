@@ -274,6 +274,7 @@ func _physics_process(delta):
 	#if (Input.is_action_pressed("basket")):
 		## TODO: have bool var for isCollecting? 
 		## can't i just make the group apply recursively or smth
+		## guess this will never happen :pensive:
 		#
 		
 	#else:
