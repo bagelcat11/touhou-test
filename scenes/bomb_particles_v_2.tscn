@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbx4kyidnjd4m"]
+[gd_scene load_steps=8 format=3 uid="uid://bx6hlh406otg3"]
 
 [ext_resource type="Texture2D" uid="uid://030twfib7ygn" path="res://assets/testBombSprite.png" id="1_dirjx"]
 [ext_resource type="Script" path="res://scripts/bomb_particles_v_2.gd" id="2_41al5"]

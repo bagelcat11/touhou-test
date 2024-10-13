@@ -129,6 +129,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Quit" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 478.0
 offset_top = 534.0
 offset_right = 676.0
@@ -151,6 +152,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Back" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 992.0
 offset_top = 40.0
 offset_right = 1111.0
